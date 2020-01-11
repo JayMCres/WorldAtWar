@@ -6,7 +6,7 @@ import TanksList from "./TanksList";
 
 class TanksCont extends Component {
   render() {
-    // console.log("Tanks Props", this.props);
+    // console.log("Tanks Cont Props", this.props);
 
     return (
       <Segment
@@ -14,7 +14,7 @@ class TanksCont extends Component {
           "background-color": "black"
         }}
       >
-        <TanksList tanks={this.props.tanks} />
+        <TanksList tanks={this.props.tanks} />;
       </Segment>
     );
   }

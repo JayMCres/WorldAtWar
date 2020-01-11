@@ -1,4 +1,4 @@
-import { FETCH_TANKS } from "../actions/tanks";
+import { FETCH_TANKS } from "../actions/weapons";
 
 const initialState = {
   tanks: []

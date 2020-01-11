@@ -1,26 +1,12 @@
 import React, { Component } from "react";
-import { fetchTanks } from "../actions/tanks";
+import { fetchTanks } from "../actions/weapons";
 import { Segment } from "semantic-ui-react";
 import { connect } from "react-redux";
-import TanksCont from "./Weapons/Tanks/TanksCont";
+import WeaponsCont from "./Weapons/WeaponsCont";
 
-class HomePage extends Component {
-  async componentDidMount() {
-    this.props.dispatch(fetchTanks());
-  }
+export default class HomePage extends Component {
   render() {
     // console.log("MainPage", this.props);
-    return (
-      <Segment
-        style={{
-          "background-color": "black"
-        }}
-      >
-        >
-        <TanksCont />
-      </Segment>
-    );
+    return <WeaponsCont />;
   }
 }
-
-export default connect(null)(HomePage);

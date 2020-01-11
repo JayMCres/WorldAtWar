@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import { Card } from "semantic-ui-react";
+import { Card, Item } from "semantic-ui-react";
 import Tank from "./Tank";
 
 export default class Exchanges extends Component {
   state = {
     startIdx: 0,
-    endIdx: 8
+    endIdx: 4
   };
 
   // componentDidMount() {
@@ -41,23 +41,17 @@ export default class Exchanges extends Component {
   // }
 
   render() {
-    console.log("Tank List Props", this.props); // console.log("Exchanges Props", this.state);
-    // const exchangeList = this.props.exchanges.slice(
-    //   this.state.startIdx,
-    //   this.state.endIdx
-    // );
+    // console.log("Tank List Props", this.props);
+    const tanksList = Object.values(this.props.tanks).slice(
+      this.state.startIdx,
+      this.state.endIdx
+    );
 
+    console.log("TanksList", tanksList);
     return (
-      <Card.Group
-        itemsPerRow={8}
-        // style={{
-        //   "background-color": "black"
-        // }}
-      >
-        {this.props.tanks.map((item, index) => {
-          return (
-            <Tank index={index} key={item.tank_id} {...Object.values(item)} />
-          );
+      <Card.Group itemsPerRow={4}>
+        {tanksList.map((item, index) => {
+          return <Tank index={index} key={item.tank_id} {...item} />;
         })}
       </Card.Group>
     );

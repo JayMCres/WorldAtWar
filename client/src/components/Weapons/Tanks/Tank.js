@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Image } from "semantic-ui-react";
+import { Card, Image, Item, Button } from "semantic-ui-react";
 
 const Tank = props => {
   console.log("Tank Props", props);
@@ -9,10 +9,20 @@ const Tank = props => {
   return (
     <Card>
       <Card.Content>
-        {/* <Image floated="right" size="mini" src={props.images.normal} /> */}
-        <Card.Header>Steve Sanders</Card.Header>
-        <Card.Meta>Friends of Elliot</Card.Meta>
+        <Image floated="right" size="small" src={props.images.preview} />
+        <Card.Header>{props.name}</Card.Header>
+        <Card.Meta>{props.type}</Card.Meta>
         <Card.Description>{props.description}</Card.Description>
+      </Card.Content>
+      <Card.Content extra>
+        <div className="ui two buttons">
+          <Button basic color="green">
+            Approve
+          </Button>
+          <Button basic color="red">
+            Decline
+          </Button>
+        </div>
       </Card.Content>
     </Card>
   );
