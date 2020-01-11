@@ -32,8 +32,8 @@ const WeaponsMenu = props => {
           "border-style": "solid",
           "border-width": "1px"
         }}
-        name="plane"
-        active={props.activeItem === "plane"}
+        name="planes"
+        active={props.activeItem === "planes"}
         onClick={props.handleItemClick}
       >
         <Icon name="th list" size="tiny" /> Planes

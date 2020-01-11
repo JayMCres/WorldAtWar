@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import { fetchTanks } from "../../actions/weapons";
+import { fetchTanks, fetchPlanes, fetchShips } from "../../actions/weapons";
 import { Segment, Grid } from "semantic-ui-react";
 import { connect } from "react-redux";
-import TanksCont from "./Tanks/TanksCont";
 import WeaponsMenu from "./WeaponsMenu";
+import PlanesCont from "./Planes/PlanesCont";
+import TanksCont from "./Tanks/TanksCont";
 
 class WeaponsCont extends Component {
   state = { activeItem: "tanks" };
@@ -13,6 +14,8 @@ class WeaponsCont extends Component {
 
   async componentDidMount() {
     this.props.dispatch(fetchTanks());
+    this.props.dispatch(fetchPlanes());
+    this.props.dispatch(fetchShips());
   }
   render() {
     // console.log("MainPage", this.props);
@@ -20,7 +23,7 @@ class WeaponsCont extends Component {
     const onMenuClick = link => {
       const WEAPONS_PAGES = {
         tanks: <TanksCont />,
-        planes: <div>Test</div>,
+        planes: <PlanesCont />,
         ships: <div>Test</div>
       };
       return <div>{WEAPONS_PAGES[link]}</div>;

@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-import tanks from "./tanksReducer";
+import weapons from "./weaponsReducer";
 
 const rootReducer = combineReducers({
-  tanks
+  weapons
 });
 
 export default rootReducer;

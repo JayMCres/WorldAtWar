@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Card, Item } from "semantic-ui-react";
-import Tank from "./Tank";
+import Plane from "./Plane";
 
-export default class TanksList extends Component {
+export default class PlanesList extends Component {
   state = {
     startIdx: 0,
     endIdx: 4
@@ -41,17 +41,17 @@ export default class TanksList extends Component {
   // }
 
   render() {
-    // console.log("Tank List Props", this.props);
-    const tanksList = Object.values(this.props.tanks).slice(
+    console.log("Plane List Props", this.props);
+    const planesList = Object.values(this.props.planes).slice(
       this.state.startIdx,
       this.state.endIdx
     );
 
-    console.log("TanksList", tanksList);
+    // console.log("planesList", planesList);
     return (
       <Card.Group itemsPerRow={4}>
-        {tanksList.map((item, index) => {
-          return <Tank index={index} key={item.tank_id} {...item} />;
+        {planesList.map((item, index) => {
+          return <Plane index={index} key={item.plane_id} {...item} />;
         })}
       </Card.Group>
     );

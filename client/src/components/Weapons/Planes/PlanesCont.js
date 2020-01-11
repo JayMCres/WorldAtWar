@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { Segment } from "semantic-ui-react";
 import { connect } from "react-redux";
 
-import TanksList from "./TanksList";
+import PlanesList from "./PlanesList";
 
-class TanksCont extends Component {
+class PlanesCont extends Component {
   render() {
     // console.log("Tanks Cont Props", this.props);
 
@@ -14,14 +14,14 @@ class TanksCont extends Component {
           "background-color": "black"
         }}
       >
-        <TanksList tanks={this.props.tanks} />;
+        <PlanesList planes={this.props.planes} />;
       </Segment>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  tanks: state.weapons.tanks
+  planes: state.weapons.planes
 });
 
-export default connect(mapStateToProps)(TanksCont);
+export default connect(mapStateToProps)(PlanesCont);
