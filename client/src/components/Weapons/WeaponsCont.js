@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import WeaponsMenu from "./WeaponsMenu";
 import PlanesCont from "./Planes/PlanesCont";
 import TanksCont from "./Tanks/TanksCont";
+import ShipsCont from "./Ships/ShipsCont";
 
 class WeaponsCont extends Component {
   state = { activeItem: "tanks" };
@@ -24,7 +25,7 @@ class WeaponsCont extends Component {
       const WEAPONS_PAGES = {
         tanks: <TanksCont />,
         planes: <PlanesCont />,
-        ships: <div>Test</div>
+        ships: <ShipsCont />
       };
       return <div>{WEAPONS_PAGES[link]}</div>;
     };
