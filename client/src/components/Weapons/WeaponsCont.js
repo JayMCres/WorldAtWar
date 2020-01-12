@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { fetchTanks, fetchPlanes, fetchShips } from "../../actions/weapons";
-import { Segment, Grid } from "semantic-ui-react";
+import { Segment, Grid, Header, Icon } from "semantic-ui-react";
 import { connect } from "react-redux";
 import WeaponsMenu from "./WeaponsMenu";
 import PlanesCont from "./Planes/PlanesCont";
@@ -35,8 +35,17 @@ class WeaponsCont extends Component {
           "background-color": "black"
         }}
       >
+        <Header
+          as="h2"
+          style={{
+            color: "blue"
+          }}
+        >
+          <Icon name="plug" />
+          <Header.Content>Weapons Systems</Header.Content>
+        </Header>
         <Grid>
-          <Grid.Column width={1}>
+          <Grid.Column width={1} verticalAlign="middle">
             <WeaponsMenu
               activeItem={activeItem}
               handleItemClick={this.handleItemClick}

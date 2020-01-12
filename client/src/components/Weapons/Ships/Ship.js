@@ -10,8 +10,8 @@ const Ship = props => {
     <Card>
       <Card.Content>
         <Image floated="right" size="small" src={props.images.medium} />
-        <Card.Header>{props.name}</Card.Header>
-        <Card.Meta>{props.nation}</Card.Meta>
+        <Card.Header style={{ "font-size": "16px" }}>{props.name}</Card.Header>
+        <Card.Meta>{props.nation.toUpperCase()}</Card.Meta>
         {/* <Card.Description>{props.description}</Card.Description> */}
       </Card.Content>
       <Card.Content extra>

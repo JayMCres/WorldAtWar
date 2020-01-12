@@ -9,8 +9,10 @@ const Plane = props => {
   return (
     <Card>
       <Card.Content>
-        <Image floated="right" size="small" src={props.images.medium} />
-        <Card.Header>{props.name_i18n}</Card.Header>
+        <Image floated="right" src={props.images.small} />
+        <Card.Header style={{ "font-size": "16px" }}>
+          {props.name_i18n}
+        </Card.Header>
         <Card.Meta>{props.nation}</Card.Meta>
         {/* <Card.Description>{props.description}</Card.Description> */}
       </Card.Content>
