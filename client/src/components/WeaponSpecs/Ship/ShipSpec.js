@@ -1,24 +1,31 @@
 import React, { Component } from "react";
 import ProfileFeedCont from "./ProfileFeedCont";
-import { Segment, Image, Header, Message, Item, List } from "semantic-ui-react";
-
+import { Segment, Image, Card, Icon, Grid } from "semantic-ui-react";
+import WeaponCard from "./WeaponCard";
 class ShipSpec extends Component {
+  state = { showDetails: true };
+  handleShowDetails = () => {
+    this.setState({
+      showDetails: !this.state.showDetails
+    });
+  };
   render() {
     // console.log("Ship Spec Props", this.props);
     const profileData = [this.props.default_profile].map(item => {
       return {
         Engine: item.engine.engine_id_str,
-        Speed: item.engine.max_speed,
-        "Anti-Aircraft Gun I": item.anti_aircraft.slots[0].name,
-        "Anti-Aircraft Gun I Caliber": item.anti_aircraft.slots[0].caliber,
-        "Anti-Aircraft Gun II": item.anti_aircraft.slots[1].name,
-        "Anti-Aircraft Gun II Caliber": item.anti_aircraft.slots[1].caliber,
-        "Anti-Aircraft Gun III": item.anti_aircraft.slots[2].name,
-        "Anti-Aircraft Gun III Caliber": item.anti_aircraft.slots[2].caliber,
+        Speed: item.engine.max_speed + " " + "knots",
+        // "Main Gun": item.atbas.slots[0].name,
+        // "Anti-Aircraft Main Gun ": item.anti_aircraft.slots[0].name,
+        // "Anti-Aircraft Secondary Gun ": item.anti_aircraft.slots[1].name,
+        // "Anti-Aircraft Gun III": item.anti_aircraft.slots[2].name,
+        // "Anti-Aircraft Gun III Caliber": item.anti_aircraft.slots[2].caliber,
         "Rudder Time": item.mobility.rudder_time,
-        "Turning Radius": item.mobility.turning_radius,
-        "Plane Detection": item.concealment.detect_distance_by_plane,
-        "Ship Detection": item.concealment.detect_distance_by_ship
+        "Turning Radius": item.mobility.turning_radius + " " + "miles",
+        "Plane Detection":
+          item.concealment.detect_distance_by_plane + " " + "miles",
+        "Ship Detection":
+          item.concealment.detect_distance_by_ship + " " + "miles"
       };
     });
 
@@ -30,45 +37,29 @@ class ShipSpec extends Component {
           "background-color": "#00008B"
         }}
       >
-        <Segment
-          attached="top"
+        <Grid
           style={{
-            minHeight: 200
+            "background-color": "white"
           }}
         >
-          <Item.Group>
-            <Item
-              style={{
-                "background-color": "white"
-              }}
-            >
-              <Item.Image
-                style={{
-                  "background-color": "black"
-                }}
-                src={this.props.images.small}
-              />
-
-              <Item.Content>
-                <br></br>
-                <Item.Header as="a">{this.props.name}</Item.Header>
-                <Item.Description style={{ "font-size": "10px" }}>
-                  <p>{this.props.description}</p>
-                </Item.Description>
-              </Item.Content>
-            </Item>
-          </Item.Group>
-        </Segment>
-        <Segment
-          attached="bottom"
-          style={{
-            overflow: "auto",
-            maxHeight: 150,
-            minHeight: 150
-          }}
-        >
-          <ProfileFeedCont profile={profileData} />
-        </Segment>
+          <Grid.Column width={6}>
+            <WeaponCard
+              images={this.props.images}
+              name={this.props.name}
+              handleShowDetails={this.handleShowDetails}
+            />
+          </Grid.Column>
+          <Grid.Column
+            width={10}
+            style={{
+              overflow: "auto",
+              maxHeight: 200,
+              minHeight: 200
+            }}
+          >
+            <ProfileFeedCont profile={profileData} />
+          </Grid.Column>
+        </Grid>
       </Segment>
     );
   }

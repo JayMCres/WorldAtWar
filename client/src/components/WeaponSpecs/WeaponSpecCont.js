@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 
 import TankSpecCont from "./Tank/TankSpecCont";
 import ShipSpecCont from "./Ship/ShipSpecCont";
+import PlaneSpecCont from "./Plane/PlaneSpecCont";
 
 class WeaponsSpecCont extends Component {
   render() {
@@ -15,10 +16,10 @@ class WeaponsSpecCont extends Component {
       >
         <Grid columns="equal">
           <Grid.Column>
-            <TankSpecCont tanks={this.props.tanks} />
+            <PlaneSpecCont planes={this.props.planes} />
           </Grid.Column>
           <Grid.Column>
-            <Segment>2</Segment>
+            <TankSpecCont tanks={this.props.tanks} />
           </Grid.Column>
           <Grid.Column>
             <ShipSpecCont ships={this.props.ships} />
@@ -31,7 +32,8 @@ class WeaponsSpecCont extends Component {
 
 const mapStateToProps = state => ({
   tanks: state.weapons.tanks,
-  ships: state.weapons.ships
+  ships: state.weapons.ships,
+  planes: state.weapons.planes
 });
 
 export default connect(mapStateToProps)(WeaponsSpecCont);

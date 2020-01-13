@@ -1,10 +1,17 @@
 import React, { Component } from "react";
+import WeaponCard from "./WeaponCard";
 import ProfileFeedCont from "./ProfileFeedCont";
-import { Segment, Image, Header, Message, Item, List } from "semantic-ui-react";
+import { Segment, Grid, Header, Icon } from "semantic-ui-react";
 
 class TankSpec extends Component {
+  state = { showDetails: true };
+  handleShowDetails = () => {
+    this.setState({
+      showDetails: !this.state.showDetails
+    });
+  };
   render() {
-    // console.log("Tank Spec Props", this.props);
+    console.log("Tank Spec Props", this.props);
     const profileData = [this.props.default_profile].map(item => {
       return {
         Weight: item.weight + " " + "Tons",
@@ -29,65 +36,34 @@ class TankSpec extends Component {
     });
 
     return (
-      <Segment
-        style={{
-          "background-color": "#669999"
-        }}
-      >
-        <Segment
-          attached="top"
+      <Segment>
+        <Grid
           style={{
-            minHeight: 200,
-            "background-color": "black"
+            "background-color": "white"
           }}
         >
-          <Item.Group>
-            <Item
-              style={{
-                "background-color": "white"
-              }}
-              verticalAlign="middle"
-            >
-              <Item.Image
-                style={{
-                  // "background-color": "black",
-                  padding: "10px 10px 10px 10px"
-                }}
-                src={this.props.images.preview}
-                verticalAlign="middle"
-                centered
-              />
-
-              <Item.Content
-                style={{
-                  "background-color": "#F5F5F5"
-                }}
-              >
-                <br></br>
-                <Item.Header as="a">{this.props.name}</Item.Header>
-                <Item.Description
-                  style={{
-                    "font-size": "10px",
-                    padding: "10px 10px 10px 10px"
-                  }}
-                >
-                  <p>{this.props.description}</p>
-                </Item.Description>
-                <br></br>
-              </Item.Content>
-            </Item>
-          </Item.Group>
-        </Segment>
-        <Segment
-          attached="bottom"
-          style={{
-            overflow: "auto",
-            maxHeight: 150,
-            minHeight: 150
-          }}
-        >
-          <ProfileFeedCont profile={profileData} />
-        </Segment>
+          <Grid.Column
+            width={6}
+            style={{
+              minHeight: 200
+            }}
+          >
+            <WeaponCard
+              images={this.props.images}
+              handleShowDetails={this.handleShowDetails}
+            />
+          </Grid.Column>
+          <Grid.Column
+            width={10}
+            style={{
+              overflow: "auto",
+              maxHeight: 200,
+              minHeight: 200
+            }}
+          >
+            <ProfileFeedCont profile={profileData} />
+          </Grid.Column>
+        </Grid>
       </Segment>
     );
   }

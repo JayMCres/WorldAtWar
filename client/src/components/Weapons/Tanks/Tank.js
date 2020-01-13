@@ -11,7 +11,17 @@ const Tank = props => {
       <Card.Content>
         <Image floated="right" size="tiny" src={props.images.preview} />
         <Card.Header style={{ "font-size": "16px" }}>{props.name}</Card.Header>
-        <Card.Meta>{props.type}</Card.Meta>
+        <Card.Meta>
+          {props.type.length > 6 ? (
+            <strong style={{ "font-size": "12px" }}>
+              {props.type.toUpperCase().slice(0, -4) + " " + "TANK"}
+            </strong>
+          ) : (
+            <strong style={{ "font-size": "12px" }}>
+              {props.type.toUpperCase()}
+            </strong>
+          )}
+        </Card.Meta>
         <Card.Meta>{props.nation.toUpperCase()}</Card.Meta>
       </Card.Content>
       <Card.Content extra>

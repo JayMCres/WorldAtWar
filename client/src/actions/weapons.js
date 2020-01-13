@@ -44,6 +44,7 @@ export function fetchPlane(id) {
 
 export const setPlaneDetails = data => async dispatch => {
   const details = await data;
+  console.log("Plane Details", details);
   dispatch({
     type: SET_PLANE_DETAILS,
     payload: details

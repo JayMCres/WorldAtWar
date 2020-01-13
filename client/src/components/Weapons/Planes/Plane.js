@@ -10,10 +10,11 @@ const Plane = props => {
     <Card>
       <Card.Content>
         <Image floated="right" src={props.images.small} />
-        <Card.Header style={{ "font-size": "16px" }}>
+        <Card.Header style={{ "font-size": "15px" }}>
           {props.name_i18n}
         </Card.Header>
-        <Card.Meta>{props.nation}</Card.Meta>
+        <Card.Meta>{props.type.toUpperCase()}</Card.Meta>
+        <Card.Meta>{props.nation.toUpperCase()}</Card.Meta>
         {/* <Card.Description>{props.description}</Card.Description> */}
       </Card.Content>
       <Card.Content extra>

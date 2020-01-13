@@ -24,9 +24,9 @@ export default function weaponsReducer(state = initialState, action) {
     case FETCH_PLANES: {
       return { ...state, planes: action.payload };
     }
-    case FETCH_PLANE: {
-      return { ...state, plane: action.payload };
-    }
+    // case FETCH_PLANE: {
+    //   return { ...state, plane: action.payload };
+    // }
     case SET_PLANE_DETAILS: {
       return { ...state, plane: action.payload };
     }

@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { Segment, Label, Icon } from "semantic-ui-react";
-import TankSpec from "./TankSpec";
-import WeaponHeader from "./WeaponHeader";
+import PlaneSpec from "./PlaneSpec";
 import { connect } from "react-redux";
+import WeaponHeader from "./WeaponHeader";
 
-class TankSpecCont extends Component {
+class PlaneSpecCont extends Component {
   state = {
     startIdx: 0,
     endIdx: 1,
@@ -33,6 +33,7 @@ class TankSpecCont extends Component {
       changeInterval: true
     });
   };
+
   showMore = () => {
     this.setState(prevState => {
       return {
@@ -43,7 +44,7 @@ class TankSpecCont extends Component {
   };
 
   handleSpecs = () => {
-    if (this.state.endIdx === Object.values(this.props.tanks).length - 1) {
+    if (this.state.endIdx === Object.values(this.props.planes).length - 1) {
       this.setState({
         startIdx: 0,
         endIdx: 1
@@ -54,9 +55,14 @@ class TankSpecCont extends Component {
   componentWillUnmount() {
     clearInterval(this.carouselInterval);
   }
+
+  handleIntervalState = () => {
+    this.setState({ changeInterval: !this.state.changeInterval });
+  };
+
   render() {
-    // console.log("Tanks Spec Cont Props", this.state);
-    const tanksList = Object.values(this.props.tanks).slice(
+    // console.log("Plane Spec Cont Props", this.props);
+    const currentPlane = Object.values(this.props.planes).slice(
       this.state.startIdx,
       this.state.endIdx
     );
@@ -68,10 +74,10 @@ class TankSpecCont extends Component {
           "background-color": "black"
         }}
       >
-        {tanksList.map(item => {
+        {currentPlane.map(item => {
           return (
             <WeaponHeader
-              key={item.tank_id}
+              key={item.plane_id}
               {...item}
               handleIntervalStop={this.handleIntervalStop}
               handleIntervalStart={this.handleIntervalStart}
@@ -79,12 +85,13 @@ class TankSpecCont extends Component {
             />
           );
         })}
-        {tanksList.map(item => {
-          return <TankSpec key={item.tank_id} {...item} />;
+        {currentPlane.map(item => {
+          return <PlaneSpec key={item.plane_id} id={item.plane_id} {...item} />;
         })}
       </Segment>
     );
   }
 }
+export default PlaneSpecCont;
 
-export default connect(null)(TankSpecCont);
+// export default connect(null)(PlaneSpecCont);

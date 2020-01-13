@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Segment, Label, Icon } from "semantic-ui-react";
 import ShipSpec from "./ShipSpec";
 import { connect } from "react-redux";
+import WeaponHeader from "./WeaponHeader";
 
 class ShipSpecCont extends Component {
   state = {
@@ -60,7 +61,7 @@ class ShipSpecCont extends Component {
   };
 
   render() {
-    console.log("Ship Spec Cont Props", this.props);
+    // console.log("Ship Spec Cont Props", this.props);
     const shipsList = Object.values(this.props.ships).slice(
       this.state.startIdx,
       this.state.endIdx
@@ -73,25 +74,17 @@ class ShipSpecCont extends Component {
           "background-color": "black"
         }}
       >
-        <Label
-          size="medium"
-          as="a"
-          corner="left"
-          color="grey"
-          onClick={this.handleIntervalStart}
-        >
-          <Icon name="play" disabled={this.state.changeInterval === true} />
-        </Label>
-
-        <Label
-          size="medium"
-          as="a"
-          corner="right"
-          color="grey"
-          onClick={this.handleIntervalStop}
-        >
-          <Icon name="pause" disabled={this.state.changeInterval === false} />
-        </Label>
+        {shipsList.map(item => {
+          return (
+            <WeaponHeader
+              key={item.ship_id}
+              {...item}
+              handleIntervalStop={this.handleIntervalStop}
+              handleIntervalStart={this.handleIntervalStart}
+              changeInterval={this.state.changeInterval}
+            />
+          );
+        })}
         {shipsList.map(item => {
           return <ShipSpec key={item.tank_id} {...item} />;
         })}

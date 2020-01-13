@@ -41,7 +41,7 @@ export default class ProfileFeedCont extends Component {
   //   clearInterval(this.carouselInterval);
   // }
   render() {
-    console.log("Profile Feed Cont Props", this.props.profile);
+    // console.log("Profile Feed Cont Props", this.props.profile);
 
     // console.log(profileList);
 

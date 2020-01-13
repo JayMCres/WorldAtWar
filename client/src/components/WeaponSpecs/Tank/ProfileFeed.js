@@ -15,33 +15,22 @@ const ProfileFeed = props => {
               "border-width": "1px"
             }}
           >
-            {item === undefined ? (
-              <Item>
+            <Item>
+              <Item.Content
+                verticalAlign="middle"
+                style={{ "font-size": "12px" }}
+              >
+                {item[0]}
+              </Item.Content>{" "}
+              <Item floated="right">
                 <Item.Content
                   verticalAlign="middle"
                   style={{ "font-size": "12px" }}
                 >
-                  Not Avaliable
+                  {item[1]}
                 </Item.Content>
               </Item>
-            ) : (
-              <Item>
-                <Item.Content
-                  verticalAlign="middle"
-                  style={{ "font-size": "12px" }}
-                >
-                  {item[0]}
-                </Item.Content>{" "}
-                <Item floated="right">
-                  <Item.Content
-                    verticalAlign="middle"
-                    style={{ "font-size": "12px" }}
-                  >
-                    {item[1]}
-                  </Item.Content>
-                </Item>
-              </Item>
-            )}
+            </Item>
           </Item.Group>
         );
       })}
