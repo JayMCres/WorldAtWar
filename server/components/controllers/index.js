@@ -1,9 +1,11 @@
 const tanksController = require("./tanksController");
 const planesController = require("./planesController");
-const warshipsController = require("./warshipsController");
+const shipsController = require("./shipsController");
+const planeController = require("./planeController");
 
 module.exports = {
   tanksController,
   planesController,
-  warshipsController
+  shipsController,
+  planeController
 };

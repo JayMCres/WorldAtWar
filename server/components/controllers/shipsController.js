@@ -8,12 +8,7 @@ exports.fetchAllShips = async (req, res) => {
 
   let jsonData = await response.json();
 
-  let shipsArray = await [jsonData];
+  let shipsObject = await jsonData.data;
 
-  let shipsData = await shipsArray.map(item => {
-    return item.data;
-  });
-  console.log("ships Response", shipsData);
-
-  res.send(shipsData);
+  res.send(shipsObject);
 };
