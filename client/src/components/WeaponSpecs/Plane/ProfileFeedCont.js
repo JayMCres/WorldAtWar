@@ -99,7 +99,7 @@ class ProfileFeedCont extends Component {
       };
     });
 
-    console.log("plane array", planeArray);
+    // console.log("plane array", planeArray);
     return (
       <List animated verticalAlign="middle" divided>
         <ProfileFeed profileData={planeArray[0]} />

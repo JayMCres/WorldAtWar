@@ -5,6 +5,16 @@ import { connect } from "react-redux";
 import PlanesList from "./PlanesList";
 
 class PlanesCont extends Component {
+  filterPlanes = () =>
+    Object.values(this.props.planes).filter(item => {
+      return (
+        item.name_i18n
+          .toLowerCase()
+          .includes(this.props.inputValue.toLowerCase()) ||
+        item.type.toLowerCase().includes(this.props.inputValue.toLowerCase()) ||
+        item.nation.toLowerCase().includes(this.props.inputValue.toLowerCase())
+      );
+    });
   render() {
     // console.log("Tanks Cont Props", this.props);
 
@@ -14,7 +24,7 @@ class PlanesCont extends Component {
           "background-color": "black"
         }}
       >
-        <PlanesList planes={this.props.planes} />;
+        <PlanesList planes={this.filterPlanes()} />;
       </Segment>
     );
   }

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { fetchTanks } from "../actions/weapons";
-import { Segment } from "semantic-ui-react";
-import { connect } from "react-redux";
+
+import { Segment, Grid } from "semantic-ui-react";
+
 import WeaponsCont from "./Weapons/WeaponsCont";
 import WeaponSpecCont from "./WeaponSpecs/WeaponSpecCont";
 import CompareCont from "./WeaponCompare/CompareCont";
@@ -16,7 +16,16 @@ export default class HomePage extends Component {
         }}
       >
         <WeaponSpecCont />
-        <WeaponsCont />
+        <Grid
+          style={{
+            "background-color": "black"
+          }}
+        >
+          <Grid.Column width={12}>
+            <WeaponsCont />
+          </Grid.Column>
+          <Grid.Column width={4}>Test</Grid.Column>
+        </Grid>
         <CompareCont />
       </Segment>
     );

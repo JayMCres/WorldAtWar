@@ -5,13 +5,13 @@ import Ship from "./Ship";
 export default class ShipsList extends Component {
   state = {
     startIdx: 0,
-    endIdx: 4
+    endIdx: 3
   };
   showMore = () => {
     this.setState(prevState => {
       return {
-        startIdx: prevState.startIdx + 4,
-        endIdx: prevState.endIdx + 4
+        startIdx: prevState.startIdx + 3,
+        endIdx: prevState.endIdx + 3
       };
     });
   };
@@ -19,8 +19,8 @@ export default class ShipsList extends Component {
   showLess = () => {
     this.setState(prevState => {
       return {
-        startIdx: prevState.startIdx - 4,
-        endIdx: prevState.endIdx - 4
+        startIdx: prevState.startIdx - 3,
+        endIdx: prevState.endIdx - 3
       };
     });
   };
@@ -68,7 +68,7 @@ export default class ShipsList extends Component {
           }
         />
 
-        <Card.Group itemsPerRow={4}>
+        <Card.Group itemsPerRow={3}>
           {shipsList.map((item, index) => {
             return <Ship index={index} key={item.ship_id} {...item} />;
           })}

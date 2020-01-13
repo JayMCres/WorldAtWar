@@ -6,9 +6,16 @@ import WeaponsMenu from "./WeaponsMenu";
 import PlanesCont from "./Planes/PlanesCont";
 import TanksCont from "./Tanks/TanksCont";
 import ShipsCont from "./Ships/ShipsCont";
+import WeaponsHeader from "./WeaponsHeader";
 
 class WeaponsCont extends Component {
-  state = { activeItem: "tanks" };
+  state = { activeItem: "tanks", inputValue: "" };
+
+  handleChange = event => {
+    this.setState({
+      inputValue: event.target.value
+    });
+  };
 
   handleItemClick = (e, { name }) =>
     this.setState({ activeItem: name, chartsPage: "true" });
@@ -23,9 +30,9 @@ class WeaponsCont extends Component {
     const { activeItem } = this.state;
     const onMenuClick = link => {
       const WEAPONS_PAGES = {
-        tanks: <TanksCont />,
-        planes: <PlanesCont />,
-        ships: <ShipsCont />
+        tanks: <TanksCont inputValue={this.state.inputValue} />,
+        planes: <PlanesCont inputValue={this.state.inputValue} />,
+        ships: <ShipsCont inputValue={this.state.inputValue} />
       };
       return <div>{WEAPONS_PAGES[link]}</div>;
     };
@@ -35,15 +42,10 @@ class WeaponsCont extends Component {
           "background-color": "black"
         }}
       >
-        <Header
-          as="h2"
-          style={{
-            color: "blue"
-          }}
-        >
-          <Icon name="plug" />
-          <Header.Content>Weapons Systems</Header.Content>
-        </Header>
+        <WeaponsHeader
+          handleChange={this.handleChange}
+          inputValue={this.state.inputValue}
+        />
         <Grid>
           <Grid.Column width={1} verticalAlign="middle">
             <WeaponsMenu

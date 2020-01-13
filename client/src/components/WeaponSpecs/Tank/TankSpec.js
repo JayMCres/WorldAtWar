@@ -11,7 +11,7 @@ class TankSpec extends Component {
     });
   };
   render() {
-    console.log("Tank Spec Props", this.props);
+    // console.log("Tank Spec Props", this.props);
     const profileData = [this.props.default_profile].map(item => {
       return {
         Weight: item.weight + " " + "Tons",

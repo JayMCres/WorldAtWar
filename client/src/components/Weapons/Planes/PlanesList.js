@@ -5,14 +5,14 @@ import Plane from "./Plane";
 export default class PlanesList extends Component {
   state = {
     startIdx: 0,
-    endIdx: 4
+    endIdx: 3
   };
 
   showMore = () => {
     this.setState(prevState => {
       return {
-        startIdx: prevState.startIdx + 4,
-        endIdx: prevState.endIdx + 4
+        startIdx: prevState.startIdx + 3,
+        endIdx: prevState.endIdx + 3
       };
     });
   };
@@ -20,8 +20,8 @@ export default class PlanesList extends Component {
   showLess = () => {
     this.setState(prevState => {
       return {
-        startIdx: prevState.startIdx - 4,
-        endIdx: prevState.endIdx - 4
+        startIdx: prevState.startIdx - 3,
+        endIdx: prevState.endIdx - 3
       };
     });
   };
@@ -68,7 +68,7 @@ export default class PlanesList extends Component {
             this.state.endIdx > Object.values(this.props.planes).length - 1
           }
         />
-        <Card.Group itemsPerRow={4}>
+        <Card.Group itemsPerRow={3}>
           {planesList.map((item, index) => {
             return <Plane index={index} key={item.plane_id} {...item} />;
           })}

@@ -3,7 +3,7 @@ import { List, Item } from "semantic-ui-react";
 
 export default class ProfileFeedItem extends Component {
   render() {
-    console.log("Plane Feed Item Props", this.props);
+    // console.log("Plane Feed Item Props", this.props);
     return (
       <List.Item>
         {this.props.profileData === undefined ? (
