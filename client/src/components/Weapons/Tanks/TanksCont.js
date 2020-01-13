@@ -5,6 +5,29 @@ import { connect } from "react-redux";
 import TanksList from "./TanksList";
 
 class TanksCont extends Component {
+  addTankArmory = tankId => {
+    const foundTank = Object.values(this.props.tanks).find(
+      tank => tank.tank_id === tankId
+    );
+    // console.log("FoundTanbk", foundTank);
+    const favoriteTanks = Object.values(this.props.favorites).filter(item => {
+      return item.weaponType === "tank";
+    });
+
+    const preventDoubles = Object.values(favoriteTanks).find(item => {
+      return item.tank_id === foundTank.tank_id;
+    });
+    // console.log("Prevent", preventDoubles);
+    if (!preventDoubles) {
+      const weaponObj = {
+        ...foundTank,
+        weaponType: "tank",
+        image: foundTank.images.preview,
+        name: foundTank.name
+      };
+      this.props.addWeaponToArmory(weaponObj);
+    }
+  };
   filterTanks = () =>
     Object.values(this.props.tanks).filter(item => {
       return (
@@ -14,15 +37,21 @@ class TanksCont extends Component {
       );
     });
   render() {
-    console.log("Tanks Cont Props", this.props);
+    // console.log("Tanks Cont Props", this.props);
 
     return (
       <Segment
         style={{
+          "border-style": "double",
+          "border-color": "#6666ff",
           "background-color": "black"
         }}
       >
-        <TanksList tanks={this.filterTanks()} />;
+        <TanksList
+          tanks={this.filterTanks()}
+          addTankArmory={this.addTankArmory}
+        />
+        ;
       </Segment>
     );
   }

@@ -2,8 +2,6 @@ import React from "react";
 import { Header, Icon, Label } from "semantic-ui-react";
 
 const WeaponCont = props => {
-  const typeWord = [props.type];
-  console.log(typeWord);
   return (
     <Header as="h2" attached="top">
       <Label

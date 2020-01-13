@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import { Segment } from "semantic-ui-react";
+import { Segment, List, Message } from "semantic-ui-react";
 
-// import Favorites from "./Favorites";
+import Favorite from "./Favorite";
+import FavoriteHeader from "./FavoriteHeader";
 
 export default class Favorites extends Component {
   render() {
-    // console.log("Tanks Cont Props", this.props);
+    // console.log("favorites", this.props);
 
     return (
       <Segment
@@ -13,7 +14,27 @@ export default class Favorites extends Component {
           "background-color": "black"
         }}
       >
-        Test
+        <FavoriteHeader
+          inputValue={this.props.inputValue}
+          handleChange={this.props.handleChange}
+        />
+        {this.props.favorites.length === 0 ? (
+          <Message>No Weapons</Message>
+        ) : (
+          <List
+            divided
+            relaxed
+            style={{
+              overflow: "auto",
+              maxHeight: 240,
+              minHeight: 240
+            }}
+          >
+            {this.props.favorites.map((item, index) => {
+              return <Favorite key={index} {...item} />;
+            })}
+          </List>
+        )}
       </Segment>
     );
   }

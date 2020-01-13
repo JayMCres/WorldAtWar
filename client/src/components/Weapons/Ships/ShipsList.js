@@ -70,7 +70,14 @@ export default class ShipsList extends Component {
 
         <Card.Group itemsPerRow={3}>
           {shipsList.map((item, index) => {
-            return <Ship index={index} key={item.ship_id} {...item} />;
+            return (
+              <Ship
+                index={index}
+                key={item.ship_id}
+                {...item}
+                addShipArmory={this.props.addShipArmory}
+              />
+            );
           })}
         </Card.Group>
       </Segment>

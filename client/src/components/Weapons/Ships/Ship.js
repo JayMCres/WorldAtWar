@@ -10,12 +10,14 @@ const Ship = props => {
     <Card>
       <Card.Content>
         <Image floated="right" size="small" src={props.images.medium} />
-        <Card.Header style={{ "font-size": "16px" }}>
+        <Card.Header style={{ "font-size": "12px" }}>
           {" "}
           {props.name.slice(1, -1)}
         </Card.Header>
-        <Card.Meta>{props.type}</Card.Meta>
-        <Card.Meta>{props.nation.toUpperCase()}</Card.Meta>
+        <Card.Meta style={{ "font-size": "10px" }}>{props.type}</Card.Meta>
+        <Card.Meta style={{ "font-size": "10px" }}>
+          {props.nation.toUpperCase()}
+        </Card.Meta>
         {/* <Card.Description>{props.description}</Card.Description> */}
       </Card.Content>
       <Card.Content extra>
@@ -23,8 +25,12 @@ const Ship = props => {
           <Button basic color="green">
             Approve
           </Button>
-          <Button basic color="red">
-            Decline
+          <Button
+            basic
+            color="red"
+            onClick={() => props.addShipArmory(props.ship_id)}
+          >
+            Add to Armory
           </Button>
         </div>
       </Card.Content>

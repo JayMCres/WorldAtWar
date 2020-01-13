@@ -30,9 +30,27 @@ class WeaponsCont extends Component {
     const { activeItem } = this.state;
     const onMenuClick = link => {
       const WEAPONS_PAGES = {
-        tanks: <TanksCont inputValue={this.state.inputValue} />,
-        planes: <PlanesCont inputValue={this.state.inputValue} />,
-        ships: <ShipsCont inputValue={this.state.inputValue} />
+        tanks: (
+          <TanksCont
+            inputValue={this.state.inputValue}
+            addWeaponToArmory={this.props.addWeaponToArmory}
+            favorites={this.props.favorites}
+          />
+        ),
+        planes: (
+          <PlanesCont
+            inputValue={this.state.inputValue}
+            addWeaponToArmory={this.props.addWeaponToArmory}
+            favorites={this.props.favorites}
+          />
+        ),
+        ships: (
+          <ShipsCont
+            inputValue={this.state.inputValue}
+            addWeaponToArmory={this.props.addWeaponToArmory}
+            favorites={this.props.favorites}
+          />
+        )
       };
       return <div>{WEAPONS_PAGES[link]}</div>;
     };
@@ -47,7 +65,7 @@ class WeaponsCont extends Component {
           inputValue={this.state.inputValue}
         />
         <Grid>
-          <Grid.Column width={1} verticalAlign="middle">
+          <Grid.Column width={1} centered verticalAlign="middle">
             <WeaponsMenu
               activeItem={activeItem}
               handleItemClick={this.handleItemClick}

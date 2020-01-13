@@ -14,11 +14,11 @@ const WeaponsMenu = props => {
       }}
     >
       <Menu.Item
-        style={{
-          "border-color": "#6666ff",
-          "border-style": "solid",
-          "border-width": "1px"
-        }}
+        // style={{
+        //   "border-color": "#6666ff",
+        //   "border-style": "solid",
+        //   "border-width": ".5px"
+        // }}
         name="tanks"
         active={props.activeItem === "tanks"}
         onClick={props.handleItemClick}
@@ -27,11 +27,11 @@ const WeaponsMenu = props => {
         Tanks
       </Menu.Item>
       <Menu.Item
-        style={{
-          "border-color": "#6666ff",
-          "border-style": "solid",
-          "border-width": "1px"
-        }}
+        // style={{
+        //   "border-color": "#6666ff",
+        //   "border-style": "solid",
+        //   "border-width": "1px"
+        // }}
         name="planes"
         active={props.activeItem === "planes"}
         onClick={props.handleItemClick}
@@ -40,11 +40,11 @@ const WeaponsMenu = props => {
       </Menu.Item>
 
       <Menu.Item
-        style={{
-          "border-color": "#6666ff",
-          "border-style": "solid",
-          "border-width": "1px"
-        }}
+        // style={{
+        //   "border-color": "#6666ff",
+        //   "border-style": "solid",
+        //   "border-width": "1px"
+        // }}
         name="ships"
         active={props.activeItem === "ships"}
         onClick={props.handleItemClick}

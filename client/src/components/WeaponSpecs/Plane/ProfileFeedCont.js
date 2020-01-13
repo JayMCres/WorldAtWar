@@ -5,38 +5,6 @@ import { connect } from "react-redux";
 import ProfileFeed from "./ProfileFeed";
 
 class ProfileFeedCont extends Component {
-  // componentDidMount() {
-  //   this.props.dispatch(fetchPlane(this.props.id));
-  // }
-
-  // startCarousel = () => {
-  //   this.carouselInterval = setInterval(() => {
-  //     this.handleFeed();
-  //   }, 1000);
-  // };
-
-  // showMoreFeed = () => {
-  //   this.setState(prevState => {
-  //     return {
-  //       startIdx: prevState.startIdx + 5,
-  //       endIdx: prevState.endIdx + 5
-  //     };
-  //   });
-  // };
-
-  // handleFeed = () => {
-  //   if (this.state.endIdx === this.props.profile - 1) {
-  //     this.setState({
-  //       startIdx: 0,
-  //       endIdx: 5
-  //     });
-  //   }
-  //   this.showMoreFeed();
-  // };
-
-  // componentWillUnmount() {
-  //   clearInterval(this.carouselInterval);
-  // }
   render() {
     // console.log("Plane Profile Feed Cont Props", this.props);
 
@@ -54,7 +22,7 @@ class ProfileFeedCont extends Component {
     const planeArray = planeObj.map((item, index) => {
       // console.log(item);
       const specification = { ...item.specification };
-      console.log(specification);
+
       const engine = [item.engine].map(item => {
         const obj = { ...item };
         const newObj = { ...obj[0] };

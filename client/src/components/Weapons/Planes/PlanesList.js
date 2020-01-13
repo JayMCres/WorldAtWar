@@ -27,7 +27,7 @@ export default class PlanesList extends Component {
   };
 
   render() {
-    console.log("Plane List Props", this.props);
+    // console.log("Plane List Props", this.props);
     const planesList = Object.values(this.props.planes).slice(
       this.state.startIdx,
       this.state.endIdx
@@ -70,7 +70,14 @@ export default class PlanesList extends Component {
         />
         <Card.Group itemsPerRow={3}>
           {planesList.map((item, index) => {
-            return <Plane index={index} key={item.plane_id} {...item} />;
+            return (
+              <Plane
+                index={index}
+                key={item.plane_id}
+                {...item}
+                addPlaneArmory={this.props.addPlaneArmory}
+              />
+            );
           })}
         </Card.Group>
       </Segment>

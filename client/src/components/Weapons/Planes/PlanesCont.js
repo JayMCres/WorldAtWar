@@ -5,6 +5,29 @@ import { connect } from "react-redux";
 import PlanesList from "./PlanesList";
 
 class PlanesCont extends Component {
+  addPlaneArmory = planeId => {
+    const foundPlane = Object.values(this.props.planes).find(
+      plane => plane.plane_id === planeId
+    );
+    // console.log("FoundTanbk", foundTank);
+    const favoritePlanes = Object.values(this.props.favorites).filter(item => {
+      return item.weaponType === "plane";
+    });
+
+    const preventDoubles = Object.values(favoritePlanes).find(item => {
+      return item.plane_id === foundPlane.plane_id;
+    });
+    // console.log("Prevent", preventDoubles);
+    if (!preventDoubles) {
+      const weaponObj = {
+        ...foundPlane,
+        weaponType: "plane",
+        image: foundPlane.images.small,
+        name: foundPlane.name_i18n
+      };
+      this.props.addWeaponToArmory(weaponObj);
+    }
+  };
   filterPlanes = () =>
     Object.values(this.props.planes).filter(item => {
       return (
@@ -24,7 +47,11 @@ class PlanesCont extends Component {
           "background-color": "black"
         }}
       >
-        <PlanesList planes={this.filterPlanes()} />;
+        <PlanesList
+          planes={this.filterPlanes()}
+          addPlaneArmory={this.addPlaneArmory}
+        />
+        ;
       </Segment>
     );
   }

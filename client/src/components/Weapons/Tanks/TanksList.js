@@ -38,10 +38,7 @@ export default class TanksList extends Component {
       <Segment
         inverted
         style={{
-          "border-style": "double",
-          "border-color": "#6666ff",
-          "background-color": "black",
-          minHeight: 70
+          "background-color": "black"
         }}
       >
         <Button
@@ -71,7 +68,14 @@ export default class TanksList extends Component {
 
         <Card.Group itemsPerRow={3}>
           {tanksList.map((item, index) => {
-            return <Tank index={index} key={item.tank_id} {...item} />;
+            return (
+              <Tank
+                index={index}
+                key={item.tank_id}
+                {...item}
+                addTankArmory={this.props.addTankArmory}
+              />
+            );
           })}
         </Card.Group>
       </Segment>

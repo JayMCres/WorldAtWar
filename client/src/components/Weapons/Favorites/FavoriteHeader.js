@@ -1,8 +1,7 @@
 import React from "react";
-import { Header, Menu, Icon } from "semantic-ui-react";
-import Search from "./Search";
+import { Header, Menu, Icon, Input } from "semantic-ui-react";
 
-const WeaponsHeader = props => (
+const FavoriteHeader = props => (
   <Menu
     style={{
       "background-color": "black",
@@ -19,13 +18,21 @@ const WeaponsHeader = props => (
         }}
       >
         <Icon name="plug" />
-        <Header.Content>Weapons Systems</Header.Content>
+        <Header.Content>Armory</Header.Content>
       </Header>
     </Menu.Item>
     <Menu.Item position="right">
-      <Search handleChange={props.handleChange} inputValue={props.inputValue} />
+      <Input
+        size="mini"
+        icon="search"
+        placeholder="Search..."
+        onChange={props.handleChange}
+        type="text"
+        value={props.inputValue}
+        name="input"
+      />
     </Menu.Item>
   </Menu>
 );
 
-export default WeaponsHeader;
+export default FavoriteHeader;
