@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { fetchTanks, fetchPlanes, fetchShips } from "../../actions/weapons";
+// import { fetchTanks, fetchPlanes, fetchShips } from "../../actions/weapons";
 import { Segment, Grid, Header, Icon } from "semantic-ui-react";
 import { connect } from "react-redux";
 import WeaponsMenu from "./WeaponsMenu";
@@ -20,11 +20,11 @@ class WeaponsCont extends Component {
   handleItemClick = (e, { name }) =>
     this.setState({ activeItem: name, chartsPage: "true" });
 
-  async componentDidMount() {
-    this.props.dispatch(fetchTanks());
-    this.props.dispatch(fetchPlanes());
-    this.props.dispatch(fetchShips());
-  }
+  // async componentDidMount() {
+  //   this.props.dispatch(fetchTanks());
+  //   this.props.dispatch(fetchPlanes());
+  //   this.props.dispatch(fetchShips());
+  // }
   render() {
     // console.log("MainPage", this.props);
     const { activeItem } = this.state;
@@ -35,6 +35,8 @@ class WeaponsCont extends Component {
             inputValue={this.state.inputValue}
             addWeaponToArmory={this.props.addWeaponToArmory}
             favorites={this.props.favorites}
+            addItemToCompare={this.props.addItemToCompare}
+            addItemToDetails={this.props.addItemToDetails}
           />
         ),
         planes: (
@@ -42,6 +44,8 @@ class WeaponsCont extends Component {
             inputValue={this.state.inputValue}
             addWeaponToArmory={this.props.addWeaponToArmory}
             favorites={this.props.favorites}
+            addItemToCompare={this.props.addItemToCompare}
+            addItemToDetails={this.props.addItemToDetails}
           />
         ),
         ships: (
@@ -49,6 +53,8 @@ class WeaponsCont extends Component {
             inputValue={this.state.inputValue}
             addWeaponToArmory={this.props.addWeaponToArmory}
             favorites={this.props.favorites}
+            addItemToCompare={this.props.addItemToCompare}
+            addItemToDetails={this.props.addItemToDetails}
           />
         )
       };

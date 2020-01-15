@@ -76,6 +76,7 @@ export default class PlanesList extends Component {
                 key={item.plane_id}
                 {...item}
                 addPlaneArmory={this.props.addPlaneArmory}
+                addItemToCompare={this.props.addItemToCompare}
               />
             );
           })}

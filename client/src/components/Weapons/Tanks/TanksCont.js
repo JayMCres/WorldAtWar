@@ -23,7 +23,9 @@ class TanksCont extends Component {
         ...foundTank,
         weaponType: "tank",
         image: foundTank.images.preview,
-        name: foundTank.name
+        card: foundTank.images.normal,
+        name: foundTank.name,
+        id: foundTank.tank_id
       };
       this.props.addWeaponToArmory(weaponObj);
     }
@@ -50,8 +52,9 @@ class TanksCont extends Component {
         <TanksList
           tanks={this.filterTanks()}
           addTankArmory={this.addTankArmory}
+          addItemToCompare={this.props.addItemToCompare}
+          addItemToDetails={this.props.addItemToDetails}
         />
-        ;
       </Segment>
     );
   }

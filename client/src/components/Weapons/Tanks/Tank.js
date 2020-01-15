@@ -25,18 +25,32 @@ const Tank = props => {
         <Card.Meta>{props.nation.toUpperCase()}</Card.Meta>
       </Card.Content>
       <Card.Content extra>
-        <div className="ui two buttons">
-          <Button basic color="green">
-            Approve
+        <Button.Group widths="3" size="tiny">
+          <Button
+            basic
+            color="green"
+            onClick={() => props.addItemToCompare(props.tank_id)}
+            size="tiny"
+          >
+            Mobilize
           </Button>
           <Button
             basic
             color="red"
-            onClick={() => props.addTankArmory(props.tank_id)}
+            onClick={() => props.addShipArmory(props.tank_id)}
+            size="tiny"
           >
             Add to Armory
           </Button>
-        </div>
+          <Button
+            basic
+            color="red"
+            onClick={() => props.addItemToDetails(props.tank_id)}
+            size="tiny"
+          >
+            Details
+          </Button>
+        </Button.Group>
       </Card.Content>
     </Card>
   );

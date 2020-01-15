@@ -20,6 +20,7 @@ const Favorite = props => {
           size="tiny"
           verticalAlign="middle"
           src={props.image}
+          onClick={() => props.addItemToCompare(props.id)}
         />
         <List.Header style={{ color: "white", "font-size": "12px" }}>
           <span>

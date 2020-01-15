@@ -31,7 +31,13 @@ export default class Favorites extends Component {
             }}
           >
             {this.props.favorites.map((item, index) => {
-              return <Favorite key={index} {...item} />;
+              return (
+                <Favorite
+                  key={index}
+                  {...item}
+                  addItemToCompare={this.props.addItemToCompare}
+                />
+              );
             })}
           </List>
         )}

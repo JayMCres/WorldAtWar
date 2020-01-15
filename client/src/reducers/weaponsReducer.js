@@ -2,15 +2,18 @@ import {
   FETCH_TANKS,
   FETCH_SHIPS,
   FETCH_PLANES,
-  FETCH_PLANE,
-  SET_PLANE_DETAILS
+  FETCH_ALL_WEAPONS,
+  SET_PLANE_DETAILS,
+  SET_WEAPONS_DETAILS
 } from "../actions/weapons";
 
 const initialState = {
   tanks: [],
   planes: [],
   ships: [],
-  plane: {}
+  plane: {},
+  combinedWeapons: [],
+  weapons: []
 };
 
 export default function weaponsReducer(state = initialState, action) {
@@ -29,6 +32,21 @@ export default function weaponsReducer(state = initialState, action) {
     // }
     case SET_PLANE_DETAILS: {
       return { ...state, plane: action.payload };
+    }
+    case SET_WEAPONS_DETAILS: {
+      return { ...state, weapons: action.payload };
+    }
+    case FETCH_ALL_WEAPONS: {
+      return {
+        ...state,
+        combinedWeapons: [
+          {
+            planes: action.payload[0],
+            tanks: action.payload[1],
+            ships: action.payload[2]
+          }
+        ]
+      };
     }
     default:
       return state;

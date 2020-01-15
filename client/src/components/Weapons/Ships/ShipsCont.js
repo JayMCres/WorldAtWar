@@ -23,6 +23,7 @@ class ShipsCont extends Component {
         ...foundShip,
         weaponType: "ship",
         image: foundShip.images.small,
+        card: foundShip.images.large,
         name: foundShip.name.slice(1, -1)
       };
       this.props.addWeaponToArmory(weaponObj);
@@ -48,6 +49,8 @@ class ShipsCont extends Component {
         <ShipsList
           ships={this.filterShips()}
           addShipArmory={this.addShipArmory}
+          addItemToCompare={this.props.addItemToCompare}
+          addItemToDetails={this.props.addItemToDetails}
         />
         ;
       </Segment>

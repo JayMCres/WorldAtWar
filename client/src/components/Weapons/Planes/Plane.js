@@ -22,18 +22,32 @@ const Plane = props => {
         {/* <Card.Description>{props.description}</Card.Description> */}
       </Card.Content>
       <Card.Content extra>
-        <div className="ui two buttons">
-          <Button basic color="green">
-            Approve
+        <Button.Group widths="3" size="tiny">
+          <Button
+            basic
+            color="green"
+            onClick={() => props.addItemToCompare(props.plane_id)}
+            size="tiny"
+          >
+            Mobilize
           </Button>
           <Button
             basic
             color="red"
-            onClick={() => props.addPlaneArmory(props.plane_id)}
+            onClick={() => props.addShipArmory(props.plane_id)}
+            size="tiny"
           >
             Add to Armory
           </Button>
-        </div>
+          <Button
+            basic
+            color="red"
+            // onClick={() => props.addShipArmory(props.ship_id)}
+            size="tiny"
+          >
+            Details
+          </Button>
+        </Button.Group>
       </Card.Content>
     </Card>
   );

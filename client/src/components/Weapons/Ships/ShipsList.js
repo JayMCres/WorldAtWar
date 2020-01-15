@@ -76,6 +76,8 @@ export default class ShipsList extends Component {
                 key={item.ship_id}
                 {...item}
                 addShipArmory={this.props.addShipArmory}
+                addItemToCompare={this.props.addItemToCompare}
+                addItemToDetails={this.props.addItemToDetails}
               />
             );
           })}

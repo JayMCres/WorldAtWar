@@ -50,6 +50,7 @@ class PlanesCont extends Component {
         <PlanesList
           planes={this.filterPlanes()}
           addPlaneArmory={this.addPlaneArmory}
+          addItemToCompare={this.props.addItemToCompare}
         />
         ;
       </Segment>

@@ -21,18 +21,32 @@ const Ship = props => {
         {/* <Card.Description>{props.description}</Card.Description> */}
       </Card.Content>
       <Card.Content extra>
-        <div className="ui two buttons">
-          <Button basic color="green">
-            Approve
+        <Button.Group widths="3" size="tiny">
+          <Button
+            basic
+            color="green"
+            onClick={() => props.addItemToCompare(props.ship_id)}
+            size="tiny"
+          >
+            Mobilize
           </Button>
           <Button
             basic
             color="red"
             onClick={() => props.addShipArmory(props.ship_id)}
+            size="tiny"
           >
             Add to Armory
           </Button>
-        </div>
+          <Button
+            basic
+            color="red"
+            onClick={() => props.addItemToDetails(props.ship_id)}
+            size="tiny"
+          >
+            Details
+          </Button>
+        </Button.Group>
       </Card.Content>
     </Card>
   );

@@ -28,6 +28,7 @@ class FavoritesCont extends Component {
         favorites={this.filterFavorites()}
         inputValue={this.state.inputValue}
         handleChange={this.handleChange}
+        addItemToCompare={this.props.addItemToCompare}
       />
     );
   }
