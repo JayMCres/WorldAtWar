@@ -45,7 +45,7 @@ export default class TankeCompare extends Component {
   }
 
   reformatDataForTable = data => {
-    // console.log("Data", data);
+    console.log("Data", data);
     const labels = Object.keys(data[0]);
 
     const reformatedLabels = labels.map((label, index) => {

@@ -17,7 +17,7 @@ class PlaneDetailsFetch extends Component {
           "background-color": "black"
         }}
       >
-        <PlaneCompare />
+        <PlaneCompare weapon={this.props.weapon} />
       </Segment>
     );
   }

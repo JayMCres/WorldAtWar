@@ -47,6 +47,10 @@ export function fetchPlane(id) {
 
 export const setPlaneDetails = data => async dispatch => {
   const details = await data;
+  // const profile = await Object.values(details).map(items => {
+  //   console.log([items);
+  // });
+  // console.log("details", data);
 
   dispatch({
     type: SET_PLANE_DETAILS,

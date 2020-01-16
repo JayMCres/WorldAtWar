@@ -30,7 +30,7 @@ export default class WeaponTable extends Component {
   //   });
   // };
   render() {
-    console.log("Table", this.props.tableData);
+    console.log("Weapon Table Props", this.props);
     // const tableList = Object.entries(this.props.tableData);
     return (
       // <Segment
