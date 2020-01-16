@@ -142,7 +142,19 @@ export const setWeaponsDetails = data => async dispatch => {
             maneuverability: item.maneuverability
           };
         }),
-
+        combat: [item.default_profile].map((item, index) => {
+          return {
+            Firepower: item.firepower,
+            shot_efficiency: item.shot_efficiency,
+            signal_range: item.signal_range,
+            speed_forward: item.speed_forward,
+            battle_level_range_min: item.battle_level_range_min,
+            max_ammo: item.max_ammo,
+            battle_level_range_max: item.battle_level_range_max,
+            protection: item.protection,
+            maneuverability: item.maneuverability
+          };
+        }),
         gun: [item.default_profile.gun],
         shells: [item.default_profile.shells].map((items, index) => {
           return items.map((item, index) => {
@@ -171,13 +183,121 @@ export const setWeaponsDetails = data => async dispatch => {
         id: item.ship_id,
         name: item.name.slice(1, -1),
         card: item.images.large,
-        profile: item.default_profile,
-        weapons: {
-          ...item.default_profile.anti_aircraft,
-          ...item.default_profile.atbas,
-          ...item.default_profile.artillery
-        },
-        armor: item.default_profile.concealment,
+        combat: [item.default_profile].map((items, index) => {
+          // console.log(items);
+          const obj = {
+            battle_level_range_min: items.battle_level_range_min,
+            battle_level_range_max: items.battle_level_range_max,
+            turning_radius: items.mobility.turning_radius,
+            max_speed: items.mobility.max_speed,
+            max_range: items.hull.range.max,
+            armour: items.armour.health,
+            detect_distance_by_plane:
+              items.concealment.detect_distance_by_plane,
+            detect_distance_by_ship: items.concealment.detect_distance_by_ship,
+            anti_aircraft: items.weaponry.anti_aircraft,
+            aircraft: items.weaponry.aircraft,
+            artillery: items.weaponry.artillery,
+            torpedoes: items.weaponry.torpedoes
+          };
+          console.log(obj);
+          return obj;
+        }),
+        profile: [item.default_profile].map((items, index) => {
+          // console.log(items);
+          const obj = {
+            battle_level_range_min: items.battle_level_range_min,
+            engine: items.engine.engine_id_str,
+            battle_level_range_max: items.battle_level_range_max,
+            rudder_time: items.mobility.rudder_time,
+            turning_radius: items.mobility.turning_radius,
+            max_speed: items.mobility.max_speed,
+            max_range: items.hull.range.max,
+            armour: items.armour.health,
+            hull_health: items.hull.health,
+            detect_distance_by_plane:
+              items.concealment.detect_distance_by_plane,
+            detect_distance_by_ship: items.concealment.detect_distance_by_ship
+          };
+          return obj;
+        }),
+        antiaircraft: [item.default_profile].map((items, index) => {
+          if (items.anti_aircraft === null) {
+            return "N/A";
+          } else {
+            return Object.values(items.anti_aircraft.slots).map(
+              (item, index) => {
+                // console.log(item);
+                const num = index + 1;
+                return {
+                  ["Antiaircraft" + " " + num]:
+                    item.name +
+                    " " +
+                    "Damage:" +
+                    " " +
+                    item.avg_damage +
+                    " " +
+                    "at distance of" +
+                    " " +
+                    item.distance +
+                    " " +
+                    "miles"
+                  // damage: item.avg_damage,
+                  // distance: item.distance
+                };
+              }
+            );
+          }
+        }),
+        artillery: [item.default_profile].map((items, index) => {
+          if (items.artillery === null) {
+            return "N/A";
+          } else {
+            if (items.artillery.shells === null) {
+              return "N/A";
+            } else {
+              return Object.values(items.artillery.shells).map(
+                (item, index) => {
+                  const num = index + 1;
+                  return {
+                    ["Artillery" + " " + num]:
+                      item.name + " " + "Damage:" + " " + item.damage
+                  };
+                }
+              );
+            }
+          }
+        }),
+        torpedoes: [item.default_profile].map((items, index) => {
+          // console.log(items.torpedoes);
+          if (items.torpedoes === null) {
+            return [];
+          } else {
+            return [items.torpedoes].map((item, index) => {
+              // console.log(item);
+              const num = index + 1;
+              return {
+                ["Torpedo" + " " + num]:
+                  item.torpedo_name +
+                  " " +
+                  "w/ visibility of" +
+                  " " +
+                  item.visibility_dist +
+                  " " +
+                  "and distance of" +
+                  " " +
+                  item.distance +
+                  " " +
+                  "miles"
+                // visibility: item.visibility_dist,
+                // distance: item.distance
+              };
+            });
+          }
+        }),
+        // armor: [item.default_profile.concealment].map(items =>
+        //   console.log(items)
+        // ),
         icon: "ship",
         weapon: "Warship",
         weaponType: "ship"

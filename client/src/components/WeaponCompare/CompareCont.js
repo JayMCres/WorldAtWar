@@ -4,7 +4,7 @@ import CompareOne from "./WeaponOne/CompareOne";
 // import WeaponTwo from "./WeaponOne/WeaponTwo";
 export default class CompareCont extends Component {
   render() {
-    console.log("Compare Cont", this.props);
+    // console.log("Compare Cont", this.props);
     return (
       <Segment
       // style={{
@@ -16,9 +16,10 @@ export default class CompareCont extends Component {
         ) : (
           <Grid columns="equal">
             <Grid.Column>
-              {/* <CompareOne weapon={Object.values(this.props.weapons[0])} /> */}
+              <CompareOne weaponOne={this.props.compareItems[0]} />
             </Grid.Column>
             <Grid.Column>
+              <Message>Test</Message>
               {/* <WeaponTwo weapon={this.props.weapons[1]} /> */}
             </Grid.Column>
           </Grid>

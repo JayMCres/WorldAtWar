@@ -26,13 +26,6 @@ const WeaponMenu = props => (
     >
       Armor
     </Menu.Item>
-    {/* <Menu.Item
-      name="combat"
-      active={props.activeItem === "combat"}
-      onClick={props.handleItemClick}
-    >
-      Combat Score
-    </Menu.Item> */}
   </Menu>
 );
 

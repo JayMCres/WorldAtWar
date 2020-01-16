@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import { Grid, Image, Segment, Message } from "semantic-ui-react";
-import WeaponCard from "./WeaponCard";
-import WeaponHeader from "./WeaponHeader";
-import WeaponTable from "./WeaponTable";
+import WeaponCard from "../Shared/WeaponCard";
+import WeaponHeader from "../Shared/WeaponHeader";
+import WeaponTable from "../Shared/WeaponTable";
 import WeaponMenu from "../Shared/WeaponMenu";
+import TankCombatCont from "./TankCombatCont";
 
 export default class TankeCompare extends Component {
   state = {
     profile: [],
-    weapons: [],
+    combat: [],
     armor: [],
     guns: [],
     shells: [],
@@ -30,6 +31,9 @@ export default class TankeCompare extends Component {
       }),
       armor: [this.props.weaponOne].map(items => {
         return this.reformatDataForTable(items.armor);
+      }),
+      combat: [this.props.weaponOne].map(items => {
+        return this.reformatDataForTable(items.combat);
       })
     });
   }
@@ -77,7 +81,9 @@ export default class TankeCompare extends Component {
       };
       return <div>{HOME_PAGES[link]}</div>;
     };
-
+    const combatScore = [this.props.weaponOne].map(items => {
+      return items.combat;
+    });
     // console.log("weaponary", weaponary);
     return (
       <Segment>
@@ -99,13 +105,26 @@ export default class TankeCompare extends Component {
                   type={this.props.weaponOne.weapon}
                 />
               </Grid.Column>
-              <Grid.Column width={12}>test</Grid.Column>
+              <Grid.Column width={12}>
+                <TankCombatCont
+                  combat={this.state.combat}
+                  scoreData={Object.values(...this.state.combat)}
+                />
+              </Grid.Column>
             </Grid>
             <WeaponMenu
               activeItem={this.state.activeItem}
               handleItemClick={this.handleItemClick}
             />
-            {onMainMenuClick(activeItem)}
+            <Segment
+              style={{
+                overflow: "auto",
+                maxHeight: 250,
+                minHeight: 250
+              }}
+            >
+              {onMainMenuClick(activeItem)}
+            </Segment>
           </Grid.Column>
         </Grid>
       </Segment>

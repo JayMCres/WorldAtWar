@@ -37,7 +37,7 @@ const Tank = props => {
           <Button
             basic
             color="red"
-            onClick={() => props.addShipArmory(props.tank_id)}
+            onClick={() => props.addTankArmory(props.tank_id)}
             size="tiny"
           >
             Add to Armory

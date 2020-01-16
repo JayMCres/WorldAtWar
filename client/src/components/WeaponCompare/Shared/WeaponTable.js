@@ -33,33 +33,33 @@ export default class WeaponTable extends Component {
     console.log("Table", this.props.tableData);
     // const tableList = Object.entries(this.props.tableData);
     return (
-      <Segment
-        style={{
-          overflow: "auto",
-          maxHeight: 250,
-          minHeight: 250
-        }}
-      >
-        <Table striped>
-          <Table.Header>
-            <Table.Row>
-              <Table.HeaderCell>Label</Table.HeaderCell>
-              <Table.HeaderCell>Value</Table.HeaderCell>
-            </Table.Row>
-          </Table.Header>
+      // <Segment
+      //   style={{
+      //     overflow: "auto",
+      //     maxHeight: 250,
+      //     minHeight: 250
+      //   }}
+      // >
+      <Table striped>
+        <Table.Header>
+          <Table.Row>
+            <Table.HeaderCell>Label</Table.HeaderCell>
+            <Table.HeaderCell>Value</Table.HeaderCell>
+          </Table.Row>
+        </Table.Header>
 
-          <Table.Body>
-            {Object.entries(this.props.tableData).map((item, index) => {
-              return (
-                <Table.Row>
-                  <Table.Cell>{item[0]}</Table.Cell>
-                  <Table.Cell>{item[1]}</Table.Cell>
-                </Table.Row>
-              );
-            })}
-          </Table.Body>
-        </Table>
-      </Segment>
+        <Table.Body>
+          {Object.entries(this.props.tableData).map((item, index) => {
+            return (
+              <Table.Row>
+                <Table.Cell>{item[0]}</Table.Cell>
+                <Table.Cell>{item[1]}</Table.Cell>
+              </Table.Row>
+            );
+          })}
+        </Table.Body>
+      </Table>
+      // </Segment>
     );
   }
 }

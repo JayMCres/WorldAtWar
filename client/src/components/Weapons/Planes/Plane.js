@@ -34,7 +34,7 @@ const Plane = props => {
           <Button
             basic
             color="red"
-            onClick={() => props.addShipArmory(props.plane_id)}
+            onClick={() => props.addPlaneArmory(props.plane_id)}
             size="tiny"
           >
             Add to Armory
