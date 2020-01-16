@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ProfileFeedCont from "./ProfileFeedCont";
 import { Segment, Icon, Grid } from "semantic-ui-react";
-import { fetchPlane } from "../../../actions/weapons";
+import { fetchPlane } from "../../../actions/weapon";
 import { connect } from "react-redux";
 import WeaponCard from "./WeaponCard";
 

@@ -1,59 +1,7 @@
-import Tanks from "../api/TanksFetch";
-import Planes from "../api/PlanesFetch";
-import Ships from "../api/ShipsFetch";
-
 import axios from "axios";
-
-export const FETCH_TANKS = "FETCH_TANKS";
-export const FETCH_SHIPS = "FETCH_SHIPS";
-export const FETCH_PLANES = "FETCH_PLANES";
-export const FETCH_PLANE = "FETCH_PLANE";
 export const FETCH_ALL_WEAPONS = "FETCH_ALL_WEAPONS";
-export const SET_PLANE_DETAILS = "SET_PLANE_DETAILS";
+
 export const SET_WEAPONS_DETAILS = "SET_WEAPONS_DETAILS";
-
-export const fetchTanks = () => async dispatch => {
-  const response = await Tanks.get();
-  // console.log("response", response.data);
-  dispatch({ type: FETCH_TANKS, payload: response.data });
-};
-
-export const fetchShips = () => async dispatch => {
-  const response = await Ships.get();
-  // console.log("response", response.data);
-  dispatch({ type: FETCH_SHIPS, payload: response.data });
-};
-
-export const fetchPlanes = () => async dispatch => {
-  const response = await Planes.get();
-  // console.log("response", response.data);
-  dispatch({ type: FETCH_PLANES, payload: response.data });
-};
-
-export function fetchPlane(id) {
-  return dispatch => {
-    return fetch("http://localhost:5000/api/plane", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ id })
-    }).then(response => {
-      let data = response.json();
-      dispatch(setPlaneDetails(data));
-    });
-  };
-}
-
-export const setPlaneDetails = data => async dispatch => {
-  const details = await data;
-  // console.log("Plane Details", details);
-  dispatch({
-    type: SET_PLANE_DETAILS,
-    payload: details
-  });
-};
-
 export const fetchAllWeapons = () => async dispatch => {
   const requestOne = axios.get("http://localhost:5000/api/planes");
   const requestTwo = axios.get("http://localhost:5000/api/tanks");
@@ -200,7 +148,7 @@ export const setWeaponsDetails = data => async dispatch => {
             artillery: items.weaponry.artillery,
             torpedoes: items.weaponry.torpedoes
           };
-          console.log(obj);
+          // console.log(obj);
           return obj;
         }),
         profile: [item.default_profile].map((items, index) => {

@@ -59,7 +59,7 @@ class ShipsCont extends Component {
 }
 
 const mapStateToProps = state => ({
-  ships: state.weapons.ships
+  ships: state.weapon.ships
 });
 
 export default connect(mapStateToProps)(ShipsCont);

@@ -61,7 +61,7 @@ class TanksCont extends Component {
 }
 
 const mapStateToProps = state => ({
-  tanks: state.weapons.tanks
+  tanks: state.weapon.tanks
 });
 
 export default connect(mapStateToProps)(TanksCont);

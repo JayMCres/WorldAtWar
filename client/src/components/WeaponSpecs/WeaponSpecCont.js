@@ -31,9 +31,9 @@ class WeaponsSpecCont extends Component {
 }
 
 const mapStateToProps = state => ({
-  tanks: state.weapons.tanks,
-  ships: state.weapons.ships,
-  planes: state.weapons.planes
+  tanks: state.weapon.tanks,
+  ships: state.weapon.ships,
+  planes: state.weapon.planes
 });
 
 export default connect(mapStateToProps)(WeaponsSpecCont);

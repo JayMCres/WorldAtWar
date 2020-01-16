@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Segment, Label, Icon } from "semantic-ui-react";
 import TankCompare from "../WeaponTypes/TankCompare";
 import ShipCompare from "../WeaponTypes/ShipCompare";
-
+import PlaneDetailsFetch from "../WeaponTypes/PlaneDetailsFetch";
 export default class WeaponCOne extends Component {
   render() {
     const renderWeaponPage = type => {
@@ -15,7 +15,14 @@ export default class WeaponCOne extends Component {
             }
           />
         ),
-        plane: <div>plane</div>,
+        plane: (
+          <PlaneDetailsFetch
+            weapon={this.props.weaponOne}
+            removeWeaponsFromCompareItems={
+              this.props.removeWeaponsFromCompareItems
+            }
+          />
+        ),
         ship: (
           <ShipCompare
             weapon={this.props.weaponOne}

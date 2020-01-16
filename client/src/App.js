@@ -2,12 +2,8 @@ import React, { Component } from "react";
 import { Header, Segment } from "semantic-ui-react";
 // import { Route, Redirect, Switch, Link, HashRouter } from "react-router-dom";
 import HomePage from "./components/HomePage";
-import {
-  fetchTanks,
-  fetchPlanes,
-  fetchShips,
-  fetchWeapons
-} from "./actions/weapons";
+import { fetchTanks, fetchPlanes, fetchShips } from "./actions/weapon";
+import { fetchWeapons, fetchAllWeapons } from "./actions/weapons";
 
 import { connect } from "react-redux";
 
@@ -16,7 +12,7 @@ class App extends Component {
     this.props.dispatch(fetchTanks());
     this.props.dispatch(fetchPlanes());
     this.props.dispatch(fetchShips());
-    // this.props.dispatch(fetchAllWeapons());
+    this.props.dispatch(fetchAllWeapons());
     this.props.dispatch(fetchWeapons());
   }
   render() {

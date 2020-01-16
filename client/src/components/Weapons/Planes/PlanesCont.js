@@ -59,7 +59,7 @@ class PlanesCont extends Component {
 }
 
 const mapStateToProps = state => ({
-  planes: state.weapons.planes
+  planes: state.weapon.planes
 });
 
 export default connect(mapStateToProps)(PlanesCont);

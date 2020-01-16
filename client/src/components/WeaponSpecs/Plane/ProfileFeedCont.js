@@ -79,7 +79,7 @@ class ProfileFeedCont extends Component {
   }
 }
 const mapStateToProps = state => ({
-  plane: [state.weapons.plane]
+  plane: [state.weapon.plane]
 });
 
 export default connect(mapStateToProps)(ProfileFeedCont);
