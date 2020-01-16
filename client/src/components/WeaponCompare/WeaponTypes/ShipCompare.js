@@ -22,23 +22,23 @@ export default class TankeCompare extends Component {
   };
   componentWillMount() {
     this.setState({
-      profile: [this.props.weaponOne].map(items => {
+      profile: [this.props.weapon].map(items => {
         return this.reformatDataForTable(items.profile);
       }),
-      guns: [this.props.weaponOne].map(items => {
+      guns: [this.props.weapon].map(items => {
         return items.artillery;
       }),
-      torpedoes: [this.props.weaponOne].map(items => {
+      torpedoes: [this.props.weapon].map(items => {
         // if (items.torpedoes.length === 0) {
         //   return { Torpedoes: "N/A" };
         // } else {
         return Object.values(items.torpedoes[0]);
       }),
-      antiaircraft: [this.props.weaponOne].map(items => {
+      antiaircraft: [this.props.weapon].map(items => {
         console.log(items);
         return Object.values(items.antiaircraft[0]);
       }),
-      combat: [this.props.weaponOne].map(items => {
+      combat: [this.props.weapon].map(items => {
         return this.reformatDataForTable(items.combat);
       })
     });
@@ -70,8 +70,8 @@ export default class TankeCompare extends Component {
   };
 
   render() {
-    console.log("Ship Compare State", this.state);
-    // console.log("Weapon One Props", this.props);
+    // console.log("Ship Compare State", this.state);
+
     const { activeItem } = this.state;
     const weaponaryArray = Object.values(...this.state.guns[0]).concat(
       Object.values(...this.state.antiaircraft).concat(
@@ -102,17 +102,17 @@ export default class TankeCompare extends Component {
         <Grid columns={3} divided>
           <Grid.Column width={4} verticalAlign="middle">
             <WeaponHeader
-              icon={this.props.weaponOne.icon}
-              name={this.props.weaponOne.name}
-              nation={this.props.weaponOne.nation}
-              type={this.props.weaponOne.weapon}
+              icon={this.props.weapon.icon}
+              name={this.props.weapon.name}
+              nation={this.props.weapon.nation}
+              type={this.props.weapon.weapon}
             />
           </Grid.Column>
           <Grid.Column width={4}>
             <WeaponCard
-              description={this.props.weaponOne.description}
-              card={this.props.weaponOne.card}
-              type={this.props.weaponOne.type}
+              description={this.props.weapon.description}
+              card={this.props.weapon.card}
+              type={this.props.weapon.type}
             />
           </Grid.Column>
           <Grid.Column width={8}>
@@ -135,8 +135,6 @@ export default class TankeCompare extends Component {
         >
           {onMainMenuClick(activeItem)}
         </Segment>
-        {/* </Grid.Column>
-        </Grid> */}
       </Segment>
     );
   }

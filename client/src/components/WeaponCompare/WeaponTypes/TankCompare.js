@@ -20,19 +20,19 @@ export default class TankeCompare extends Component {
   };
   componentWillMount() {
     this.setState({
-      profile: [this.props.weaponOne].map(items => {
+      profile: [this.props.weapon].map(items => {
         return this.reformatDataForTable(items.profile);
       }),
-      guns: [this.props.weaponOne].map(items => {
+      guns: [this.props.weapon].map(items => {
         return this.reformatDataForTable(items.gun);
       }),
-      shells: [this.props.weaponOne].map(items => {
+      shells: [this.props.weapon].map(items => {
         return Object.values(items.shells[0]);
       }),
-      armor: [this.props.weaponOne].map(items => {
+      armor: [this.props.weapon].map(items => {
         return this.reformatDataForTable(items.armor);
       }),
-      combat: [this.props.weaponOne].map(items => {
+      combat: [this.props.weapon].map(items => {
         return this.reformatDataForTable(items.combat);
       })
     });
@@ -64,7 +64,7 @@ export default class TankeCompare extends Component {
   };
   render() {
     console.log("TankCompare State", this.state);
-    // console.log("Weapon One Props", this.props);
+    // console.log("Weaponn Props", this.props);
     const { activeItem } = this.state;
     const weaponaryArray = [...this.state.guns, ...this.state.shells[0]];
     const weaponary = {
@@ -81,7 +81,7 @@ export default class TankeCompare extends Component {
       };
       return <div>{HOME_PAGES[link]}</div>;
     };
-    const combatScore = [this.props.weaponOne].map(items => {
+    const combatScore = [this.props.weapon].map(items => {
       return items.combat;
     });
     // console.log("weaponary", weaponary);
@@ -90,19 +90,19 @@ export default class TankeCompare extends Component {
         <Grid columns={2} divided>
           <Grid.Column width={3}>
             <WeaponCard
-              description={this.props.weaponOne.description}
-              card={this.props.weaponOne.card}
-              type={this.props.weaponOne.type}
+              description={this.props.weapon.description}
+              card={this.props.weapon.card}
+              type={this.props.weapon.type}
             />
           </Grid.Column>
           <Grid.Column width={13}>
             <Grid columns={2} divided>
               <Grid.Column width={4}>
                 <WeaponHeader
-                  icon={this.props.weaponOne.icon}
-                  name={this.props.weaponOne.name}
-                  nation={this.props.weaponOne.nation}
-                  type={this.props.weaponOne.weapon}
+                  icon={this.props.weapon.icon}
+                  name={this.props.weapon.name}
+                  nation={this.props.weapon.nation}
+                  type={this.props.weapon.weapon}
                 />
               </Grid.Column>
               <Grid.Column width={12}>

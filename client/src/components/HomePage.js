@@ -4,7 +4,7 @@ import { Segment, Grid, Message } from "semantic-ui-react";
 
 import WeaponsCont from "./Weapons/WeaponsCont";
 import WeaponSpecCont from "./WeaponSpecs/WeaponSpecCont";
-import CompareCont from "./WeaponCompare/CompareCont";
+import WeaponComparison from "./WeaponCompare/WeaponComparison";
 import FavoritesCont from "./Weapons/Favorites/FavoritesCont";
 
 import { connect } from "react-redux";
@@ -58,10 +58,11 @@ class HomePage extends Component {
       });
     }
   };
+
   addItemToCompare = async itemId => {
     // console.log("firing", )
 
-    const foundCompare = this.props.weapons[0].find(item => {
+    const foundCompare = this.props.weapons.find(item => {
       return item.id === itemId;
     });
 
@@ -96,6 +97,18 @@ class HomePage extends Component {
         alert("You Can Only Compare Two Items");
       }
     }
+  };
+
+  removeWeaponsFromCompareItems = itemId => {
+    // console.log("firing")
+    const weaponToDelete = this.state.compareItems.find(
+      item => item.id === itemId
+    );
+    this.setState({
+      compareItems: this.state.compareItems.filter(item => {
+        return item !== weaponToDelete;
+      })
+    });
   };
 
   addWeaponToArmory = weapon => {
@@ -138,7 +151,10 @@ class HomePage extends Component {
         </Grid>
         {this.state.compareItems.length === 0 ||
         this.state.showComparePage === false ? null : (
-          <CompareCont compareItems={this.state.compareItems} />
+          <WeaponComparison
+            compareItems={this.state.compareItems}
+            removeWeaponsFromCompareItems={this.removeWeaponsFromCompareItems}
+          />
         )}
         {this.state.detailsWeapon.length === 0 ||
         this.state.showDetails === false ? null : (
@@ -150,7 +166,7 @@ class HomePage extends Component {
 }
 
 const mapStateToProps = state => ({
-  weapons: state.weapons.weapons
+  weapons: state.weapons.weapons[0]
 });
 
 export default connect(mapStateToProps)(HomePage);
