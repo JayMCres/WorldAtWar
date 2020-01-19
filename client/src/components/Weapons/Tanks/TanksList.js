@@ -76,6 +76,7 @@ export default class TanksList extends Component {
                 addTankArmory={this.props.addTankArmory}
                 addItemToCompare={this.props.addItemToCompare}
                 addItemToDetails={this.props.addItemToDetails}
+                handleshowForm={this.props.handleshowForm}
               />
             );
           })}

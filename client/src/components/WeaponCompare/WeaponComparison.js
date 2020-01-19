@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Grid, Image, Segment, Message } from "semantic-ui-react";
+import { Grid, Image, Segment, Button, Label, Icon } from "semantic-ui-react";
 import WeaponOne from "./WeaponCont/WeaponOne";
 import WeaponTwo from "./WeaponCont/WeaponTwo";
 
@@ -18,6 +18,7 @@ export default class WeaponComparison extends Component {
             removeWeaponsFromCompareItems={
               this.props.removeWeaponsFromCompareItems
             }
+            setScore={this.props.setScore}
           />
         ) : (
           <Grid columns="equal">
@@ -27,6 +28,7 @@ export default class WeaponComparison extends Component {
                 removeWeaponsFromCompareItems={
                   this.props.removeWeaponsFromCompareItems
                 }
+                setScore={this.props.setScore}
               />
             </Grid.Column>
             <Grid.Column>
@@ -35,6 +37,7 @@ export default class WeaponComparison extends Component {
                 removeWeaponsFromCompareItems={
                   this.props.removeWeaponsFromCompareItems
                 }
+                setScore={this.props.setScore}
               />
             </Grid.Column>
           </Grid>

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Segment, Label, Icon } from "semantic-ui-react";
 import TankCompare from "../WeaponTypes/TankCompare";
 import ShipCompare from "../WeaponTypes/ShipCompare";
-import PlaneDetailsFetch from "../WeaponTypes/PlaneDetailsFetch";
+import PlaneDetailsFetch from "../WeaponTypes/Planes/FetchDetailsOne";
 export default class WeaponCOne extends Component {
   render() {
     const renderWeaponPage = type => {
@@ -13,6 +13,7 @@ export default class WeaponCOne extends Component {
             removeWeaponsFromCompareItems={
               this.props.removeWeaponsFromCompareItems
             }
+            setScore={this.props.setScore}
           />
         ),
         plane: (
@@ -21,6 +22,7 @@ export default class WeaponCOne extends Component {
             removeWeaponsFromCompareItems={
               this.props.removeWeaponsFromCompareItems
             }
+            setScore={this.props.setScore}
           />
         ),
         ship: (
@@ -29,6 +31,7 @@ export default class WeaponCOne extends Component {
             removeWeaponsFromCompareItems={
               this.props.removeWeaponsFromCompareItems
             }
+            setScore={this.props.setScore}
           />
         )
       };
@@ -36,7 +39,7 @@ export default class WeaponCOne extends Component {
     };
     return (
       <Segment>
-        <Label as="a" corner="right" color="red">
+        <Label as="a" corner="left" color="red">
           <Icon
             name="remove"
             onClick={() =>

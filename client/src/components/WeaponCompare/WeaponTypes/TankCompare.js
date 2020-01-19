@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Grid, Image, Segment, Message } from "semantic-ui-react";
+import { Grid, Image, Segment, Message, Card } from "semantic-ui-react";
 import WeaponCard from "../Shared/WeaponCard";
 import WeaponHeader from "../Shared/WeaponHeader";
 import WeaponTable from "../Shared/WeaponTable";
@@ -87,17 +87,10 @@ export default class TankeCompare extends Component {
     // console.log("weaponary", weaponary);
     return (
       <Segment>
-        <Grid columns={2} divided>
-          <Grid.Column width={3}>
-            <WeaponCard
-              description={this.props.weapon.description}
-              card={this.props.weapon.card}
-              type={this.props.weapon.type}
-            />
-          </Grid.Column>
-          <Grid.Column width={13}>
+        <Grid columns={3} divided>
+          <Grid.Column width={6}>
             <Grid columns={2} divided>
-              <Grid.Column width={4}>
+              <Grid.Column centered verticalAlign="middle" width={3}>
                 <WeaponHeader
                   icon={this.props.weapon.icon}
                   name={this.props.weapon.name}
@@ -105,28 +98,50 @@ export default class TankeCompare extends Component {
                   type={this.props.weapon.weapon}
                 />
               </Grid.Column>
-              <Grid.Column width={12}>
-                <TankCombatCont
-                  combat={this.state.combat}
-                  scoreData={Object.values(...this.state.combat)}
-                />
+              <Grid.Column centered width={13}>
+                <Card fluid>
+                  <Image
+                    src={this.props.weapon.card}
+                    size="large"
+                    wrapped
+                    ui={false}
+                  />
+                </Card>
+                {/* <WeaponCard
+                  description={this.props.weapon.description}
+                  card={this.props.weapon.card}
+                  type={this.props.weapon.type}
+                /> */}
               </Grid.Column>
             </Grid>
-            <WeaponMenu
-              activeItem={this.state.activeItem}
-              handleItemClick={this.handleItemClick}
-            />
-            <Segment
-              style={{
-                overflow: "auto",
-                maxHeight: 250,
-                minHeight: 250
-              }}
-            >
-              {onMainMenuClick(activeItem)}
-            </Segment>
+          </Grid.Column>
+
+          <Grid.Column width={10}>
+            <Grid.Column width={9}>
+              <TankCombatCont
+                combat={this.state.combat}
+                scoreData={Object.values(...this.state.combat)}
+                setScore={this.props.setScore}
+              />
+            </Grid.Column>
+            <Message>{this.props.weapon.description}</Message>
           </Grid.Column>
         </Grid>
+        <WeaponMenu
+          activeItem={this.state.activeItem}
+          handleItemClick={this.handleItemClick}
+        />
+        <Segment
+          style={{
+            overflow: "auto",
+            maxHeight: 250,
+            minHeight: 250
+          }}
+        >
+          {onMainMenuClick(activeItem)}
+        </Segment>
+        {/* </Grid.Column> */}
+        {/* </Grid> */}
       </Segment>
     );
   }

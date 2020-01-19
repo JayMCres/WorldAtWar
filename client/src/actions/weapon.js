@@ -11,6 +11,11 @@ export const FETCH_SHIPS = "FETCH_SHIPS";
 export const FETCH_PLANES = "FETCH_PLANES";
 export const FETCH_PLANE = "FETCH_PLANE";
 export const SET_PLANE_DETAILS = "SET_PLANE_DETAILS";
+export const FETCH_PLANE_COMPARE = "FETCH_PLANE_COMPARE";
+export const FETCH_PLANE_ONE = "FETCH_PLANE_ONE";
+export const FETCH_PLANE_TWO = "FETCH_PLANE_TWO";
+export const SET_PLANE_ONE = "SET_PLANE_ONE";
+export const SET_PLANE_TWO = "SET_PLANE_TWO";
 
 export const fetchTanks = () => async dispatch => {
   const response = await Tanks.get();
@@ -57,6 +62,93 @@ export const setPlaneDetails = data => async dispatch => {
     payload: details
   });
 };
+
+export function fetchPlaneOne(id) {
+  return dispatch => {
+    return fetch("http://localhost:5000/api/plane", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ id })
+    }).then(response => {
+      let data = response.json();
+      // console.log("Data One", data);
+      dispatch(setPlaneOne(data));
+    });
+  };
+}
+
+export function fetchPlaneTwo(id) {
+  return dispatch => {
+    return fetch("http://localhost:5000/api/plane", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ id })
+    }).then(response => {
+      let data = response.json();
+      // console.log("Data One", data);
+      dispatch(setPlaneTwo(data));
+    });
+  };
+}
+
+export const setPlaneOne = data => async dispatch => {
+  const details = await data;
+  let reformatedData = await [
+    ...Object.values(details[0]),
+    ...Object.values(details[1])
+  ];
+
+  dispatch({
+    type: SET_PLANE_ONE,
+    payload: reformatedData
+  });
+};
+export const setPlaneTwo = data => async dispatch => {
+  const details = await data;
+  let reformatedData = await [
+    ...Object.values(details[0]),
+    ...Object.values(details[1])
+  ];
+
+  dispatch({
+    type: SET_PLANE_TWO,
+    payload: reformatedData
+  });
+};
+
+// export const setPlaneTwo = data => async dispatch => {
+//   const details = await data;
+
+//   // console.log("details", data);
+//   const planeOneObj = {
+//     combat: [details[1]],
+//     profile: [details[1]],
+//     guns: details[6].map((items, index) => {
+//       return {
+//         ["Gun" + " " + index + 1]: items.name_i18n,
+//         ["Gun Type" + " " + index + 1]: items.type_i18n,
+//         ["Gun Level" + " " + index + 1]: items.level
+//       };
+//     }),
+//     bombs: details[3].map((items, index) => {
+//       // console.log(items);
+//       return {
+//         ["Bomb" + " " + index + 1]: items.name_i18n,
+//         ["explosion_radius" + " " + index + 1]: items.explosion_radius,
+//         ["explosion_damage_max" + " " + index + 1]: items.explosion_damage_max,
+//         ["Bomb Level" + " " + index + 1]: items.level
+//       };
+//     })
+//   };
+//   dispatch({
+//     type: SET_PLANE_TWO,
+//     payload: planeOneObj
+//   });
+// };
 
 // export const fetchAllWeapons = () => async dispatch => {
 //   const requestOne = axios.get("http://localhost:5000/api/planes");

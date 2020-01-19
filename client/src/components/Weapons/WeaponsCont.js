@@ -37,6 +37,7 @@ class WeaponsCont extends Component {
             favorites={this.props.favorites}
             addItemToCompare={this.props.addItemToCompare}
             addItemToDetails={this.props.addItemToDetails}
+            handleshowForm={this.props.handleshowForm}
           />
         ),
         planes: (
@@ -46,6 +47,7 @@ class WeaponsCont extends Component {
             favorites={this.props.favorites}
             addItemToCompare={this.props.addItemToCompare}
             addItemToDetails={this.props.addItemToDetails}
+            handleshowForm={this.handleshowForm}
           />
         ),
         ships: (
@@ -55,6 +57,7 @@ class WeaponsCont extends Component {
             favorites={this.props.favorites}
             addItemToCompare={this.props.addItemToCompare}
             addItemToDetails={this.props.addItemToDetails}
+            handleshowForm={this.handleshowForm}
           />
         )
       };

@@ -54,6 +54,7 @@ class TanksCont extends Component {
           addTankArmory={this.addTankArmory}
           addItemToCompare={this.props.addItemToCompare}
           addItemToDetails={this.props.addItemToDetails}
+          handleshowForm={this.props.handleshowForm}
         />
       </Segment>
     );
