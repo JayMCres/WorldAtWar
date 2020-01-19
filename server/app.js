@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
-const routes = require("./components/routes");
+const routes = require("./routes");
 
 app.use("/", routes);
 
