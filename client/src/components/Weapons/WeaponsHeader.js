@@ -5,7 +5,7 @@ import Search from "./Search";
 const WeaponsHeader = props => (
   <Menu
     style={{
-      "background-color": "black",
+      "background-color": "#F5F5F5",
       "border-color": "#6666ff",
       "border-style": "solid",
       "border-width": "1px"

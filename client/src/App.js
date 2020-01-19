@@ -19,7 +19,7 @@ class App extends Component {
     return (
       <Segment
         style={{
-          "background-color": "black"
+          "background-color": "#F5F5F5"
         }}
       >
         <Header color={"violet"} inverted as="h1">

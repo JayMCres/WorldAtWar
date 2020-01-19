@@ -7,7 +7,8 @@ import WeaponSpecCont from "./WeaponSpecs/WeaponSpecCont";
 import WeaponComparison from "./WeaponCompare/WeaponComparison";
 import FavoritesCont from "./Weapons/Favorites/FavoritesCont";
 import WinnerCont from "./WeaponCompare/WinnerCont";
-import WeaponFormCont from "./WeaponForm/WeaponFormCont";
+import WeaponFormCont from "./WeaponForm/WeaponForm";
+import DetailsContainer from "./DetailsPage/DetailsContainer";
 
 import { connect } from "react-redux";
 class HomePage extends Component {
@@ -21,7 +22,8 @@ class HomePage extends Component {
     scores: [],
     scoreTwo: [],
     itemWinner: null,
-    showForm: false
+    showForm: false,
+    formWeapon: []
   };
 
   setScore = score => {
@@ -69,16 +71,25 @@ class HomePage extends Component {
       showDetails: false
     });
   };
-
-  handleOpenForm = () => {
+  handleDetailsPage = () => {
     this.setState({
+      showDetails: !this.state.showDetails
+    });
+  };
+  handleOpenForm = itemId => {
+    const foundWeapon = this.props.weapons.find(item => {
+      return item.id === itemId;
+    });
+
+    this.setState({
+      formWeapon: foundWeapon,
       showForm: !this.state.showForm
     });
   };
 
   handleCloseForm = () => {
     this.setState({
-      detailsWeapon: [],
+      formWeapon: [],
       showForm: false
     });
   };
@@ -97,30 +108,41 @@ class HomePage extends Component {
     const foundWeapon = this.props.weapons.find(item => {
       return item.id === itemId;
     });
-    console.log("foundWeapon", foundWeapon);
-
-    // if (foundWeapon) {
-    //   fetch("http://localhost:5000/api/weapons")
-    //     .then(response => {
-    //       return response.json();
-    //     })
-    //     .then(weapon => {
-    //       return this.setState({
-    //         detailsWeapon: weapon
-    //       });
-    //     });
-    // } else {
-    //   this.setState({
-    //     detailsWeapon: foundWeapon
-    //   });
-    // }
     // console.log("foundWeapon", foundWeapon);
 
-    console.log("foundCompare", this.state.detailsWeapon.length);
+    if (foundWeapon) {
+      fetch(`http://localhost:5000/api/weapons/${foundWeapon.id}`)
+        .then(response => {
+          return response.json();
+        })
+        .then(weapon => {
+          console.log("weaponResponse", weapon);
+          if (weapon === null) {
+            this.setState({
+              detailsWeapon: [foundWeapon],
+              showDetails: !this.state.showDetails
+            });
+          } else {
+            const reformatedWeapon = [weapon]
+              .concat([foundWeapon])
+              .map(item => {
+                return item;
+              });
+            return this.setState({
+              detailsWeapon: [
+                { ...reformatedWeapon[0], ...reformatedWeapon[1] }
+              ],
+              showDetails: !this.state.showDetails
+            });
+          }
+        });
+    } else {
+      alert("No Weapon Found");
+    }
   };
 
   addItemToCompare = async itemId => {
-    console.log("firing", itemId);
+    // console.log("firing", itemId);
 
     const foundCompare = this.props.weapons.find(item => {
       return item.id === itemId;
@@ -178,25 +200,25 @@ class HomePage extends Component {
     });
   };
   render() {
-    console.log("MainPage", this.state);
+    // console.log("MainPage", this.state);
     return (
       <Segment
         style={{
-          "background-color": "black"
+          "background-color": "#F5F5F5"
         }}
       >
         <WeaponSpecCont />
         {this.state.showForm === true ? (
           <WeaponFormCont
             handleCloseForm={this.handleCloseForm}
-            detailsWeapon={this.state.detailsWeapon}
+            detailsWeapon={this.state.formWeapon}
           />
         ) : (
           <Grid
             columns={2}
             divided
             style={{
-              "background-color": "black"
+              "background-color": "#F5F5F5"
             }}
           >
             <Grid.Column width={11}>
@@ -230,9 +252,8 @@ class HomePage extends Component {
           <WinnerCont scores={this.state.scores} />
         )}
 
-        {this.state.detailsWeapon.length === 0 ||
-        this.state.showDetails === false ? null : (
-          <Message>test</Message>
+        {this.state.showDetails === false ? null : (
+          <DetailsContainer detailsWeapon={this.state.detailsWeapon} />
         )}
       </Segment>
     );

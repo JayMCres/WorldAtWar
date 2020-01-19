@@ -11,7 +11,7 @@ class WeaponsSpecCont extends Component {
     return (
       <Segment
         style={{
-          "background-color": "black"
+          "background-color": "#F5F5F5"
         }}
       >
         <Grid columns="equal">

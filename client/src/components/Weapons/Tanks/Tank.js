@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Card, Image, Item, Button } from "semantic-ui-react";
+import { Card, Image, Item, Button, Label, Icon } from "semantic-ui-react";
 
 export default class Tank extends Component {
   handleFormDataSubmission = async () => {
@@ -9,6 +9,12 @@ export default class Tank extends Component {
   render() {
     return (
       <Card>
+        <Label as="a" corner="right" color="blue">
+          <Icon
+            name="remove"
+            onClick={() => this.props.handleshowForm(this.props.tank_id)}
+          />
+        </Label>
         <Card.Content>
           <Image floated="right" size="tiny" src={this.props.images.preview} />
           <Card.Header style={{ "font-size": "12px" }}>
@@ -48,7 +54,7 @@ export default class Tank extends Component {
             <Button
               basic
               color="red"
-              onClick={() => this.handleFormDataSubmission(this.props.tank_id)}
+              onClick={() => this.props.addItemToDetails(this.props.tank_id)}
               size="tiny"
             >
               Details

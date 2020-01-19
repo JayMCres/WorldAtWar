@@ -66,7 +66,7 @@ class WeaponsCont extends Component {
     return (
       <Segment
         style={{
-          "background-color": "black"
+          "background-color": "#F5F5F5"
         }}
       >
         <WeaponsHeader
@@ -83,7 +83,7 @@ class WeaponsCont extends Component {
           <Grid.Column
             width={15}
             style={{
-              "background-color": "black"
+              "background-color": "#F5F5F5"
             }}
           >
             <div>{onMenuClick(activeItem)}</div>

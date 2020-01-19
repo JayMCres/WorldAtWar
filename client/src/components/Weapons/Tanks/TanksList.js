@@ -36,9 +36,8 @@ export default class TanksList extends Component {
     // console.log("TanksList", tanksList);
     return (
       <Segment
-        inverted
         style={{
-          "background-color": "black"
+          "background-color": "#F5F5F5"
         }}
       >
         <Button

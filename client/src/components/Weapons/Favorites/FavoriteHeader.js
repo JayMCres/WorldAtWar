@@ -4,7 +4,7 @@ import { Header, Menu, Icon, Input } from "semantic-ui-react";
 const FavoriteHeader = props => (
   <Menu
     style={{
-      "background-color": "black",
+      "background-color": "#F5F5F5",
       "border-color": "#6666ff",
       "border-style": "solid",
       "border-width": "1px"

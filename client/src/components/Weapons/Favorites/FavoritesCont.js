@@ -21,7 +21,7 @@ class FavoritesCont extends Component {
       );
     });
   render() {
-    console.log("favoritesCont Props", this.props.favorites.length);
+    // console.log("favoritesCont Props", this.props.favorites.length);
 
     return (
       <Favorites
