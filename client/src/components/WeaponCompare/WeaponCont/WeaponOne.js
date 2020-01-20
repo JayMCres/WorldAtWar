@@ -1,10 +1,18 @@
 import React, { Component } from "react";
 import { Segment, Label, Icon } from "semantic-ui-react";
-import TankCompare from "../WeaponTypes/TankCompare";
-import ShipCompare from "../WeaponTypes/ShipCompare";
+import TankCompare from "../WeaponTypes/Tanks/TankCompare";
+import ShipCompare from "../WeaponTypes/Ships/ShipCompare";
 import PlaneDetailsFetch from "../WeaponTypes/Planes/FetchDetailsOne";
-export default class WeaponCOne extends Component {
+
+import { setWeaponScoreOne } from "../../../actions/weapon";
+import { connect } from "react-redux";
+
+class WeaponOne extends Component {
+  componentDidMount() {
+    this.props.dispatch(setWeaponScoreOne(this.props.weaponOne));
+  }
   render() {
+    // console.log("WeaponOne Props", this.props);
     const renderWeaponPage = type => {
       const WEAPON_PAGES = {
         tank: (
@@ -13,7 +21,7 @@ export default class WeaponCOne extends Component {
             removeWeaponsFromCompareItems={
               this.props.removeWeaponsFromCompareItems
             }
-            setScore={this.props.setScore}
+            score={this.props.score}
           />
         ),
         plane: (
@@ -31,7 +39,6 @@ export default class WeaponCOne extends Component {
             removeWeaponsFromCompareItems={
               this.props.removeWeaponsFromCompareItems
             }
-            setScore={this.props.setScore}
           />
         )
       };
@@ -39,6 +46,7 @@ export default class WeaponCOne extends Component {
     };
     return (
       <Segment>
+        {() => this.props.setBattleScores(this.props.score)}
         <Label as="a" corner="left" color="red">
           <Icon
             name="remove"
@@ -52,3 +60,7 @@ export default class WeaponCOne extends Component {
     );
   }
 }
+const mapStateToProps = state => ({
+  score: state.weapon.scoreOne
+});
+export default connect(mapStateToProps)(WeaponOne);

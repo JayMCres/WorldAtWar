@@ -6,7 +6,7 @@ import WeaponsCont from "./Weapons/WeaponsCont";
 import WeaponSpecCont from "./WeaponSpecs/WeaponSpecCont";
 import WeaponComparison from "./WeaponCompare/WeaponComparison";
 import FavoritesCont from "./Weapons/Favorites/FavoritesCont";
-import WinnerCont from "./WeaponCompare/WinnerCont";
+import BattleCont from "./WeaponCompare/BattleCont";
 import WeaponFormCont from "./WeaponForm/WeaponForm";
 import DetailsContainer from "./DetailsPage/DetailsContainer";
 
@@ -18,64 +18,28 @@ class HomePage extends Component {
     showComparePage: false,
     showDetails: false,
     detailsWeapon: [],
-    showWinnerPage: false,
+    showBattlePage: false,
     scores: [],
     scoreTwo: [],
-    itemWinner: null,
+    // itemWinner: null,
     showForm: false,
     formWeapon: []
-  };
-
-  setScore = score => {
-    if (this.state.scores.length === 0) {
-      this.setState({ scores: score });
-    }
-    if (this.state.scores.length === 1) {
-      this.setState({ scores: [...this.state.scores, score] });
-      this.letsBattle();
-    }
-  };
-
-  letsBattle = () => {
-    if (this.state.compareItems.length === 2) {
-      if (this.state.scores[0] > this.state.scores[1]) {
-        return this.setState({
-          itemWinner: this.state.compareItems[0]
-        });
-
-        //    alert(this.state.compareItems[0].name + " " + "Wins")
-      } else if (this.state.scores[0] < this.state.scores[1]) {
-        return this.setState({
-          itemWinner: this.state.compareItems[1]
-        });
-      } else if (this.state.scores[0] === this.state.scores[1]) {
-        alert("The Battle has Resulted in a Tie");
-      } else {
-        return this.setState({
-          itemWinner: null
-        });
-      }
-    }
   };
 
   handleshowComparePage = () => {
     this.setState({
       showComparePage: !this.state.showComparePage,
-      showDetails: false
+      detailsWeapon: []
     });
   };
-  handleshowWinnerPage = () => {
+  handleShowBattlePage = () => {
     this.setState({
-      showWinnerPage: !this.state.showWinPage,
+      showBattlePage: true,
       showComparePage: false,
-      showDetails: false
+      detailsWeapon: []
     });
   };
-  handleDetailsPage = () => {
-    this.setState({
-      showDetails: !this.state.showDetails
-    });
-  };
+
   handleOpenForm = itemId => {
     const foundWeapon = this.props.weapons.find(item => {
       return item.id === itemId;
@@ -119,8 +83,9 @@ class HomePage extends Component {
           console.log("weaponResponse", weapon);
           if (weapon === null) {
             this.setState({
-              detailsWeapon: [foundWeapon],
-              showDetails: !this.state.showDetails
+              detailsWeapon: [],
+              detailsWeapon: [foundWeapon]
+              // showDetails: !this.state.showDetails
             });
           } else {
             const reformatedWeapon = [weapon]
@@ -129,10 +94,11 @@ class HomePage extends Component {
                 return item;
               });
             return this.setState({
+              detailsWeapon: [],
               detailsWeapon: [
                 { ...reformatedWeapon[0], ...reformatedWeapon[1] }
-              ],
-              showDetails: !this.state.showDetails
+              ]
+              // showDetails: !this.state.showDetails
             });
           }
         });
@@ -246,13 +212,14 @@ class HomePage extends Component {
             removeWeaponsFromCompareItems={this.removeWeaponsFromCompareItems}
             handleshowWinnerPage={this.handleshowWinnerPage}
             setScore={this.setScore}
+            handleShowBattlePage={this.handleShowBattlePage}
           />
         )}
-        {this.state.showWinnerPage === false ? null : (
-          <WinnerCont scores={this.state.scores} />
+        {this.state.showBattlePage === false ? null : (
+          <BattleCont compareItems={this.state.compareItems} />
         )}
 
-        {this.state.showDetails === false ? null : (
+        {this.state.detailsWeapon.length === 0 ? null : (
           <DetailsContainer detailsWeapon={this.state.detailsWeapon} />
         )}
       </Segment>

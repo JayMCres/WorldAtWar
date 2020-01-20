@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Grid, Image, Segment, Message } from "semantic-ui-react";
-import WeaponCard from "../Shared/WeaponCard";
-import WeaponHeader from "../Shared/WeaponHeader";
-import WeaponTable from "../Shared/WeaponTable";
-import WeaponMenu from "../Shared/WeaponMenu";
+import WeaponCard from "../../Shared/WeaponCard";
+import WeaponHeader from "../../Shared/WeaponHeader";
+import WeaponTable from "../../Shared/WeaponTable";
+import WeaponMenu from "../../Shared/WeaponMenu";
 import ShipCombatCont from "./ShipCombatCont";
 
 export default class TankeCompare extends Component {

@@ -5,7 +5,9 @@ import {
   FETCH_PLANE,
   SET_PLANE_DETAILS,
   SET_PLANE_ONE,
-  SET_PLANE_TWO
+  SET_PLANE_TWO,
+  SET_SCORE_ONE,
+  SET_SCORE_TWO
 } from "../actions/weapon";
 
 const initialState = {
@@ -14,7 +16,9 @@ const initialState = {
   ships: [],
   plane: {},
   planeOne: {},
-  planeTwo: {}
+  planeTwo: {},
+  scoreOne: null,
+  scoreTwo: null
 };
 
 export default function weaponReducer(state = initialState, action) {
@@ -44,6 +48,18 @@ export default function weaponReducer(state = initialState, action) {
       return {
         ...state,
         planeTwo: action.payload
+      };
+    }
+    case SET_SCORE_ONE: {
+      return {
+        ...state,
+        scoreOne: action.payload
+      };
+    }
+    case SET_SCORE_TWO: {
+      return {
+        ...state,
+        scoreTwo: action.payload
       };
     }
 

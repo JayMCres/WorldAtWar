@@ -1,9 +1,17 @@
 import React, { Component } from "react";
-import { Grid, Image, Segment, Message, Card } from "semantic-ui-react";
-import WeaponCard from "../Shared/WeaponCard";
-import WeaponHeader from "../Shared/WeaponHeader";
-import WeaponTable from "../Shared/WeaponTable";
-import WeaponMenu from "../Shared/WeaponMenu";
+import {
+  Grid,
+  Image,
+  Segment,
+  Message,
+  Card,
+  Header,
+  Icon
+} from "semantic-ui-react";
+import WeaponCard from "../../Shared/WeaponCard";
+import WeaponHeader from "../../Shared/WeaponHeader";
+import WeaponTable from "../../Shared/WeaponTable";
+import WeaponMenu from "../../Shared/WeaponMenu";
 import TankCombatCont from "./TankCombatCont";
 
 export default class TankeCompare extends Component {
@@ -63,7 +71,7 @@ export default class TankeCompare extends Component {
     // console.log("Labels", newObject);
   };
   render() {
-    console.log("TankCompare State", this.state);
+    // console.log("TankCompare State", this.state);
     // console.log("Weaponn Props", this.props);
     const { activeItem } = this.state;
     const weaponaryArray = [...this.state.guns, ...this.state.shells[0]];
@@ -81,52 +89,51 @@ export default class TankeCompare extends Component {
       };
       return <div>{HOME_PAGES[link]}</div>;
     };
-    const combatScore = [this.props.weapon].map(items => {
-      return items.combat;
-    });
+    // const combatScore = [this.props.weapon].map(items => {
+    //   return items.combat;
+    // });
     // console.log("weaponary", weaponary);
     return (
       <Segment>
-        <Grid columns={3} divided>
-          <Grid.Column width={6}>
-            <Grid columns={2} divided>
-              <Grid.Column centered verticalAlign="middle" width={3}>
+        {/* <Grid columns={3} divided>
+          <Grid.Column width={6}> */}
+        <Grid columns={2} divided>
+          {/* <Grid.Column centered verticalAlign="middle" width={3}>
                 <WeaponHeader
                   icon={this.props.weapon.icon}
                   name={this.props.weapon.name}
                   nation={this.props.weapon.nation}
                   type={this.props.weapon.weapon}
                 />
-              </Grid.Column>
-              <Grid.Column centered width={13}>
-                <Card fluid>
-                  <Image
-                    src={this.props.weapon.card}
-                    size="large"
-                    wrapped
-                    ui={false}
-                  />
-                </Card>
-                {/* <WeaponCard
-                  description={this.props.weapon.description}
-                  card={this.props.weapon.card}
-                  type={this.props.weapon.type}
-                /> */}
-              </Grid.Column>
-            </Grid>
+              </Grid.Column> */}
+          <Grid.Column centered width={4}>
+            <WeaponHeader
+              icon={this.props.weapon.icon}
+              name={this.props.weapon.name}
+              nation={this.props.weapon.nation}
+              type={this.props.weapon.weapon}
+            />
+
+            <WeaponCard card={this.props.weapon.card} />
+            {/* </Grid.Column>
+            </Grid> */}
           </Grid.Column>
 
-          <Grid.Column width={10}>
-            <Grid.Column width={9}>
-              <TankCombatCont
-                combat={this.state.combat}
-                scoreData={Object.values(...this.state.combat)}
-                setScore={this.props.setScore}
-              />
-            </Grid.Column>
-            <Message>{this.props.weapon.description}</Message>
+          <Grid.Column width={12}>
+            <Header as="h2" dividing>
+              <Icon name="crosshairs" />
+              <Header.Content>Combat Profile</Header.Content>
+            </Header>
+            <TankCombatCont
+              combat={this.state.combat}
+              // scoreData={Object.values(...this.state.combat)}
+
+              score={this.props.score}
+            />
+            {/* </Grid.Column> */}
           </Grid.Column>
         </Grid>
+        <Message>{this.props.weapon.description}</Message>
         <WeaponMenu
           activeItem={this.state.activeItem}
           handleItemClick={this.handleItemClick}

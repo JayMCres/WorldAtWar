@@ -2,10 +2,6 @@ import Tanks from "../api/TanksFetch";
 import Planes from "../api/PlanesFetch";
 import Ships from "../api/ShipsFetch";
 
-import axios from "axios";
-
-// export const FETCH_ALL_WEAPONS = "FETCH_ALL_WEAPONS";
-// export const SET_WEAPONS_DETAILS = "SET_WEAPONS_DETAILS";
 export const FETCH_TANKS = "FETCH_TANKS";
 export const FETCH_SHIPS = "FETCH_SHIPS";
 export const FETCH_PLANES = "FETCH_PLANES";
@@ -16,6 +12,8 @@ export const FETCH_PLANE_ONE = "FETCH_PLANE_ONE";
 export const FETCH_PLANE_TWO = "FETCH_PLANE_TWO";
 export const SET_PLANE_ONE = "SET_PLANE_ONE";
 export const SET_PLANE_TWO = "SET_PLANE_TWO";
+export const SET_SCORE_ONE = "SET_SCORE_ONE";
+export const SET_SCORE_TWO = "SET_SCORE_TWO";
 
 export const fetchTanks = () => async dispatch => {
   const response = await Tanks.get();
@@ -117,6 +115,50 @@ export const setPlaneTwo = data => async dispatch => {
   dispatch({
     type: SET_PLANE_TWO,
     payload: reformatedData
+  });
+};
+
+export const setWeaponScoreOne = data => async dispatch => {
+  const details = await data.combat;
+
+  const weight = await (1 / Object.values(details[0]).length);
+  // console.log("weight", weight);
+
+  // prettier-ignore
+
+  const scoreSum = await Object.values(details[0]).reduce((acc, item) => {
+    let num = item * weight;
+    return acc + num;
+  }, 0);
+
+  let score = await (scoreSum / Object.values(details[0]).length);
+  console.log("Total Score", score);
+
+  dispatch({
+    type: SET_SCORE_ONE,
+    payload: score
+  });
+};
+
+export const setWeaponScoreTwo = data => async dispatch => {
+  const details = await data.combat;
+
+  const weight = await (1 / Object.values(details[0]).length);
+  // console.log("weight", weight);
+
+  // prettier-ignore
+
+  const scoreSum = await Object.values(details[0]).reduce((acc, item) => {
+    let num = item * weight;
+    return acc + num;
+  }, 0);
+
+  let score = await (scoreSum / Object.values(details[0]).length);
+  console.log("Total Score", score);
+
+  dispatch({
+    type: SET_SCORE_TWO,
+    payload: score
   });
 };
 

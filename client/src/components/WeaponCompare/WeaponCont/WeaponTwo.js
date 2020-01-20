@@ -1,9 +1,17 @@
 import React, { Component } from "react";
 import { Segment, Icon, Label, Message } from "semantic-ui-react";
-import TankCompare from "../WeaponTypes/TankCompare";
-import ShipCompare from "../WeaponTypes/ShipCompare";
+import TankCompare from "../WeaponTypes/Tanks/TankCompare";
+import ShipCompare from "../WeaponTypes/Ships/ShipCompare";
 import PlaneDetailsFetch from "../WeaponTypes/Planes/FetchDetailsTwo";
-export default class WeaponTwo extends Component {
+
+import { setWeaponScoreTwo } from "../../../actions/weapon";
+import { connect } from "react-redux";
+
+class WeaponTwo extends Component {
+  async componentDidMount() {
+    this.props.dispatch(setWeaponScoreTwo(this.props.weaponTwo));
+  }
+
   render() {
     const renderWeaponPage = type => {
       const WEAPON_PAGES = {
@@ -13,7 +21,7 @@ export default class WeaponTwo extends Component {
             removeWeaponsFromCompareItems={
               this.props.removeWeaponsFromCompareItems
             }
-            setScore={this.props.setScore}
+            score={this.props.score}
           />
         ),
         plane: (
@@ -52,3 +60,9 @@ export default class WeaponTwo extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  score: state.weapon.scoreTwo
+});
+
+export default connect(mapStateToProps)(WeaponTwo);
