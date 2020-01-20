@@ -29,13 +29,15 @@ exports.addWeapon = (req, res) => {
   const name = req.body.name;
   const weaponId = req.body.weaponId;
   const type = req.body.weaponId;
-  const picture = req.body.picture;
+  const pictureone = req.body.pictureone;
+  const picturetwo = req.body.picturetwo;
   const video = req.body.video;
   return Weapon.create({
     name: name,
     weaponId: weaponId,
     type: type,
-    picture: picture,
+    pictureone: pictureone,
+    picturetwo: picturetwo,
     video: video
   }).then(newWeapon => {
     res.json(newWeapon);
@@ -106,11 +108,13 @@ exports.editWeapon = (req, res) => {
 };
 
 exports.getWeapon = (req, res) => {
+  // console.log("req", req.params.id);
   Weapon.findOne({
     where: {
-      id: req.params.id
+      weaponId: req.params.id
     }
   }).then(weapon => {
+    console.log("weapon", weapon);
     res.json(weapon);
   });
 };

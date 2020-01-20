@@ -1,10 +1,15 @@
 const routes = require("express").Router();
 
+const usersController = require("../controllers/usersController");
 const tanksController = require("../controllers/tanksController");
 const planesController = require("../controllers/planesController");
 const shipsController = require("../controllers/shipsController");
 const planeController = require("../controllers/planeController");
 const weaponController = require("../controllers/weaponController");
+
+routes.use("/api/users", usersController.listUsers);
+routes.use("/api/users/:id", usersController.getUser);
+routes.post("/api/signup", usersController.addUser);
 
 routes.get("/api/weapons/:id", weaponController.getWeapon);
 routes.get("/api/weapons", weaponController.listWeapons);
@@ -16,4 +21,5 @@ routes.use("/api/tanks", tanksController.fetchAllTanks);
 routes.use("/api/planes", planesController.fetchAllPlanes);
 routes.use("/api/warships", shipsController.fetchAllShips);
 routes.use("/api/plane", planeController.fetchSinglePlane);
+
 module.exports = routes;
