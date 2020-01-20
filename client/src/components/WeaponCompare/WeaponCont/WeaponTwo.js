@@ -46,7 +46,11 @@ class WeaponTwo extends Component {
       return <div>{WEAPON_PAGES[type]}</div>;
     };
     return (
-      <Segment>
+      <Segment
+        style={{
+          "background-color": "#F5F5F5"
+        }}
+      >
         <Label as="a" corner="right" color="red">
           <Icon
             name="remove"

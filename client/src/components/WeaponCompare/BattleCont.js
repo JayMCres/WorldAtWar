@@ -44,8 +44,17 @@ class BattleCont extends Component {
     const loserProfile = this.state.battleLoser.profile[0];
 
     return (
-      <Segment>
-        <Grid columns={3}>
+      <Segment
+        style={{
+          "background-color": "#F5F5F5"
+        }}
+      >
+        <Grid
+          columns={3}
+          style={{
+            "background-color": "#F5F5F5"
+          }}
+        >
           <Grid.Column width={2} centered>
             <Card>
               <Image src={this.state.battleWinner.card} wrapped ui={false} />

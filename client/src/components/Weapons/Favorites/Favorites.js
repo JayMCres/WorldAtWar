@@ -11,7 +11,7 @@ export default class Favorites extends Component {
     return (
       <Segment
         style={{
-          "background-color": "#F5F5F5"
+          "background-color": "black"
         }}
       >
         <FavoriteHeader

@@ -84,7 +84,9 @@ class HomePage extends Component {
           if (weapon === null) {
             this.setState({
               detailsWeapon: [],
-              detailsWeapon: [foundWeapon]
+              detailsWeapon: [foundWeapon],
+              showBattlePage: false,
+              compareItems: []
               // showDetails: !this.state.showDetails
             });
           } else {
@@ -97,7 +99,9 @@ class HomePage extends Component {
               detailsWeapon: [],
               detailsWeapon: [
                 { ...reformatedWeapon[0], ...reformatedWeapon[1] }
-              ]
+              ],
+              showBattlePage: false,
+              compareItems: []
               // showDetails: !this.state.showDetails
             });
           }

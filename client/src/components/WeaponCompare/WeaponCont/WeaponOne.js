@@ -45,7 +45,11 @@ class WeaponOne extends Component {
       return <div>{WEAPON_PAGES[type]}</div>;
     };
     return (
-      <Segment>
+      <Segment
+        style={{
+          "background-color": "#F5F5F5"
+        }}
+      >
         {() => this.props.setBattleScores(this.props.score)}
         <Label as="a" corner="left" color="red">
           <Icon

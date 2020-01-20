@@ -32,19 +32,10 @@ export default class WeaponComparison extends Component {
     console.log(" Weapon Compare Main Cont", this.props);
     return (
       <Segment
-      // style={{
-      //   "background-color": "black"
-      // }}
+        style={{
+          "background-color": "#F5F5F5"
+        }}
       >
-        <Button
-          icon
-          labelPosition="left"
-          onClick={() => this.props.handleShowBattlePage()}
-          disabled={this.props.compareItems.length < 2}
-        >
-          <Icon name="pause" />
-          Battle
-        </Button>
         {this.props.compareItems.length < 2 ? (
           <WeaponOne
             weaponOne={this.props.compareItems[0]}
@@ -75,6 +66,18 @@ export default class WeaponComparison extends Component {
             </Grid.Column>
           </Grid>
         )}
+        <br></br>
+        <Button
+          fluid
+          size="mini"
+          icon
+          // labelPosition="right"
+          onClick={() => this.props.handleShowBattlePage()}
+          disabled={this.props.compareItems.length < 2}
+        >
+          <Icon name="pause" />
+          Battle
+        </Button>
       </Segment>
     );
   }
