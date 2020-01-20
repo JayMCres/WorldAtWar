@@ -2,7 +2,6 @@
 
 const User = require("../models").User;
 const Favorite = require("../models").Favorite;
-const UserFavorite = require("../models").UserFavorite;
 
 exports.favsList = (req, res) => {
   return Favorite.findAll()
