@@ -4,6 +4,7 @@ const shipsController = require("./shipsController");
 const planeController = require("./planeController");
 const weaponController = require("./weaponController");
 const usersController = require("./usersController");
+const favoriteController = require("./favoriteController");
 
 module.exports = {
   tanksController,
@@ -11,5 +12,6 @@ module.exports = {
   shipsController,
   planeController,
   weaponController,
-  usersController
+  usersController,
+  favoriteController
 };

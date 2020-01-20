@@ -17,7 +17,7 @@ exports.getUsers = (req, res) => {
 
 const handleResponse = res => {
   return data => {
-    console.log(data);
+    // console.log(data);
     res.send(data);
   };
 };
