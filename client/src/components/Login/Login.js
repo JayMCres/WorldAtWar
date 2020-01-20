@@ -5,7 +5,6 @@ export default class Login extends Component {
   render() {
     return (
       <div>
-        {/* <div className="loginform"> */}
         <br />
         <br />
         <br />
@@ -27,7 +26,7 @@ export default class Login extends Component {
             <Header as="h2" style={{ color: "#87CEFA" }} textAlign="center">
               <Message style={{ color: "blue" }}>
                 {" "}
-                <strong>FIN-ALYZE</strong>
+                <strong>WORLD AT WAR</strong>
               </Message>
               Log-in to your account
             </Header>

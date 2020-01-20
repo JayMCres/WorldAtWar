@@ -1,4 +1,4 @@
-import React, { Component } from "./node_modules/react";
+import React, { Component } from "react";
 import {
   Form,
   Button,
@@ -6,7 +6,8 @@ import {
   Message,
   Grid,
   Header
-} from "./node_modules/semantic-ui-react";
+} from "semantic-ui-react";
+
 export default class Signup extends Component {
   state = {
     // consider moving this down
