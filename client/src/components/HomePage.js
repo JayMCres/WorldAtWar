@@ -11,6 +11,8 @@ import WeaponFormCont from "./WeaponForm/WeaponForm";
 import DetailsContainer from "./DetailsPage/DetailsContainer";
 
 import { connect } from "react-redux";
+import { createFavorite } from "../actions/favorites";
+
 class HomePage extends Component {
   state = {
     compareItems: [],
@@ -23,7 +25,57 @@ class HomePage extends Component {
     scoreTwo: [],
     // itemWinner: null,
     showForm: false,
-    formWeapon: []
+    formWeapon: [],
+    favorites: []
+  };
+
+  componentDidMount() {
+    const setWatchList = () => {
+      this.setState({ favorites: this.props.currentUser.favorites });
+    };
+
+    setWatchList();
+  }
+
+  addToFavorites = itemId => {
+    // console.log("ID", itemId);
+    const userId = this.props.currentUser.id;
+    const foundWeapon = this.props.weapons.find(item => item.id === itemId);
+
+    // console.log("firing Wishlist", foundWeapon);
+    const preventDoubles = this.state.favorites.find(
+      item => item.weaponId === itemId
+    );
+
+    if (!preventDoubles) {
+      this.props
+        .dispatch(createFavorite(foundWeapon, userId))
+        .then(newFav => this.addNewItemToFavorites(newFav));
+    }
+  };
+
+  addNewItemToFavorites = newFav => {
+    // console.log(newFav);
+    this.setState({
+      favorites: [...this.state.favorites, newFav]
+    });
+  };
+
+  removeFromfavorites = favId => {
+    const deleteFavorite = this.state.favorites.find(item => item.id === favId);
+    console.log("delete Favorite", deleteFavorite);
+    const updateFavorites = this.state.favorites.filter(item => {
+      return item.id !== favId;
+    });
+    if (deleteFavorite) {
+      this.setState({
+        favorites: updateFavorites
+      });
+    }
+
+    fetch(`http://localhost:5000/api/delete_favorite/${favId}`, {
+      method: "DELETE"
+    });
   };
 
   handleshowComparePage = () => {
@@ -54,6 +106,7 @@ class HomePage extends Component {
   handleCloseForm = () => {
     this.setState({
       formWeapon: [],
+      detailsWeapon: [],
       showForm: false
     });
   };
@@ -163,14 +216,8 @@ class HomePage extends Component {
     });
   };
 
-  addWeaponToArmory = weapon => {
-    // console.log(weapon);
-    this.setState({
-      favorites: [...this.state.favorites, weapon]
-    });
-  };
   render() {
-    // console.log("MainPage", this.state);
+    console.log("HomePage Props", this.props);
     return (
       <Segment
         style={{
@@ -181,7 +228,7 @@ class HomePage extends Component {
         {this.state.showForm === true ? (
           <WeaponFormCont
             handleCloseForm={this.handleCloseForm}
-            detailsWeapon={this.state.formWeapon}
+            formWeapon={this.state.formWeapon}
           />
         ) : (
           <Grid
@@ -193,11 +240,12 @@ class HomePage extends Component {
           >
             <Grid.Column width={11}>
               <WeaponsCont
-                addWeaponToArmory={this.addWeaponToArmory}
+                addWeaponToArmory={this.addToFavorites}
                 favorites={this.state.favorites}
                 addItemToCompare={this.addItemToCompare}
                 addItemToDetails={this.addItemToDetails}
                 handleshowForm={this.handleOpenForm}
+                detailsWeapon={this.state.detailsWeapon}
               />
             </Grid.Column>
             <Grid.Column width={5}>
@@ -205,6 +253,7 @@ class HomePage extends Component {
                 favorites={this.state.favorites}
                 addItemToCompare={this.addItemToCompare}
                 addItemToDetails={this.addItemToDetails}
+                removeFromfavorites={this.removeFromfavorites}
               />
             </Grid.Column>
           </Grid>

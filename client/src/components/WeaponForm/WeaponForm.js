@@ -13,8 +13,8 @@ class WeaponFormCont extends Component {
 
   componentWillMount() {
     this.setState({
-      name: this.props.detailsWeapon.name,
-      weaponId: this.props.detailsWeapon.id
+      name: this.props.formWeapon.name,
+      weaponId: this.props.formWeapon.id
     });
   }
   addWeapon = event => {
@@ -59,11 +59,7 @@ class WeaponFormCont extends Component {
   };
   render() {
     // prettier-ignore
-    // const {name, type,subtype,power,ceiling,country,dimensions,weight,crew,imageone,imagetwo,imagethree,imagefour,description,propulsion,speed,range,armor,weaponone,weapontwo,weaponthree,weaponfour,video} = this.state;
-    // const formInputs = this.state;
-    // const inputObj = { ...formInputs };
-    // console.log("WeaponFormCont props", this.props);
-    // console.log("formInputs", inputObj);
+    console.log("Weapon Form Props", this.props)
     return (
       <Segment>
         <Label as="a" corner="right" color="red">
@@ -121,15 +117,6 @@ class WeaponFormCont extends Component {
               ref="video"
             />
           </Form.Field>
-          {/* {Object.entries(inputObj).map(([key, value]) => {
-            return (
-              <WeaponForm
-                value={value}
-                label={key}
-                handleInputChange={this.handleInputChange}
-              />
-            );
-          })} */}
 
           <Button type="submit">Submit</Button>
         </Form>

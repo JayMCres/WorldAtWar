@@ -36,6 +36,8 @@ export default class Favorites extends Component {
                   key={index}
                   {...item}
                   addItemToCompare={this.props.addItemToCompare}
+                  addItemToDetails={this.props.addItemToDetails}
+                  removeFromfavorites={this.props.removeFromfavorites}
                 />
               );
             })}

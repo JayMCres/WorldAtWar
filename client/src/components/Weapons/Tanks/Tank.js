@@ -1,18 +1,20 @@
 import React, { Component } from "react";
 import { Card, Image, Item, Button, Label, Icon } from "semantic-ui-react";
-
-export default class Tank extends Component {
+import { connect } from "react-redux";
+class Tank extends Component {
   handleFormDataSubmission = async () => {
     await this.props.addItemToDetails(this.props.tank_id);
     await this.props.handleshowForm();
   };
   render() {
+    console.log("tank props", this.props);
     return (
       <Card>
         <Label as="a" corner="right" color="blue">
           <Icon
             name="remove"
             onClick={() => this.props.handleshowForm(this.props.tank_id)}
+            // disabled={this.props.detailsWeapon.pictureone }
           />
         </Label>
         <Card.Content>
@@ -40,14 +42,16 @@ export default class Tank extends Component {
               color="green"
               onClick={() => this.props.addItemToCompare(this.props.tank_id)}
               size="tiny"
+              disabled={this.props.weapons === undefined}
             >
               Mobilize
             </Button>
             <Button
               basic
               color="red"
-              onClick={() => this.props.addTankArmory(this.props.tank_id)}
+              onClick={() => this.props.addWeaponToArmory(this.props.tank_id)}
               size="tiny"
+              disabled={this.props.weapons === undefined}
             >
               Add to Armory
             </Button>
@@ -56,6 +60,7 @@ export default class Tank extends Component {
               color="red"
               onClick={() => this.props.addItemToDetails(this.props.tank_id)}
               size="tiny"
+              disabled={this.props.weapons === undefined}
             >
               Details
             </Button>
@@ -65,4 +70,8 @@ export default class Tank extends Component {
     );
   }
 }
-// export default Tank;
+const mapStateToProps = state => ({
+  weapons: state.weapons.weapons[0]
+});
+
+export default connect(mapStateToProps)(Tank);

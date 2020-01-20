@@ -21,7 +21,7 @@ class FavoritesCont extends Component {
       );
     });
   render() {
-    // console.log("favoritesCont Props", this.props.favorites.length);
+    // console.log("favoritesCont Props", this.props.favorites);
 
     return (
       <Favorites
@@ -29,6 +29,8 @@ class FavoritesCont extends Component {
         inputValue={this.state.inputValue}
         handleChange={this.handleChange}
         addItemToCompare={this.props.addItemToCompare}
+        addItemToDetails={this.props.addItemToDetails}
+        removeFromfavorites={this.props.removeFromfavorites}
       />
     );
   }

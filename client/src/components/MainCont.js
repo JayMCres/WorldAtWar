@@ -4,6 +4,7 @@ import { Header, Segment } from "semantic-ui-react";
 import HomePage from "./HomePage";
 import { fetchTanks, fetchPlanes, fetchShips } from "../actions/weapon";
 import { fetchWeapons, fetchAllWeapons } from "../actions/weapons";
+import { fetchFavorites, fetchUserFavorites } from "../actions/favorites";
 
 import { connect } from "react-redux";
 
@@ -14,6 +15,8 @@ class MainCont extends Component {
     this.props.dispatch(fetchShips());
     this.props.dispatch(fetchAllWeapons());
     this.props.dispatch(fetchWeapons());
+    this.props.dispatch(fetchFavorites());
+    this.props.dispatch(fetchUserFavorites(this.props.currentUser.id));
   }
   render() {
     return (
@@ -25,7 +28,7 @@ class MainCont extends Component {
         <Header color={"violet"} inverted as="h1">
           World At War
         </Header>
-        <HomePage />
+        <HomePage currentUser={this.props.currentUser} />
       </Segment>
     );
   }

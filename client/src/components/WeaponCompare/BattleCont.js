@@ -55,8 +55,8 @@ class BattleCont extends Component {
             "background-color": "#F5F5F5"
           }}
         >
-          <Grid.Column width={2} centered>
-            <Card>
+          <Grid.Column width={4} centered>
+            <Card fluid>
               <Image src={this.state.battleWinner.card} wrapped ui={false} />
               <Card.Content>
                 <Card.Header>{this.state.battleWinner.name}</Card.Header>
@@ -69,11 +69,11 @@ class BattleCont extends Component {
           </Grid.Column>
 
           <Grid.Column
-            width={7}
+            width={6}
             style={{
               overflow: "auto",
-              maxHeight: 250,
-              minHeight: 250
+              maxHeight: 400,
+              minHeight: 400
             }}
           >
             <Header as="h3">
@@ -109,11 +109,11 @@ class BattleCont extends Component {
           </Grid.Column>
 
           <Grid.Column
-            width={7}
+            width={6}
             style={{
               overflow: "auto",
-              maxHeight: 250,
-              minHeight: 250
+              maxHeight: 400,
+              minHeight: 400
             }}
           >
             <Header as="h3">

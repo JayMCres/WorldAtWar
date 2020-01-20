@@ -9,7 +9,7 @@ import ShipsCont from "./Ships/ShipsCont";
 import WeaponsHeader from "./WeaponsHeader";
 
 class WeaponsCont extends Component {
-  state = { activeItem: "tanks", inputValue: "" };
+  state = { activeItem: "tanks", inputValue: "", favorites: [] };
 
   handleChange = event => {
     this.setState({
@@ -20,11 +20,6 @@ class WeaponsCont extends Component {
   handleItemClick = (e, { name }) =>
     this.setState({ activeItem: name, chartsPage: "true" });
 
-  // async componentDidMount() {
-  //   this.props.dispatch(fetchTanks());
-  //   this.props.dispatch(fetchPlanes());
-  //   this.props.dispatch(fetchShips());
-  // }
   render() {
     // console.log("MainPage", this.props);
     const { activeItem } = this.state;
@@ -38,6 +33,7 @@ class WeaponsCont extends Component {
             addItemToCompare={this.props.addItemToCompare}
             addItemToDetails={this.props.addItemToDetails}
             handleshowForm={this.props.handleshowForm}
+            detailsWeapon={this.props.detailsWeapon}
           />
         ),
         planes: (

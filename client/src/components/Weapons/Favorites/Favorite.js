@@ -1,5 +1,5 @@
 import React from "react";
-import { Image, Message, List } from "semantic-ui-react";
+import { Image, Button, Icon, List } from "semantic-ui-react";
 
 const Favorite = props => {
   console.log("Favorite Props", props);
@@ -19,16 +19,26 @@ const Favorite = props => {
           floated="right"
           size="tiny"
           verticalAlign="middle"
-          src={props.image}
-          onClick={() => props.addItemToCompare(props.id)}
+          src={props.picture}
+          onClick={() => props.addItemToDetails(props.weaponId)}
         />
         <List.Header style={{ color: "white", "font-size": "12px" }}>
           <span>
-            {props.name} || {props.weaponType.toUpperCase()}
+            {props.name} || {props.video.toUpperCase()}
           </span>
         </List.Header>
         <List.Description style={{ color: "white", "font-size": "9px" }}>
-          {props.description}
+          <br></br>
+          <Button.Group inverted size="mini" icon>
+            <Button
+              size="mini"
+              inverted
+              circular
+              icon="remove"
+              onClick={() => props.removeFromfavorites(props.id)}
+            />
+            <Button size="mini" inverted circular icon="settings" />
+          </Button.Group>
         </List.Description>
       </List.Content>
     </List.Item>

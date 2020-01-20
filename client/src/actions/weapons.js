@@ -1,7 +1,8 @@
 import axios from "axios";
-export const FETCH_ALL_WEAPONS = "FETCH_ALL_WEAPONS";
 
+export const FETCH_ALL_WEAPONS = "FETCH_ALL_WEAPONS";
 export const SET_WEAPONS_DETAILS = "SET_WEAPONS_DETAILS";
+
 export const fetchAllWeapons = () => async dispatch => {
   const requestOne = axios.get("http://localhost:5000/api/planes");
   const requestTwo = axios.get("http://localhost:5000/api/tanks");

@@ -62,7 +62,7 @@ class App extends Component {
     this.setState({ [name]: value });
   };
   render() {
-    console.log("App State", this.state);
+    // console.log("App State", this.state);
     const { activeItem } = this.state;
     const onMenuClick = link => {
       const LOGIN_PAGES = {

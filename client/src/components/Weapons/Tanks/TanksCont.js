@@ -51,10 +51,11 @@ class TanksCont extends Component {
       >
         <TanksList
           tanks={this.filterTanks()}
-          addTankArmory={this.addTankArmory}
+          addWeaponToArmory={this.props.addWeaponToArmory}
           addItemToCompare={this.props.addItemToCompare}
           addItemToDetails={this.props.addItemToDetails}
           handleshowForm={this.props.handleshowForm}
+          detailsWeapon={this.props.detailsWeapon}
         />
       </Segment>
     );
