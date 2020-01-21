@@ -13,7 +13,7 @@ class MainCont extends Component {
     this.props.dispatch(fetchTanks());
     this.props.dispatch(fetchPlanes());
     this.props.dispatch(fetchShips());
-    this.props.dispatch(fetchAllWeapons());
+    // this.props.dispatch(fetchAllWeapons());
     this.props.dispatch(fetchWeapons());
     this.props.dispatch(fetchFavorites());
     this.props.dispatch(fetchUserFavorites(this.props.currentUser.id));

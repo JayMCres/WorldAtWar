@@ -7,7 +7,8 @@ import VideoPlayer from "../VideoPlayer";
 import WeaponCarousel from "../WeaponCarousel";
 import ProfileTable from "../ProfileTable";
 import { connect } from "react-redux";
-class WeaponSpec extends Component {
+
+class TankSpec extends Component {
   state = {
     activeItem: "profile",
     flag: "us",
@@ -25,8 +26,8 @@ class WeaponSpec extends Component {
   };
   componentDidMount() {
     this.setState({
-      weaponryArray: this.props.detailsWeapon.gun.concat(
-        ...this.props.detailsWeapon.shells
+      weaponryArray: [this.props.detailsWeapon.default_profile.gun].concat(
+        ...this.props.detailsWeapon.default_profile.shells
       )
     });
   }
@@ -39,7 +40,9 @@ class WeaponSpec extends Component {
       return Object.assign(result, current);
     }, {});
 
-    const profile = Object.entries(this.props.detailsWeapon.profile[0]).map(
+    // console.log("weaponaryObj", weaponaryObj);
+
+    const profile = Object.entries(this.props.profile[0]).map(
       ([key, value]) => {
         let label = key
           .split("_")
@@ -75,7 +78,10 @@ class WeaponSpec extends Component {
             <VideoPlayer video={this.props.detailsWeapon.video} />
           </Grid.Column>
           <Grid.Column width={3}>
-            <WeaponCard detailsWeapon={this.props.detailsWeapon} />
+            <WeaponCard
+              detailsWeapon={this.props.detailsWeapon}
+              card={this.props.detailsWeapon.images.normal}
+            />
           </Grid.Column>
         </Grid>
         {this.props.detailsWeapon.pictureone === undefined ? null : (
@@ -108,3 +114,29 @@ class WeaponSpec extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  detailsWeapon: state.weapons.foundWeapon[0],
+  profile: [state.weapons.foundWeapon[0].default_profile].map(item => {
+    return {
+      weight: item.weight,
+      firepower: item.firepower,
+      shot_efficiency: item.shot_efficiency,
+      signal_range: item.signal_range,
+      speed_forward: item.speed_forward,
+      battle_level_range_min: item.battle_level_range_min,
+      speed_backward: item.speed_backward,
+      max_ammo: item.max_ammo,
+      attle_level_range_max: item.attle_level_range_max,
+      horsepower: item.hp,
+      protection: item.protection,
+      max_weight: item.max_weight,
+      maneuverability: item.maneuverability,
+      hull_weight: item.hull_weight,
+      hull_horsepower: item.hull_hp,
+      engine: item.engine.name
+    };
+  })
+});
+
+export default connect(mapStateToProps)(TankSpec);

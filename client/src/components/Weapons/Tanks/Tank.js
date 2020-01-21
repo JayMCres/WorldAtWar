@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Card, Image, Item, Button, Label, Icon } from "semantic-ui-react";
+import { findWeapon } from "../../../actions/weapons";
 import { connect } from "react-redux";
 class Tank extends Component {
   handleFormDataSubmission = async () => {
@@ -7,7 +8,7 @@ class Tank extends Component {
     await this.props.handleshowForm();
   };
   render() {
-    console.log("tank props", this.props);
+    // console.log("tank props", this.props);
     return (
       <Card>
         <Label as="a" corner="right" color="blue">
@@ -49,7 +50,9 @@ class Tank extends Component {
             <Button
               basic
               color="red"
-              onClick={() => this.props.addWeaponToArmory(this.props.tank_id)}
+              // onClick={() =>
+              //   this.props.dispatch(findWeapon(this.props.tank_id))
+              // }
               size="tiny"
               disabled={this.props.weapons === undefined}
             >

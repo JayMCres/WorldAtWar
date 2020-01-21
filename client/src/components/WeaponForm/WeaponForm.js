@@ -59,7 +59,7 @@ class WeaponFormCont extends Component {
   };
   render() {
     // prettier-ignore
-    console.log("Weapon Form Props", this.props)
+    // console.log("Weapon Form Props", this.props)
     return (
       <Segment>
         <Label as="a" corner="right" color="red">

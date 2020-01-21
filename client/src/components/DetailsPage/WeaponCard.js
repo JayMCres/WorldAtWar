@@ -6,7 +6,7 @@ const WeaponCard = props => {
   const type = props.detailsWeapon.type.slice(0, -4);
   return (
     <Card fluid centered>
-      <Image src={props.detailsWeapon.card} size="big" wrapped ui={false} />
+      <Image src={props.card} size="big" wrapped ui={false} />
       <Card.Content>
         <Card.Description>
           <strong>

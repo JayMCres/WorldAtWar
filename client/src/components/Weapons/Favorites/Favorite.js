@@ -2,7 +2,7 @@ import React from "react";
 import { Image, Button, Icon, List } from "semantic-ui-react";
 
 const Favorite = props => {
-  console.log("Favorite Props", props);
+  // console.log("Favorite Props", props);
   // const tank = Object.values(props);
   // console.log("Tank Obj", tank);
 

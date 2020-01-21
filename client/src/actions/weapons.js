@@ -1,28 +1,67 @@
 import axios from "axios";
 
-export const FETCH_ALL_WEAPONS = "FETCH_ALL_WEAPONS";
+export const FIND_WEAPON = "FIND_WEAPON";
 export const SET_WEAPONS_DETAILS = "SET_WEAPONS_DETAILS";
+export const SET_FOUND_WEAPON = " SET_FOUND_WEAPON";
 
-export const fetchAllWeapons = () => async dispatch => {
+export const findWeapon = weaponId => async dispatch => {
+  const itemId = await weaponId;
+  console.log("Weapon Id", itemId);
   const requestOne = axios.get("http://localhost:5000/api/planes");
   const requestTwo = axios.get("http://localhost:5000/api/tanks");
   const requestThree = axios.get("http://localhost:5000/api/warships");
 
   axios.all([requestOne, requestTwo, requestThree]).then(
     axios.spread((...responses) => {
-      const responseOne = [responses[0].data];
+      const responsePlane = [responses[0].data];
+      const responseTank = [responses[1].data];
 
-      // console.log("responseOne", responseOne);
-      const responseTwo = [responses[1].data];
-      const responseThree = [responses[2].data];
+      const responseShip = [responses[2].data];
 
-      dispatch({
-        type: FETCH_ALL_WEAPONS,
-        payload: [...responseOne, ...responseTwo, ...responseThree]
-      });
+      const foundWeapons = [
+        ...Object.values(responsePlane[0]).map(item => {
+          return { ...item, id: item.plane_id };
+        }),
+        ...Object.values(responseTank[0]).map(item => {
+          return { ...item, id: item.tank_id };
+        }),
+        ...Object.values(responseShip[0]).map(item => {
+          return { ...item, id: item.ship_id };
+        })
+      ];
+
+      const foundWeapon = foundWeapons.find(weapon => weapon.id === itemId);
+      // console.log("Found Weapon", foundWeapon);
+      dispatch(setFoundWeapon(foundWeapon));
     })
   );
 };
+
+export function setFoundWeapon(foundWeapon) {
+  return dispatch => {
+    return fetch(`http://localhost:5000/api/weapons/${foundWeapon.id}`)
+      .then(response => {
+        return response.json();
+      })
+      .then(weapon => {
+        console.log("weaponResponse", weapon);
+        if (weapon === null) {
+          dispatch({
+            type: SET_FOUND_WEAPON,
+            payload: foundWeapon
+          });
+        } else {
+          const reformatedWeapon = [weapon].concat([foundWeapon]).map(item => {
+            return item;
+          });
+          dispatch({
+            type: SET_FOUND_WEAPON,
+            payload: [{ ...reformatedWeapon[0], ...reformatedWeapon[1] }]
+          });
+        }
+      });
+  };
+}
 
 export const fetchWeapons = () => async dispatch => {
   const requestOne = axios.get("http://localhost:5000/api/planes");
@@ -44,7 +83,7 @@ export const fetchWeapons = () => async dispatch => {
       const weapons = [
         { planes: responseOne, tanks: responseTwo, ships: responseThree }
       ];
-      // console.log("Weapons", weapons);
+
       dispatch(setWeaponsDetails(weapons));
     })
   );

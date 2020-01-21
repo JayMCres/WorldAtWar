@@ -9,8 +9,10 @@ import FavoritesCont from "./Weapons/Favorites/FavoritesCont";
 import BattleCont from "./WeaponCompare/BattleCont";
 import WeaponFormCont from "./WeaponForm/WeaponForm";
 import DetailsContainer from "./DetailsPage/DetailsContainer";
+import LoadingPage from "./LoadingPage";
 
 import { connect } from "react-redux";
+import { findWeapon } from "../actions/weapons";
 import { createFavorite } from "../actions/favorites";
 
 class HomePage extends Component {
@@ -119,50 +121,60 @@ class HomePage extends Component {
       detailsWeapon: []
     });
   };
+
   addItemToDetails = async itemId => {
-    // console.log("firing", )
-
-    const foundWeapon = this.props.weapons.find(item => {
-      return item.id === itemId;
+    await this.props.dispatch(findWeapon(itemId));
+    this.setState({
+      showBattlePage: false,
+      compareItems: [],
+      showDetails: true
     });
-    // console.log("foundWeapon", foundWeapon);
-
-    if (foundWeapon) {
-      fetch(`http://localhost:5000/api/weapons/${foundWeapon.id}`)
-        .then(response => {
-          return response.json();
-        })
-        .then(weapon => {
-          console.log("weaponResponse", weapon);
-          if (weapon === null) {
-            this.setState({
-              detailsWeapon: [],
-              detailsWeapon: [foundWeapon],
-              showBattlePage: false,
-              compareItems: []
-              // showDetails: !this.state.showDetails
-            });
-          } else {
-            const reformatedWeapon = [weapon]
-              .concat([foundWeapon])
-              .map(item => {
-                return item;
-              });
-            return this.setState({
-              detailsWeapon: [],
-              detailsWeapon: [
-                { ...reformatedWeapon[0], ...reformatedWeapon[1] }
-              ],
-              showBattlePage: false,
-              compareItems: []
-              // showDetails: !this.state.showDetails
-            });
-          }
-        });
-    } else {
-      alert("No Weapon Found");
-    }
   };
+
+  // addItemToDetails = async itemId => {
+  //   // console.log("firing", )
+
+  //   const foundWeapon = this.props.weapons.find(item => {
+  //     return item.id === itemId;
+  //   });
+  //   // console.log("foundWeapon", foundWeapon);
+
+  //   if (foundWeapon) {
+  //     fetch(`http://localhost:5000/api/weapons/${foundWeapon.id}`)
+  //       .then(response => {
+  //         return response.json();
+  //       })
+  //       .then(weapon => {
+  //         console.log("weaponResponse", weapon);
+  //         if (weapon === null) {
+  //           this.setState({
+  //             detailsWeapon: [],
+  //             detailsWeapon: [foundWeapon],
+  //             showBattlePage: false,
+  //             compareItems: []
+  //             // showDetails: !this.state.showDetails
+  //           });
+  //         } else {
+  //           const reformatedWeapon = [weapon]
+  //             .concat([foundWeapon])
+  //             .map(item => {
+  //               return item;
+  //             });
+  //           return this.setState({
+  //             detailsWeapon: [],
+  //             detailsWeapon: [
+  //               { ...reformatedWeapon[0], ...reformatedWeapon[1] }
+  //             ],
+  //             showBattlePage: false,
+  //             compareItems: []
+  //             // showDetails: !this.state.showDetails
+  //           });
+  //         }
+  //       });
+  //   } else {
+  //     alert("No Weapon Found");
+  //   }
+  // };
 
   addItemToCompare = async itemId => {
     // console.log("firing", itemId);
@@ -272,8 +284,14 @@ class HomePage extends Component {
           <BattleCont compareItems={this.state.compareItems} />
         )}
 
-        {this.state.detailsWeapon.length === 0 ? null : (
-          <DetailsContainer detailsWeapon={this.state.detailsWeapon} />
+        {this.state.showDetails === false ? null : (
+          <Segment>
+            {this.props.detailsWeapon.length === 0 ? (
+              <LoadingPage />
+            ) : (
+              <DetailsContainer />
+            )}
+          </Segment>
         )}
       </Segment>
     );
@@ -281,7 +299,8 @@ class HomePage extends Component {
 }
 
 const mapStateToProps = state => ({
-  weapons: state.weapons.weapons[0]
+  weapons: state.weapons.weapons[0],
+  detailsWeapon: state.weapons.foundWeapon
 });
 
 export default connect(mapStateToProps)(HomePage);
