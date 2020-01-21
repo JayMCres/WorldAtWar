@@ -6,7 +6,7 @@ import WeaponsCont from "./Weapons/WeaponsCont";
 import WeaponSpecCont from "./WeaponSpecs/WeaponSpecCont";
 import WeaponComparison from "./WeaponCompare/WeaponComparison";
 import FavoritesCont from "./Weapons/Favorites/FavoritesCont";
-import BattleCont from "./WeaponCompare/BattleCont";
+import BattleCont from "./WeaponCompare/Battle/BattleCont";
 import WeaponFormCont from "./WeaponForm/WeaponFormCont";
 import DetailsContainer from "./DetailsPage/DetailsContainer";
 import LoadingPage from "./LoadingPage";

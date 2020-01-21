@@ -107,11 +107,6 @@ class WeaponForm extends Component {
     console.log("Weapon Form Props", this.props);
     return (
       <Segment>
-        <Button
-          onClick={this.state.edit === true ? this.editWeapon : this.addWeapon}
-        >
-          Click Here
-        </Button>
         <Form
           onSubmit={this.state.edit === true ? this.editWeapon : this.addWeapon}
         >
