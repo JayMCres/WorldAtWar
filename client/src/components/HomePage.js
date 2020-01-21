@@ -7,12 +7,12 @@ import WeaponSpecCont from "./WeaponSpecs/WeaponSpecCont";
 import WeaponComparison from "./WeaponCompare/WeaponComparison";
 import FavoritesCont from "./Weapons/Favorites/FavoritesCont";
 import BattleCont from "./WeaponCompare/BattleCont";
-import WeaponFormCont from "./WeaponForm/WeaponForm";
+import WeaponFormCont from "./WeaponForm/WeaponFormCont";
 import DetailsContainer from "./DetailsPage/DetailsContainer";
 import LoadingPage from "./LoadingPage";
 
 import { connect } from "react-redux";
-import { findWeapon } from "../actions/weapons";
+import { findWeapon, clearFoundWeapon } from "../actions/weapons";
 import { createFavorite, deleteFavorite } from "../actions/favorites";
 
 class HomePage extends Component {
@@ -67,17 +67,19 @@ class HomePage extends Component {
 
   handleOpenForm = async itemId => {
     await this.props.dispatch(findWeapon(itemId));
-
     this.setState({
       formWeapon: this.props.detailsWeapon,
-      showForm: !this.state.showForm
+      showForm: !this.state.showForm,
+      showBattlePage: false,
+      showComparePage: false,
+      showDetails: false
     });
   };
 
-  handleCloseForm = () => {
+  handleCloseForm = async () => {
+    await this.props.dispatch(clearFoundWeapon());
     this.setState({
       formWeapon: [],
-      detailsWeapon: [],
       showForm: false
     });
   };
@@ -162,10 +164,7 @@ class HomePage extends Component {
       >
         <WeaponSpecCont />
         {this.state.showForm === true ? (
-          <WeaponFormCont
-            handleCloseForm={this.handleCloseForm}
-            formWeapon={this.state.formWeapon}
-          />
+          <WeaponFormCont handleCloseForm={this.handleCloseForm} />
         ) : (
           <Grid
             columns={2}

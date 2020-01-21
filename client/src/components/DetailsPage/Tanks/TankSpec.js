@@ -116,8 +116,8 @@ class TankSpec extends Component {
 }
 
 const mapStateToProps = state => ({
-  detailsWeapon: state.weapons.foundWeapon[0],
-  profile: [state.weapons.foundWeapon[0].default_profile].map(item => {
+  detailsWeapon: state.weapons.foundWeapon,
+  profile: [state.weapons.foundWeapon.default_profile].map(item => {
     return {
       weight: item.weight,
       firepower: item.firepower,

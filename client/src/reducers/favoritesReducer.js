@@ -11,7 +11,6 @@ export default function favoritesReducer(state = initialState, action) {
       return { ...state, favorites: action.payload };
     }
     case SET_CREATED_FAVORITE: {
-      console.log("NEW FAV", action.payload);
       return { ...state, favorites: [...state.favorites, action.payload] };
     }
 

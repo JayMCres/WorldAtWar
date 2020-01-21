@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
+
 import { Segment, Form, Button, Label, Icon } from "semantic-ui-react";
 
 class WeaponForm extends Component {
@@ -8,19 +8,32 @@ class WeaponForm extends Component {
     weaponId: "",
     pictureone: "",
     picturetwo: "",
-    video: ""
+    video: "",
+    edit: false
   };
 
   componentWillMount() {
-    this.setState({
-      name: this.props.formWeapon.name,
-      weaponId: this.props.formWeapon.id
-    });
+    if (Object.values(this.props.weapon).length < 24) {
+      this.setState({
+        name: this.props.weapon.name,
+        weaponId: this.props.weapon.id,
+        pictureone: "",
+        picturetwo: "",
+        video: "",
+        edit: false
+      });
+    } else {
+      this.setState({
+        name: this.props.weapon.name,
+        weaponId: this.props.weapon.weaponId,
+        pictureone: this.props.weapon.pictureone,
+        picturetwo: this.props.weapon.picturetwo,
+        video: this.props.weapon.video,
+        edit: true
+      });
+    }
   }
   addWeapon = event => {
-    // const target = event.target;
-    // const value = target.value;
-    // const name = target.name;
     event.preventDefault();
     // console.log(event.target)
     fetch("http://localhost:5000/api/add_weapon", {
@@ -46,8 +59,39 @@ class WeaponForm extends Component {
           picturetwo: "",
           video: ""
         })
-      );
-    this.props.handleCloseForm();
+      )
+      .then(() => this.props.handleCloseForm());
+  };
+
+  editWeapon = event => {
+    // console.log("updating");
+
+    event.preventDefault();
+    // console.log(event.target)
+    fetch(`http://localhost:5000/api/edit_weapon/${this.props.weapon.formId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify({
+        nameUpdate: this.state.name,
+        weaponIdUpdate: this.state.weaponId,
+        pictureoneUpdate: this.state.pictureone,
+        picturetwoUpdate: this.state.picturetwo,
+        videoUpdate: this.state.video
+      })
+    })
+      .then(
+        this.setState({
+          name: "",
+          weaponId: "",
+          pictureone: "",
+          picturetwo: "",
+          video: ""
+        })
+      )
+      .then(() => this.props.handleCloseForm());
   };
 
   handleInputChange = event => {
@@ -59,13 +103,18 @@ class WeaponForm extends Component {
   };
   render() {
     // prettier-ignore
-    console.log("Weapon Form Props", this.props)
+    // console.log("Weapon Form State", this.state)
+    console.log("Weapon Form Props", this.props);
     return (
       <Segment>
-        <Label as="a" corner="right" color="red">
-          <Icon name="remove" onClick={() => this.props.handleCloseForm()} />
-        </Label>
-        {/* <Form onSubmit={this.addWeapon}>
+        <Button
+          onClick={this.state.edit === true ? this.editWeapon : this.addWeapon}
+        >
+          Click Here
+        </Button>
+        <Form
+          onSubmit={this.state.edit === true ? this.editWeapon : this.addWeapon}
+        >
           <Form.Field>
             <label style={{ color: "blue" }}>Weapon Name</label>
             <input
@@ -86,7 +135,6 @@ class WeaponForm extends Component {
               ref="weaponId"
             />
           </Form.Field>
-
           <Form.Field>
             <label style={{ color: "blue" }}>Picture Link</label>
             <input
@@ -117,17 +165,11 @@ class WeaponForm extends Component {
               ref="video"
             />
           </Form.Field>
-
           <Button type="submit">Submit</Button>
-        </Form> */}
+        </Form>
       </Segment>
     );
   }
 }
 
-const mapStateToProps = state => ({
-  weapons: state.weapons.weapons[0],
-  detailsWeapon: state.weapons.foundWeapon[0]
-});
-
-export default connect(mapStateToProps)(WeaponForm);
+export default WeaponForm;

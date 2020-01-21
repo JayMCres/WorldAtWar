@@ -1,12 +1,13 @@
 import axios from "axios";
 
 export const FIND_WEAPON = "FIND_WEAPON";
+export const CLEAR_FOUND_WEAPON = "CLEAR_FOUND_WEAPON";
 export const SET_WEAPONS_DETAILS = "SET_WEAPONS_DETAILS";
 export const SET_FOUND_WEAPON = " SET_FOUND_WEAPON";
 
 export const findWeapon = weaponId => async dispatch => {
   const itemId = await weaponId;
-  console.log("Weapon Id", itemId);
+
   const requestOne = axios.get("http://localhost:5000/api/planes");
   const requestTwo = axios.get("http://localhost:5000/api/tanks");
   const requestThree = axios.get("http://localhost:5000/api/warships");
@@ -37,6 +38,12 @@ export const findWeapon = weaponId => async dispatch => {
   );
 };
 
+export const clearFoundWeapon = () => async dispatch => {
+  const foundWeapon = [];
+  // console.log("Found Weapon", foundWeapon);
+  dispatch(setFoundWeapon(foundWeapon));
+};
+
 export function setFoundWeapon(foundWeapon) {
   return dispatch => {
     return fetch(`http://localhost:5000/api/weapons/${foundWeapon.id}`)
@@ -44,19 +51,20 @@ export function setFoundWeapon(foundWeapon) {
         return response.json();
       })
       .then(weapon => {
-        console.log("weaponResponse", weapon);
+        // console.log("weapon", weapon);
         if (weapon === null) {
+          // console.log("Found weapon", foundWeapon);
           dispatch({
             type: SET_FOUND_WEAPON,
             payload: foundWeapon
           });
         } else {
           const reformatedWeapon = [weapon].concat([foundWeapon]).map(item => {
-            return item;
+            return { ...item, formId: weapon.id };
           });
           dispatch({
             type: SET_FOUND_WEAPON,
-            payload: [{ ...reformatedWeapon[0], ...reformatedWeapon[1] }]
+            payload: { ...reformatedWeapon[0], ...reformatedWeapon[1] }
           });
         }
       });
