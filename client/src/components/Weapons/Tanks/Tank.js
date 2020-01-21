@@ -50,9 +50,7 @@ class Tank extends Component {
             <Button
               basic
               color="red"
-              // onClick={() =>
-              //   this.props.dispatch(findWeapon(this.props.tank_id))
-              // }
+              onClick={() => this.props.addWeaponToArmory(this.props.tank_id)}
               size="tiny"
               disabled={this.props.weapons === undefined}
             >

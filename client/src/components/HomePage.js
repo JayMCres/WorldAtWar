@@ -13,7 +13,7 @@ import LoadingPage from "./LoadingPage";
 
 import { connect } from "react-redux";
 import { findWeapon } from "../actions/weapons";
-import { createFavorite } from "../actions/favorites";
+import { createFavorite, deleteFavorite } from "../actions/favorites";
 
 class HomePage extends Component {
   state = {
@@ -25,59 +25,30 @@ class HomePage extends Component {
     showBattlePage: false,
     scores: [],
     scoreTwo: [],
-    // itemWinner: null,
     showForm: false,
-    formWeapon: [],
-    favorites: []
+    formWeapon: []
   };
 
-  componentDidMount() {
-    const setWatchList = () => {
-      this.setState({ favorites: this.props.currentUser.favorites });
-    };
-
-    setWatchList();
-  }
-
   addToFavorites = itemId => {
-    // console.log("ID", itemId);
     const userId = this.props.currentUser.id;
     const foundWeapon = this.props.weapons.find(item => item.id === itemId);
 
-    // console.log("firing Wishlist", foundWeapon);
-    const preventDoubles = this.state.favorites.find(
+    const preventDoubles = this.props.favorites.find(
       item => item.weaponId === itemId
     );
 
     if (!preventDoubles) {
-      this.props
-        .dispatch(createFavorite(foundWeapon, userId))
-        .then(newFav => this.addNewItemToFavorites(newFav));
+      this.props.dispatch(createFavorite(foundWeapon, userId));
     }
-  };
-
-  addNewItemToFavorites = newFav => {
-    // console.log(newFav);
-    this.setState({
-      favorites: [...this.state.favorites, newFav]
-    });
   };
 
   removeFromfavorites = favId => {
-    const deleteFavorite = this.state.favorites.find(item => item.id === favId);
-    console.log("delete Favorite", deleteFavorite);
-    const updateFavorites = this.state.favorites.filter(item => {
-      return item.id !== favId;
-    });
-    if (deleteFavorite) {
-      this.setState({
-        favorites: updateFavorites
-      });
+    const favoriteToDelete = this.props.favorites.find(
+      item => item.id === favId
+    );
+    if (favoriteToDelete) {
+      this.props.dispatch(deleteFavorite(favId));
     }
-
-    fetch(`http://localhost:5000/api/delete_favorite/${favId}`, {
-      method: "DELETE"
-    });
   };
 
   handleshowComparePage = () => {
@@ -94,13 +65,11 @@ class HomePage extends Component {
     });
   };
 
-  handleOpenForm = itemId => {
-    const foundWeapon = this.props.weapons.find(item => {
-      return item.id === itemId;
-    });
+  handleOpenForm = async itemId => {
+    await this.props.dispatch(findWeapon(itemId));
 
     this.setState({
-      formWeapon: foundWeapon,
+      formWeapon: this.props.detailsWeapon,
       showForm: !this.state.showForm
     });
   };
@@ -130,51 +99,6 @@ class HomePage extends Component {
       showDetails: true
     });
   };
-
-  // addItemToDetails = async itemId => {
-  //   // console.log("firing", )
-
-  //   const foundWeapon = this.props.weapons.find(item => {
-  //     return item.id === itemId;
-  //   });
-  //   // console.log("foundWeapon", foundWeapon);
-
-  //   if (foundWeapon) {
-  //     fetch(`http://localhost:5000/api/weapons/${foundWeapon.id}`)
-  //       .then(response => {
-  //         return response.json();
-  //       })
-  //       .then(weapon => {
-  //         console.log("weaponResponse", weapon);
-  //         if (weapon === null) {
-  //           this.setState({
-  //             detailsWeapon: [],
-  //             detailsWeapon: [foundWeapon],
-  //             showBattlePage: false,
-  //             compareItems: []
-  //             // showDetails: !this.state.showDetails
-  //           });
-  //         } else {
-  //           const reformatedWeapon = [weapon]
-  //             .concat([foundWeapon])
-  //             .map(item => {
-  //               return item;
-  //             });
-  //           return this.setState({
-  //             detailsWeapon: [],
-  //             detailsWeapon: [
-  //               { ...reformatedWeapon[0], ...reformatedWeapon[1] }
-  //             ],
-  //             showBattlePage: false,
-  //             compareItems: []
-  //             // showDetails: !this.state.showDetails
-  //           });
-  //         }
-  //       });
-  //   } else {
-  //     alert("No Weapon Found");
-  //   }
-  // };
 
   addItemToCompare = async itemId => {
     // console.log("firing", itemId);
@@ -262,7 +186,7 @@ class HomePage extends Component {
             </Grid.Column>
             <Grid.Column width={5}>
               <FavoritesCont
-                favorites={this.state.favorites}
+                favorites={this.props.favorites}
                 addItemToCompare={this.addItemToCompare}
                 addItemToDetails={this.addItemToDetails}
                 removeFromfavorites={this.removeFromfavorites}
@@ -300,7 +224,8 @@ class HomePage extends Component {
 
 const mapStateToProps = state => ({
   weapons: state.weapons.weapons[0],
-  detailsWeapon: state.weapons.foundWeapon
+  detailsWeapon: state.weapons.foundWeapon,
+  favorites: state.favorites.favorites
 });
 
 export default connect(mapStateToProps)(HomePage);

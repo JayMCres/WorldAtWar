@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import WeaponForm from "./WeaponForm";
+import { connect } from "react-redux";
 import { Segment, Form, Button, Label, Icon } from "semantic-ui-react";
 
-class WeaponFormCont extends Component {
+class WeaponForm extends Component {
   state = {
     name: "",
     weaponId: "",
@@ -59,13 +59,13 @@ class WeaponFormCont extends Component {
   };
   render() {
     // prettier-ignore
-    // console.log("Weapon Form Props", this.props)
+    console.log("Weapon Form Props", this.props)
     return (
       <Segment>
         <Label as="a" corner="right" color="red">
           <Icon name="remove" onClick={() => this.props.handleCloseForm()} />
         </Label>
-        <Form onSubmit={this.addWeapon}>
+        {/* <Form onSubmit={this.addWeapon}>
           <Form.Field>
             <label style={{ color: "blue" }}>Weapon Name</label>
             <input
@@ -119,10 +119,15 @@ class WeaponFormCont extends Component {
           </Form.Field>
 
           <Button type="submit">Submit</Button>
-        </Form>
+        </Form> */}
       </Segment>
     );
   }
 }
 
-export default WeaponFormCont;
+const mapStateToProps = state => ({
+  weapons: state.weapons.weapons[0],
+  detailsWeapon: state.weapons.foundWeapon[0]
+});
+
+export default connect(mapStateToProps)(WeaponForm);

@@ -285,3 +285,65 @@
 //     payload: weapons
 //   });
 // };
+
+// addItemToDetails = async itemId => {
+//   // console.log("firing", )
+
+//   const foundWeapon = this.props.weapons.find(item => {
+//     return item.id === itemId;
+//   });
+//   // console.log("foundWeapon", foundWeapon);
+
+//   if (foundWeapon) {
+//     fetch(`http://localhost:5000/api/weapons/${foundWeapon.id}`)
+//       .then(response => {
+//         return response.json();
+//       })
+//       .then(weapon => {
+//         console.log("weaponResponse", weapon);
+//         if (weapon === null) {
+//           this.setState({
+//             detailsWeapon: [],
+//             detailsWeapon: [foundWeapon],
+//             showBattlePage: false,
+//             compareItems: []
+//             // showDetails: !this.state.showDetails
+//           });
+//         } else {
+//           const reformatedWeapon = [weapon]
+//             .concat([foundWeapon])
+//             .map(item => {
+//               return item;
+//             });
+//           return this.setState({
+//             detailsWeapon: [],
+//             detailsWeapon: [
+//               { ...reformatedWeapon[0], ...reformatedWeapon[1] }
+//             ],
+//             showBattlePage: false,
+//             compareItems: []
+//             // showDetails: !this.state.showDetails
+//           });
+//         }
+//       });
+//   } else {
+//     alert("No Weapon Found");
+//   }
+// };
+
+// export function fetchUserFavorites(id) {
+//   console.log("User id", id);
+//   return dispatch => {
+//     return fetch("http://localhost:5000/api/favorites", {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json"
+//       },
+//       body: JSON.stringify({ id })
+//     }).then(response => {
+//       let data = response.json();
+//       console.log("Data One", data);
+//       dispatch(setUserFavorites(data));
+//     });
+//   };
+// }

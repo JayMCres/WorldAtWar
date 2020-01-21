@@ -14,6 +14,7 @@ const Favorite = props => {
         "border-width": "1px"
       }}
     >
+      {/* {props.video === undefined ? null : ( */}
       <List.Content>
         <Image
           floated="right"
@@ -41,6 +42,7 @@ const Favorite = props => {
           </Button.Group>
         </List.Description>
       </List.Content>
+      {/* )} */}
     </List.Item>
   );
 };

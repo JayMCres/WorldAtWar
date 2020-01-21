@@ -16,7 +16,7 @@ class MainCont extends Component {
     // this.props.dispatch(fetchAllWeapons());
     this.props.dispatch(fetchWeapons());
     this.props.dispatch(fetchFavorites());
-    this.props.dispatch(fetchUserFavorites(this.props.currentUser.id));
+    // this.props.dispatch(fetchUserFavorites(this.props.currentUser.id));
   }
   render() {
     return (

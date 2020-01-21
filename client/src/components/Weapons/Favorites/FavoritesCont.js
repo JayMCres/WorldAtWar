@@ -6,6 +6,7 @@ import Favorites from "./Favorites";
 
 class FavoritesCont extends Component {
   state = { inputValue: "" };
+
   handleChange = event => {
     this.setState({
       inputValue: event.target.value
@@ -15,9 +16,7 @@ class FavoritesCont extends Component {
     this.props.favorites.filter(item => {
       return (
         item.name.toLowerCase().includes(this.state.inputValue.toLowerCase()) ||
-        item.weaponType
-          .toLowerCase()
-          .includes(this.state.inputValue.toLowerCase())
+        item.video.toLowerCase().includes(this.state.inputValue.toLowerCase())
       );
     });
   render() {
@@ -25,7 +24,7 @@ class FavoritesCont extends Component {
 
     return (
       <Favorites
-        favorites={this.filterFavorites()}
+        favorites={this.props.favorites}
         inputValue={this.state.inputValue}
         handleChange={this.handleChange}
         addItemToCompare={this.props.addItemToCompare}
