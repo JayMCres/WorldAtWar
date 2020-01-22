@@ -25,28 +25,28 @@ class PlaneSpec extends Component {
     // console.log(" shipSpec State", this.state);
     console.log(" PlaneSpec Props", this.props);
 
-    const profile = Object.entries(this.props.profile).map(([key, value]) => {
-      let label = key
-        .split("_")
-        .map(word => {
-          return word.charAt(0).toUpperCase() + word.slice(1);
-        })
-        .join();
+    // const profile = Object.entries(this.props.profile).map(([key, value]) => {
+    //   let label = key
+    //     .split("_")
+    //     .map(word => {
+    //       return word.charAt(0).toUpperCase() + word.slice(1);
+    //     })
+    //     .join();
 
-      return { [label]: value };
-    });
-
+    //   return { [label]: value };
+    // });
     // console.log(" profile", profile);
-    const weaponsArray = this.props.weapons.map(weapon => {
-      return { ...weapon };
-    });
+
+    // const weaponsArray = this.props.weapons.map(weapon => {
+    //   return { ...weapon };
+    // });
     // console.log("weaponsArray", weaponsArray);
-    const weaponaryObj = weaponsArray.reduce((result, current) => {
-      return Object.assign(result, current);
-    }, {});
-    // console.log("weaponaryObj", weaponaryObj);
-    const weapons = { ...weaponaryObj };
-    console.log("weapons", weapons);
+    // const weaponaryObj = weaponsArray.reduce((result, current) => {
+    //   return Object.assign(result, current);
+    // }, {});
+    // // console.log("weaponaryObj", weaponaryObj);
+    // const weapons = { ...weaponaryObj };
+    // console.log("weapons", weapons);
     return (
       <Segment>
         <Grid columns={3} divided>
@@ -65,7 +65,7 @@ class PlaneSpec extends Component {
         </Grid>
         {this.props.detailsWeapon.pictureone === undefined ? null : (
           <WeaponCarousel
-            weaponary={weaponaryObj}
+            weaponary={this.props.weapons}
             picture={[
               this.props.detailsWeapon.pictureone,
               this.props.detailsWeapon.picturetwo
@@ -82,11 +82,26 @@ class PlaneSpec extends Component {
               minHeight: 250
             }}
           >
-            <ProfileTable
-              tableData={profile.reduce((result, current) => {
-                return Object.assign(result, current);
-              }, {})}
-            />
+            {this.props.profile === null || this.props.profile === undefined ? (
+              <Message>Loading</Message>
+            ) : (
+              <ProfileTable
+                tableData={Object.entries(this.props.profile)
+                  .map(([key, value]) => {
+                    let label = key
+                      .split("_")
+                      .map(word => {
+                        return word.charAt(0).toUpperCase() + word.slice(1);
+                      })
+                      .join();
+
+                    return { [label]: value };
+                  })
+                  .reduce((result, current) => {
+                    return Object.assign(result, current);
+                  }, {})}
+              />
+            )}
           </Segment>
         )}
       </Segment>
@@ -96,29 +111,22 @@ class PlaneSpec extends Component {
 
 const mapStateToProps = state => ({
   detailsWeapon: state.weapons.foundWeapon,
-  plane: state.weapon.plane,
-  profile: state.weapon.plane[0].specification,
+  detailPlane: state.weapon.detailPlane,
+  profile: state.weapon.detailPlane[0],
+
   weapons: [
-    ...state.weapon.plane[1].bomb.map(item => {
-      if (item !== null) {
-        return {
-          bomb_name: item.name_i18n,
-          explosion_damage_max: item.explosion_damage_max,
-          explosion_radius: item.texplosion_radius
-          // image: item.image
-        };
-      }
-    }),
-    ...state.weapon.plane[1].gun.map(item => {
-      if (item !== null) {
-        return {
-          gun_name: item.name_i18n,
-          gun_type: item.type_i18n
-          // image: item.image
-        };
-      }
-    })
-  ]
+    { ...state.weapon.detailPlane[1], ...state.weapon.detailPlane[2] }
+  ].map(item => {
+    if (item !== null || item !== undefined) {
+      return {
+        gun_name: item.name_i18n,
+        gun_type: item.type_i18n,
+        bomb_name: item.name_i18n,
+        explosion_damage_max: item.explosion_damage_max,
+        explosion_radius: item.texplosion_radius
+      };
+    }
+  })
 });
 
 export default connect(mapStateToProps)(PlaneSpec);

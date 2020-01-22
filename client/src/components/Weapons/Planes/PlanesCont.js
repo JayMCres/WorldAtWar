@@ -55,7 +55,6 @@ class PlanesCont extends Component {
           handleshowForm={this.props.handleshowForm}
           detailsWeapon={this.props.detailsWeapon}
         />
-        ;
       </Segment>
     );
   }

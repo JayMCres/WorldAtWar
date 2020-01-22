@@ -3,6 +3,7 @@ import {
   FETCH_SHIPS,
   FETCH_PLANES,
   FETCH_PLANE,
+  SET_PLANE,
   SET_PLANE_DETAILS,
   SET_PLANE_ONE,
   SET_PLANE_TWO,
@@ -18,24 +19,48 @@ const initialState = {
   planeOne: {},
   planeTwo: {},
   scoreOne: null,
-  scoreTwo: null
+  scoreTwo: null,
+  detailPlane: {}
 };
 
 export default function weaponReducer(state = initialState, action) {
   switch (action.type) {
     case FETCH_TANKS: {
-      return { ...state, tanks: action.payload };
+      return {
+        ...state,
+        tanks: action.payload.filter(tank => {
+          return (
+            tank.nation === "usa" ||
+            tank.nation === "ussr" ||
+            tank.nation === "germany"
+          );
+        })
+      };
     }
     case FETCH_SHIPS: {
-      return { ...state, ships: action.payload };
+      return {
+        ...state,
+        ships: action.payload.filter(tank => {
+          return tank.nation === "usa" || tank.nation === "japan";
+        })
+      };
     }
     case FETCH_PLANES: {
-      return { ...state, planes: action.payload };
+      return {
+        ...state,
+        planes: action.payload.filter(tank => {
+          return (
+            tank.nation === "usa" ||
+            tank.nation === "germany" ||
+            tank.nation === "uk"
+          );
+        })
+      };
     }
     case FETCH_PLANE: {
       return { ...state, plane: action.payload };
     }
-    case SET_PLANE_DETAILS: {
+    case SET_PLANE: {
       return { ...state, plane: action.payload };
     }
     case SET_PLANE_ONE: {
@@ -49,6 +74,9 @@ export default function weaponReducer(state = initialState, action) {
         ...state,
         planeTwo: action.payload
       };
+    }
+    case SET_PLANE_DETAILS: {
+      return { ...state, detailPlane: action.payload };
     }
     case SET_SCORE_ONE: {
       return {

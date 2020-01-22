@@ -52,7 +52,6 @@ class ShipsCont extends Component {
           addItemToCompare={this.props.addItemToCompare}
           addItemToDetails={this.props.addItemToDetails}
         />
-        ;
       </Segment>
     );
   }

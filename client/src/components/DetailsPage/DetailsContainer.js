@@ -5,7 +5,7 @@ import ShipSpec from "./Ship/ShipSpec";
 import PlaneSpec from "./Plane/PlaneSpecCont";
 export default class DetailsContainer extends Component {
   render() {
-    console.log(" DetailsContainer ", this.props);
+    // console.log(" DetailsContainer ", this.props);
 
     const onMenuClick = link => {
       const WEAPONS_PAGES = {

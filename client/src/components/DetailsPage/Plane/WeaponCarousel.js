@@ -88,7 +88,7 @@ export default class WeaponCarousel extends Component {
                 minHeight: 200
               }}
             >
-              {Object.entries(this.props.weaponary).map(
+              {Object.entries(this.props.weaponary[0]).map(
                 ([key, value], index) => {
                   let label = key
                     .split("_")

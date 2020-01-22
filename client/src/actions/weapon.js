@@ -6,6 +6,8 @@ export const FETCH_TANKS = "FETCH_TANKS";
 export const FETCH_SHIPS = "FETCH_SHIPS";
 export const FETCH_PLANES = "FETCH_PLANES";
 export const FETCH_PLANE = "FETCH_PLANE";
+export const SET_PLANE = "SET_PLANE";
+export const FETCH_PLANE_DETAILS = "FETCH_PLANE_DETAILS";
 export const SET_PLANE_DETAILS = "SET_PLANE_DETAILS";
 export const FETCH_PLANE_COMPARE = "FETCH_PLANE_COMPARE";
 export const FETCH_PLANE_ONE = "FETCH_PLANE_ONE";
@@ -17,20 +19,20 @@ export const SET_SCORE_TWO = "SET_SCORE_TWO";
 
 export const fetchTanks = () => async dispatch => {
   const response = await Tanks.get();
-  // console.log("response", response.data);
-  dispatch({ type: FETCH_TANKS, payload: response.data });
+  // console.log(" tank response", Object.values(response.data));
+  dispatch({ type: FETCH_TANKS, payload: Object.values(response.data) });
 };
 
 export const fetchShips = () => async dispatch => {
   const response = await Ships.get();
   // console.log("response", response.data);
-  dispatch({ type: FETCH_SHIPS, payload: response.data });
+  dispatch({ type: FETCH_SHIPS, payload: Object.values(response.data) });
 };
 
 export const fetchPlanes = () => async dispatch => {
   const response = await Planes.get();
   // console.log("response", response.data);
-  dispatch({ type: FETCH_PLANES, payload: response.data });
+  dispatch({ type: FETCH_PLANES, payload: Object.values(response.data) });
 };
 
 export function fetchPlane(id) {
@@ -43,21 +45,21 @@ export function fetchPlane(id) {
       body: JSON.stringify({ id })
     }).then(response => {
       let data = response.json();
-      dispatch(setPlaneDetails(data));
+      dispatch(setPlane(data));
     });
   };
 }
 
-export const setPlaneDetails = data => async dispatch => {
+export const setPlane = data => async dispatch => {
   const details = await data;
-  // const profile = await Object.values(details).map(items => {
-  //   console.log([items);
-  // });
-  // console.log("details", data);
+  let reformatedData = await [
+    ...Object.values(details[0]),
+    ...Object.values(details[1])
+  ];
 
   dispatch({
-    type: SET_PLANE_DETAILS,
-    payload: details
+    type: SET_PLANE,
+    payload: reformatedData
   });
 };
 
@@ -153,5 +155,36 @@ export const setWeaponScoreTwo = data => async dispatch => {
   dispatch({
     type: SET_SCORE_TWO,
     payload: score
+  });
+};
+
+export function fetchPlaneDetails(id) {
+  return dispatch => {
+    return fetch("http://localhost:5000/api/plane", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ id })
+    }).then(response => {
+      let data = response.json();
+      // console.log("Data One", data);
+      dispatch(setPlaneDetails(data));
+    });
+  };
+}
+
+export const setPlaneDetails = data => async dispatch => {
+  const details = await data;
+
+  let reformatedData = await [
+    details[0].specification,
+    ...details[1].gun,
+    ...details[1].bomb
+  ];
+  console.log("reformatedData ", reformatedData);
+  dispatch({
+    type: SET_PLANE_DETAILS,
+    payload: reformatedData
   });
 };
