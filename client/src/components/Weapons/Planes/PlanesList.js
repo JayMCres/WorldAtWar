@@ -38,7 +38,7 @@ export default class PlanesList extends Component {
       <Segment
         inverted
         style={{
-          "background-color": "#F5F5F5",
+          "background-color": "black",
           minHeight: 70
         }}
       >

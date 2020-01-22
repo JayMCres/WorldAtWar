@@ -5,14 +5,14 @@ import Tank from "./Tank";
 export default class TanksList extends Component {
   state = {
     startIdx: 0,
-    endIdx: 3
+    endIdx: 4
   };
 
   showMore = () => {
     this.setState(prevState => {
       return {
-        startIdx: prevState.startIdx + 3,
-        endIdx: prevState.endIdx + 3
+        startIdx: prevState.startIdx + 4,
+        endIdx: prevState.endIdx + 4
       };
     });
   };
@@ -20,8 +20,8 @@ export default class TanksList extends Component {
   showLess = () => {
     this.setState(prevState => {
       return {
-        startIdx: prevState.startIdx - 3,
-        endIdx: prevState.endIdx - 3
+        startIdx: prevState.startIdx - 4,
+        endIdx: prevState.endIdx - 4
       };
     });
   };
@@ -37,7 +37,8 @@ export default class TanksList extends Component {
     return (
       <Segment
         style={{
-          "background-color": "#F5F5F5"
+          "background-color": "black",
+          minHeight: 70
         }}
       >
         <Button
@@ -65,7 +66,7 @@ export default class TanksList extends Component {
           }
         />
 
-        <Card.Group itemsPerRow={3}>
+        <Card.Group itemsPerRow={4}>
           {tanksList.map((item, index) => {
             return (
               <Tank
@@ -77,7 +78,7 @@ export default class TanksList extends Component {
                 addItemToDetails={this.props.addItemToDetails}
                 handleshowForm={this.props.handleshowForm}
                 addWeaponToArmory={this.props.addWeaponToArmory}
-                detailsWeapon={this.props.detailsWeapon[0]}
+                // detailsWeapon={this.props.detailsWeapon[0]}
               />
             );
           })}

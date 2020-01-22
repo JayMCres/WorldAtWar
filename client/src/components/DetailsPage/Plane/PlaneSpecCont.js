@@ -10,7 +10,7 @@ class PlaneSpecCont extends Component {
     this.props.dispatch(fetchPlaneDetails(this.props.detailsWeapon.id));
   }
   render() {
-    console.log("plane spec cont props", this.props);
+    // console.log("plane spec cont props", this.props);
     return <PlaneSpec />;
   }
 }

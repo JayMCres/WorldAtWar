@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Grid, Segment, Button, List, Header, Icon } from "semantic-ui-react";
-import WeaponPicture from "../WeaponPicture";
-import WeaponItem from "../WeaponItem";
+import WeaponPicture from "../Shared/WeaponPicture";
+import WeaponItem from "../Shared/WeaponItem";
 
 export default class WeaponCarousel extends Component {
   state = {
@@ -28,7 +28,7 @@ export default class WeaponCarousel extends Component {
   };
 
   render() {
-    console.log("Weapon Coursel Props", this.props);
+    // console.log("Weapon Coursel Props", this.props);
     const weapon = this.props.picture.slice(
       this.state.startIdx,
       this.state.endIdx

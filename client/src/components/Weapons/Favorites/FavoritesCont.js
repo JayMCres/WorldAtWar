@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { Segment, Header, Icon } from "semantic-ui-react";
+import { Segment, Message } from "semantic-ui-react";
 import { connect } from "react-redux";
 
+import FavoriteHeader from "./FavoriteHeader";
 import Favorites from "./Favorites";
 
 class FavoritesCont extends Component {
@@ -23,14 +24,28 @@ class FavoritesCont extends Component {
     // console.log("favoritesCont Props", this.props.favorites);
 
     return (
-      <Favorites
-        favorites={this.props.favorites}
-        inputValue={this.state.inputValue}
-        handleChange={this.handleChange}
-        addItemToCompare={this.props.addItemToCompare}
-        addItemToDetails={this.props.addItemToDetails}
-        removeFromfavorites={this.props.removeFromfavorites}
-      />
+      <div>
+        <FavoriteHeader
+          inputValue={this.state.inputValue}
+          handleChange={this.handleChange}
+        />
+
+        <Segment
+          style={{
+            "background-color": "black"
+          }}
+          attached="bottom"
+        >
+          <Favorites
+            favorites={this.props.favorites}
+            inputValue={this.state.inputValue}
+            handleChange={this.handleChange}
+            addItemToCompare={this.props.addItemToCompare}
+            addItemToDetails={this.props.addItemToDetails}
+            removeFromfavorites={this.props.removeFromfavorites}
+          />
+        </Segment>
+      </div>
     );
   }
 }

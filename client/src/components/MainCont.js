@@ -1,8 +1,10 @@
 import React, { Component } from "react";
-import { Header, Segment } from "semantic-ui-react";
+import { Menu, Segment, Header, Icon } from "semantic-ui-react";
 
 import HomePage from "./HomePage";
 import MainHeader from "./MainHeader";
+import PictureBanner from "./PictureBanner";
+
 import { fetchTanks, fetchPlanes, fetchShips } from "../actions/weapon";
 import { fetchWeapons, fetchAllWeapons } from "../actions/weapons";
 import { fetchFavorites, fetchUserFavorites } from "../actions/favorites";
@@ -28,6 +30,7 @@ class MainCont extends Component {
         }}
       >
         <MainHeader />
+        <PictureBanner />
         <HomePage currentUser={this.props.currentUser} />
       </Segment>
     );

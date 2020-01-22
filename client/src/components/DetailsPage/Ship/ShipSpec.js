@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Grid, Image, Segment, Message, Header, Flag } from "semantic-ui-react";
-import WeaponCard from "../WeaponCard";
-import WeaponHeader from "../WeaponHeader";
+import WeaponCard from "../Shared/WeaponCard";
+import WeaponHeader from "./WeaponHeader";
 
-import VideoPlayer from "../VideoPlayer";
+import VideoPlayer from "../Shared/VideoPlayer";
 import WeaponCarousel from "./WeaponCarousel";
 
 import { connect } from "react-redux";
@@ -11,10 +11,22 @@ import { connect } from "react-redux";
 class ShipSpec extends Component {
   state = {
     activeItem: "profile",
-    flag: "us",
+    flag: "",
     weaponryArray: [],
     showProfile: true
   };
+
+  componentDidMount() {
+    if (this.props.detailsWeapon.nation === "usa") {
+      this.setState({
+        flag: "us"
+      });
+    } else {
+      this.setState({
+        flag: "jp"
+      });
+    }
+  }
   handleItemClick = async (e, { name }) => {
     await this.setState({ activeItem: name });
   };
@@ -27,7 +39,7 @@ class ShipSpec extends Component {
 
   render() {
     // console.log(" shipSpec State", this.state);
-    console.log(" ShipSpec Props", this.props);
+    // console.log(" ShipSpec Props", this.props);
 
     const weaponsArray = this.props.weapons.map(weapon => {
       return { ...weapon };
@@ -45,7 +57,7 @@ class ShipSpec extends Component {
           <Grid.Column width={7}>
             <WeaponHeader detailsWeapon={this.props.detailsWeapon} />
             <Header as="h4">
-              <Flag name={this.state.flag} />
+              <Flag size="medium" name={this.state.flag} />
               <Header.Content>Weapon Description</Header.Content>
             </Header>
             <Message
@@ -71,10 +83,10 @@ class ShipSpec extends Component {
         {/* {this.props.detailsWeapon.pictureone === undefined ? null : ( */}
         <WeaponCarousel
           weaponary={weapons}
-          // picture={[
-          //   this.props.detailsWeapon.pictureone,
-          //   this.props.detailsWeapon.picturetwo
-          // ]}
+          picture={[
+            this.props.detailsWeapon.pictureone,
+            this.props.detailsWeapon.picturetwo
+          ]}
         />
         {/* )} */}
       </Segment>

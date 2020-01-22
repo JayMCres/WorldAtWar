@@ -3,27 +3,15 @@ import { Header, Icon, Label } from "semantic-ui-react";
 
 const WeaponCont = props => {
   return (
-    <Header as="h2" attached="top">
-      {/* <Label
-        size="medium"
-        as="a"
-        corner="left"
-        color="grey"
-        onClick={props.handleIntervalStart}
-      >
-        <Icon name="play" disabled={props.changeInterval === true} />
-      </Label>
-
-      <Label
-        size="medium"
-        as="a"
-        corner="right"
-        color="grey"
-        onClick={props.handleIntervalStop}
-      >
-        <Icon name="pause" disabled={props.changeInterval === false} />
-      </Label> */}
-      <Icon name="settings" />
+    <Header
+      as="h2"
+      attached="top"
+      style={{
+        maxHeight: 80,
+        minHeight: 80
+      }}
+    >
+      <Icon name="plane" />
       <Header.Content>
         {props.name_i18n}
         <Header.Subheader>

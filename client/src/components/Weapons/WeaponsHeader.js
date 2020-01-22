@@ -6,7 +6,7 @@ const WeaponsHeader = props => (
   <Menu
     style={{
       "background-color": "#F5F5F5",
-      "border-color": "#6666ff",
+      "border-color": "black",
       "border-style": "solid",
       "border-width": "1px"
     }}
@@ -15,7 +15,7 @@ const WeaponsHeader = props => (
       <Header
         as="h2"
         style={{
-          color: "blue"
+          color: "black"
         }}
       >
         <Icon name="plug" />

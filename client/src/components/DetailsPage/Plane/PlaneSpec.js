@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { Grid, Image, Segment, Message, Header, Flag } from "semantic-ui-react";
-import WeaponCard from "../WeaponCard";
-import WeaponHeader from "../WeaponHeader";
-import ProfileTable from "../ProfileTable";
-import VideoPlayer from "../VideoPlayer";
+import WeaponCard from "../Shared/WeaponCard";
+import WeaponHeader from "./WeaponHeader";
+import ProfileTable from "../Shared/ProfileTable";
+import VideoPlayer from "../Shared/VideoPlayer";
 import WeaponCarousel from "./WeaponCarousel";
-import WeaponMenu from "../WeaponMenu";
+import WeaponMenu from "../Shared/WeaponMenu";
 
 import { connect } from "react-redux";
 
@@ -23,35 +23,46 @@ class PlaneSpec extends Component {
 
   render() {
     // console.log(" shipSpec State", this.state);
-    console.log(" PlaneSpec Props", this.props);
+    // console.log(" PlaneSpec Props", this.props);
 
-    // const profile = Object.entries(this.props.profile).map(([key, value]) => {
-    //   let label = key
-    //     .split("_")
-    //     .map(word => {
-    //       return word.charAt(0).toUpperCase() + word.slice(1);
-    //     })
-    //     .join();
-
-    //   return { [label]: value };
-    // });
-    // console.log(" profile", profile);
-
-    // const weaponsArray = this.props.weapons.map(weapon => {
-    //   return { ...weapon };
-    // });
-    // console.log("weaponsArray", weaponsArray);
-    // const weaponaryObj = weaponsArray.reduce((result, current) => {
-    //   return Object.assign(result, current);
-    // }, {});
-    // // console.log("weaponaryObj", weaponaryObj);
-    // const weapons = { ...weaponaryObj };
-    // console.log("weapons", weapons);
     return (
       <Segment>
+        <WeaponHeader detailsWeapon={this.props.detailsWeapon} />
+
         <Grid columns={3} divided>
           <Grid.Column width={7}>
-            <WeaponHeader detailsWeapon={this.props.detailsWeapon} />
+            {/* <WeaponMenu handleShowProfile={this.handleShowProfile} /> */}
+            {!this.state.showProfile ? null : (
+              <Segment
+                style={{
+                  overflow: "auto",
+                  maxHeight: 250,
+                  minHeight: 250
+                }}
+              >
+                {this.props.profile === null ||
+                this.props.profile === undefined ? (
+                  <Message>Loading</Message>
+                ) : (
+                  <ProfileTable
+                    tableData={Object.entries(this.props.profile)
+                      .map(([key, value]) => {
+                        let label = key
+                          .split("_")
+                          .map(word => {
+                            return word.charAt(0).toUpperCase() + word.slice(1);
+                          })
+                          .join();
+
+                        return { [label]: value };
+                      })
+                      .reduce((result, current) => {
+                        return Object.assign(result, current);
+                      }, {})}
+                  />
+                )}
+              </Segment>
+            )}
           </Grid.Column>
           <Grid.Column width={6}>
             <VideoPlayer video={this.props.detailsWeapon.video} />
@@ -71,38 +82,6 @@ class PlaneSpec extends Component {
               this.props.detailsWeapon.picturetwo
             ]}
           />
-        )}
-
-        <WeaponMenu handleShowProfile={this.handleShowProfile} />
-        {!this.state.showProfile ? null : (
-          <Segment
-            style={{
-              overflow: "auto",
-              maxHeight: 250,
-              minHeight: 250
-            }}
-          >
-            {this.props.profile === null || this.props.profile === undefined ? (
-              <Message>Loading</Message>
-            ) : (
-              <ProfileTable
-                tableData={Object.entries(this.props.profile)
-                  .map(([key, value]) => {
-                    let label = key
-                      .split("_")
-                      .map(word => {
-                        return word.charAt(0).toUpperCase() + word.slice(1);
-                      })
-                      .join();
-
-                    return { [label]: value };
-                  })
-                  .reduce((result, current) => {
-                    return Object.assign(result, current);
-                  }, {})}
-              />
-            )}
-          </Segment>
         )}
       </Segment>
     );

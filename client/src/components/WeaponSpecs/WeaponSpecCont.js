@@ -9,23 +9,17 @@ import PlaneSpecCont from "./Plane/PlaneSpecCont";
 class WeaponsSpecCont extends Component {
   render() {
     return (
-      <Segment
-        style={{
-          "background-color": "#F5F5F5"
-        }}
-      >
-        <Grid columns="equal">
-          <Grid.Column>
-            <PlaneSpecCont planes={this.props.planes} />
-          </Grid.Column>
-          <Grid.Column>
-            <TankSpecCont tanks={this.props.tanks} />
-          </Grid.Column>
-          <Grid.Column>
-            <ShipSpecCont ships={this.props.ships} />
-          </Grid.Column>
-        </Grid>
-      </Segment>
+      <Grid columns="equal">
+        <Grid.Column>
+          <PlaneSpecCont planes={this.props.planes} />
+        </Grid.Column>
+        <Grid.Column>
+          <TankSpecCont tanks={this.props.tanks} />
+        </Grid.Column>
+        <Grid.Column>
+          <ShipSpecCont ships={this.props.ships} />
+        </Grid.Column>
+      </Grid>
     );
   }
 }

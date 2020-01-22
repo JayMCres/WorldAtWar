@@ -1,29 +1,19 @@
 import React from "react";
-import { Header, Icon, Label } from "semantic-ui-react";
+import { Header, Icon, Label, Image } from "semantic-ui-react";
+const icon =
+  "https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/64x64/plain/tank.png";
 
 const WeaponCont = props => {
   return (
-    <Header as="h2" attached="top">
-      {/* <Label
-        size="medium"
-        as="a"
-        corner="left"
-        color="grey"
-        onClick={props.handleIntervalStart}
-      >
-        <Icon name="play" disabled={props.changeInterval === true} />
-      </Label>
-
-      <Label
-        size="medium"
-        as="a"
-        corner="right"
-        color="grey"
-        onClick={props.handleIntervalStop}
-      >
-        <Icon name="pause" disabled={props.changeInterval === false} />
-      </Label> */}
-      <Icon name="settings" />
+    <Header
+      as="h2"
+      attached="top"
+      style={{
+        maxHeight: 80,
+        minHeight: 80
+      }}
+    >
+      <Image rounded src={icon} />
       <Header.Content>
         {props.name}
         <Header.Subheader>

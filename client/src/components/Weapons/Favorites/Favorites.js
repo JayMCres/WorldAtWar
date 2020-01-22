@@ -1,49 +1,42 @@
 import React, { Component } from "react";
-import { Segment, List, Message } from "semantic-ui-react";
+import { Feed, List, Card } from "semantic-ui-react";
 
 import Favorite from "./Favorite";
-import FavoriteHeader from "./FavoriteHeader";
 
 export default class Favorites extends Component {
   render() {
     // console.log("favorites", this.props);
 
     return (
-      <Segment
+      // <List
+      //   divided
+      //   relaxed
+      //   style={{
+      //     overflow: "auto",
+      //     maxHeight: 200,
+      //     minHeight: 200
+      //   }}
+      // >
+      <Card.Group
+        itemsPerRow={4}
         style={{
-          "background-color": "black"
+          overflow: "auto",
+          maxHeight: 200,
+          minHeight: 200
         }}
       >
-        <FavoriteHeader
-          inputValue={this.props.inputValue}
-          handleChange={this.props.handleChange}
-        />
-        {this.props.favorites.length === 0 ? (
-          <Message>No Weapons</Message>
-        ) : (
-          <List
-            divided
-            relaxed
-            style={{
-              overflow: "auto",
-              maxHeight: 240,
-              minHeight: 240
-            }}
-          >
-            {this.props.favorites.map((item, index) => {
-              return (
-                <Favorite
-                  key={index}
-                  {...item}
-                  addItemToCompare={this.props.addItemToCompare}
-                  addItemToDetails={this.props.addItemToDetails}
-                  removeFromfavorites={this.props.removeFromfavorites}
-                />
-              );
-            })}
-          </List>
-        )}
-      </Segment>
+        {this.props.favorites.map((item, index) => {
+          return (
+            <Favorite
+              key={index}
+              {...item}
+              addItemToCompare={this.props.addItemToCompare}
+              addItemToDetails={this.props.addItemToDetails}
+              removeFromfavorites={this.props.removeFromfavorites}
+            />
+          );
+        })}
+      </Card.Group>
     );
   }
 }

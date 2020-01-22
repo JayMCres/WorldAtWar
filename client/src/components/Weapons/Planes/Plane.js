@@ -7,9 +7,9 @@ class Plane extends Component {
     // console.log("tank props", this.props);
     return (
       <Card>
-        <Label as="a" corner="right" color="blue">
+        <Label as="a" corner="right" color="grey">
           <Icon
-            name="remove"
+            name="wordpress forms"
             onClick={() => this.props.handleshowForm(this.props.plane_id)}
             // disabled={this.props.detailsWeapon.pictureone }
           />

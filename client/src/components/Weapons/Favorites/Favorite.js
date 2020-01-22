@@ -1,5 +1,5 @@
 import React from "react";
-import { Image, Button, Icon, List } from "semantic-ui-react";
+import { Image, Label, Icon, Segment, Card } from "semantic-ui-react";
 
 const Favorite = props => {
   // console.log("Favorite Props", props);
@@ -7,43 +7,30 @@ const Favorite = props => {
   // console.log("Tank Obj", tank);
 
   return (
-    <List.Item
-      style={{
-        "border-color": "#6666ff",
-        "border-bottom-style": "solid",
-        "border-width": "1px"
-      }}
-    >
-      {/* {props.video === undefined ? null : ( */}
-      <List.Content>
-        <Image
-          floated="right"
-          size="tiny"
-          verticalAlign="middle"
-          src={props.picture}
-          onClick={() => props.addItemToDetails(props.weaponId)}
-        />
-        <List.Header style={{ color: "white", "font-size": "12px" }}>
+    <Card>
+      <Card.Content>
+        <Card.Header style={{ "font-size": "9px" }}>
           <span>
-            {props.name} || {props.video.toUpperCase()}
+            {props.name}-{props.video.toUpperCase()}
           </span>
-        </List.Header>
-        <List.Description style={{ color: "white", "font-size": "9px" }}>
-          <br></br>
-          <Button.Group inverted size="mini" icon>
-            <Button
-              size="mini"
-              inverted
-              circular
-              icon="remove"
-              onClick={() => props.removeFromfavorites(props.id)}
-            />
-            <Button size="mini" inverted circular icon="settings" />
-          </Button.Group>
-        </List.Description>
-      </List.Content>
-      {/* )} */}
-    </List.Item>
+        </Card.Header>
+      </Card.Content>
+      <Label size="tiny" corner="right">
+        <Icon
+          size="tiny"
+          name="remove"
+          onClick={() => props.removeFromfavorites(props.id)}
+          // disabled={this.props.detailsWeapon.pictureone }
+        />
+      </Label>
+      <Image
+        size="mini"
+        src={props.picture}
+        onClick={() => props.addItemToDetails(props.weaponId)}
+        wrapped
+        ui={false}
+      />
+    </Card>
   );
 };
 export default Favorite;

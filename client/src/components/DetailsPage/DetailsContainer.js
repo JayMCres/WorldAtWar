@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Segment, Header, Icon, Message } from "semantic-ui-react";
+import { Segment, Label, Icon } from "semantic-ui-react";
 import TankSpec from "./Tank/TankSpec";
 import ShipSpec from "./Ship/ShipSpec";
 import PlaneSpec from "./Plane/PlaneSpecCont";
@@ -16,8 +16,19 @@ export default class DetailsContainer extends Component {
       return <div>{WEAPONS_PAGES[link]}</div>;
     };
     return (
-      <Segment>
-        {/* <TankSpec /> */}
+      <Segment
+        style={{
+          "background-color": "#F5F5F5"
+        }}
+      >
+        <Label as="a" corner="right" color="red">
+          <Icon
+            name="remove"
+            onClick={() => this.props.handleCloseDetails()}
+            // disabled={this.props.detailsWeapon.pictureone }
+          />
+        </Label>
+
         {onMenuClick(this.props.type)}
       </Segment>
     );

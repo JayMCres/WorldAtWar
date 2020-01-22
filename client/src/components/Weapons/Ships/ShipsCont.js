@@ -48,9 +48,11 @@ class ShipsCont extends Component {
       >
         <ShipsList
           ships={this.filterShips()}
-          addShipArmory={this.addShipArmory}
+          addWeaponToArmory={this.props.addWeaponToArmory}
           addItemToCompare={this.props.addItemToCompare}
           addItemToDetails={this.props.addItemToDetails}
+          handleshowForm={this.props.handleshowForm}
+          detailsWeapon={this.props.detailsWeapon}
         />
       </Segment>
     );

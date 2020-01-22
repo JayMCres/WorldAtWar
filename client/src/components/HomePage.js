@@ -10,6 +10,7 @@ import BattleCont from "./WeaponCompare/Battle/BattleCont";
 import WeaponFormCont from "./WeaponForm/WeaponFormCont";
 import DetailsContainer from "./DetailsPage/DetailsContainer";
 import LoadingPage from "./LoadingPage";
+import WeaponsHeader from "./Weapons/WeaponsHeader";
 
 import { connect } from "react-redux";
 import { findWeapon, clearFoundWeapon } from "../actions/weapons";
@@ -26,7 +27,14 @@ class HomePage extends Component {
     scores: [],
     scoreTwo: [],
     showForm: false,
-    formWeapon: []
+    formWeapon: [],
+    inputValue: ""
+  };
+
+  handleChange = event => {
+    this.setState({
+      inputValue: event.target.value
+    });
   };
 
   addToFavorites = itemId => {
@@ -98,10 +106,20 @@ class HomePage extends Component {
     this.setState({
       showBattlePage: false,
       compareItems: [],
-      showDetails: true
+      showDetails: true,
+      showForm: false
     });
   };
 
+  handleCloseDetails = async () => {
+    await this.props.dispatch(clearFoundWeapon());
+    this.setState({
+      showBattlePage: false,
+      compareItems: [],
+      showDetails: false,
+      showForm: false
+    });
+  };
   addItemToCompare = async itemId => {
     // console.log("firing", itemId);
 
@@ -166,32 +184,61 @@ class HomePage extends Component {
         {this.state.showForm === true ? (
           <WeaponFormCont handleCloseForm={this.handleCloseForm} />
         ) : (
-          <Grid
-            columns={2}
-            divided
+          <Segment
             style={{
               "background-color": "#F5F5F5"
             }}
           >
-            <Grid.Column width={11}>
-              <WeaponsCont
-                addWeaponToArmory={this.addToFavorites}
-                favorites={this.state.favorites}
-                addItemToCompare={this.addItemToCompare}
-                addItemToDetails={this.addItemToDetails}
-                handleshowForm={this.handleOpenForm}
-                detailsWeapon={this.state.detailsWeapon}
-              />
-            </Grid.Column>
-            <Grid.Column width={5}>
-              <FavoritesCont
-                favorites={this.props.favorites}
-                addItemToCompare={this.addItemToCompare}
-                addItemToDetails={this.addItemToDetails}
-                removeFromfavorites={this.removeFromfavorites}
-              />
-            </Grid.Column>
-          </Grid>
+            {this.props.favorites.length === 0 ? (
+              <div>
+                <WeaponsHeader
+                  handleChange={this.handleChange}
+                  inputValue={this.state.inputValue}
+                />
+                <WeaponsCont
+                  addWeaponToArmory={this.addToFavorites}
+                  favorites={this.state.favorites}
+                  addItemToCompare={this.addItemToCompare}
+                  addItemToDetails={this.addItemToDetails}
+                  handleshowForm={this.handleOpenForm}
+                  detailsWeapon={this.state.detailsWeapon}
+                  inputValue={this.state.inputValue}
+                />
+              </div>
+            ) : (
+              <Grid
+                columns={2}
+                divided
+                style={{
+                  "background-color": "#F5F5F5"
+                }}
+              >
+                <Grid.Column width={12}>
+                  <WeaponsHeader
+                    handleChange={this.handleChange}
+                    inputValue={this.state.inputValue}
+                  />
+                  <WeaponsCont
+                    addWeaponToArmory={this.addToFavorites}
+                    favorites={this.state.favorites}
+                    addItemToCompare={this.addItemToCompare}
+                    addItemToDetails={this.addItemToDetails}
+                    handleshowForm={this.handleOpenForm}
+                    detailsWeapon={this.state.detailsWeapon}
+                    inputValue={this.state.inputValue}
+                  />
+                </Grid.Column>
+                <Grid.Column width={4}>
+                  <FavoritesCont
+                    favorites={this.props.favorites}
+                    addItemToCompare={this.addItemToCompare}
+                    addItemToDetails={this.addItemToDetails}
+                    removeFromfavorites={this.removeFromfavorites}
+                  />
+                </Grid.Column>
+              </Grid>
+            )}
+          </Segment>
         )}
         {this.state.compareItems.length === 0 ||
         this.state.showComparePage === false ? null : (
@@ -208,11 +255,18 @@ class HomePage extends Component {
         )}
 
         {this.state.showDetails === false ? null : (
-          <Segment>
+          <Segment
+            style={{
+              "background-color": "#F5F5F5"
+            }}
+          >
             {this.props.detailsWeapon.length === 0 ? (
               <LoadingPage />
             ) : (
-              <DetailsContainer type={this.props.detailsWeapon.typeID} />
+              <DetailsContainer
+                handleCloseDetails={this.handleCloseDetails}
+                type={this.props.detailsWeapon.typeID}
+              />
             )}
           </Segment>
         )}

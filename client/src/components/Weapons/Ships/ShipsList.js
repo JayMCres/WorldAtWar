@@ -37,7 +37,7 @@ export default class ShipsList extends Component {
       <Segment
         inverted
         style={{
-          "background-color": "#F5F5F5",
+          "background-color": "black",
           minHeight: 70
         }}
       >
@@ -76,6 +76,9 @@ export default class ShipsList extends Component {
                 addShipArmory={this.props.addShipArmory}
                 addItemToCompare={this.props.addItemToCompare}
                 addItemToDetails={this.props.addItemToDetails}
+                handleshowForm={this.props.handleshowForm}
+                addWeaponToArmory={this.props.addWeaponToArmory}
+                // detailsWeapon={this.props.detailsWeapon[0]}
               />
             );
           })}

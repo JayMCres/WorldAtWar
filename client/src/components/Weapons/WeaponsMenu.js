@@ -23,7 +23,7 @@ const WeaponsMenu = props => {
         active={props.activeItem === "tanks"}
         onClick={props.handleItemClick}
       >
-        <Icon name="area chart" size="tiny" />
+        <Icon name="chess board" size="tiny" />
         Tanks
       </Menu.Item>
       <Menu.Item
@@ -36,7 +36,7 @@ const WeaponsMenu = props => {
         active={props.activeItem === "planes"}
         onClick={props.handleItemClick}
       >
-        <Icon name="th list" size="tiny" /> Planes
+        <Icon name="plane" size="tiny" /> Planes
       </Menu.Item>
 
       <Menu.Item
@@ -49,7 +49,7 @@ const WeaponsMenu = props => {
         active={props.activeItem === "ships"}
         onClick={props.handleItemClick}
       >
-        <Icon name="bitcoin" size="tiny" /> Ships
+        <Icon name="ship" size="tiny" /> Ships
       </Menu.Item>
     </Menu>
   );

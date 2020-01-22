@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { Grid, Image, Segment, Message, Header, Flag } from "semantic-ui-react";
-import WeaponCard from "../WeaponCard";
-import WeaponHeader from "../WeaponHeader";
-import WeaponMenu from "../WeaponMenu";
-import VideoPlayer from "../VideoPlayer";
+import WeaponCard from "../Shared/WeaponCard";
+import WeaponHeader from "../Shared/WeaponHeader";
+import WeaponMenu from "../Shared/WeaponMenu";
+import VideoPlayer from "../Shared/VideoPlayer";
 import WeaponCarousel from "./WeaponCarousel";
-import ProfileTable from "../ProfileTable";
+import ProfileTable from "../Shared/ProfileTable";
 import { connect } from "react-redux";
 
 class TankSpec extends Component {
@@ -57,22 +57,38 @@ class TankSpec extends Component {
 
     return (
       <Segment>
+        <WeaponHeader detailsWeapon={this.props.detailsWeapon} />
+
+        <Message
+        // style={{
+        //   overflow: "auto",
+        //   maxHeight: 100,
+        //   minHeight: 100
+        // }}
+        >
+          <Header as="h4">
+            <Flag name={this.state.flag} />
+            <Header.Content>Weapon Description</Header.Content>
+          </Header>
+          {this.props.detailsWeapon.description}
+        </Message>
         <Grid columns={3} divided>
           <Grid.Column width={7}>
-            <WeaponHeader detailsWeapon={this.props.detailsWeapon} />
-            <Header as="h4">
-              <Flag name={this.state.flag} />
-              <Header.Content>Weapon Description</Header.Content>
-            </Header>
-            <Message
-              style={{
-                overflow: "auto",
-                maxHeight: 100,
-                minHeight: 100
-              }}
-            >
-              {this.props.detailsWeapon.description}
-            </Message>
+            {!this.state.showProfile ? null : (
+              <Segment
+                style={{
+                  overflow: "auto",
+                  maxHeight: 250,
+                  minHeight: 250
+                }}
+              >
+                <ProfileTable
+                  tableData={profile.reduce((result, current) => {
+                    return Object.assign(result, current);
+                  }, {})}
+                />
+              </Segment>
+            )}
           </Grid.Column>
           <Grid.Column width={6}>
             <VideoPlayer video={this.props.detailsWeapon.video} />
@@ -92,23 +108,6 @@ class TankSpec extends Component {
               this.props.detailsWeapon.picturetwo
             ]}
           />
-        )}
-
-        <WeaponMenu handleShowProfile={this.handleShowProfile} />
-        {!this.state.showProfile ? null : (
-          <Segment
-            style={{
-              overflow: "auto",
-              maxHeight: 250,
-              minHeight: 250
-            }}
-          >
-            <ProfileTable
-              tableData={profile.reduce((result, current) => {
-                return Object.assign(result, current);
-              }, {})}
-            />
-          </Segment>
         )}
       </Segment>
     );

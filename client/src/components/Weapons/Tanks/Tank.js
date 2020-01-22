@@ -3,19 +3,14 @@ import { Card, Image, Item, Button, Label, Icon } from "semantic-ui-react";
 import { findWeapon } from "../../../actions/weapons";
 import { connect } from "react-redux";
 class Tank extends Component {
-  handleFormDataSubmission = async () => {
-    await this.props.addItemToDetails(this.props.tank_id);
-    await this.props.handleshowForm();
-  };
   render() {
     // console.log("tank props", this.props);
     return (
       <Card>
-        <Label as="a" corner="right" color="blue">
+        <Label as="a" corner="right" color="grey">
           <Icon
-            name="remove"
+            name="wordpress forms"
             onClick={() => this.props.handleshowForm(this.props.tank_id)}
-            // disabled={this.props.detailsWeapon.pictureone }
           />
         </Label>
         <Card.Content>
@@ -37,12 +32,13 @@ class Tank extends Component {
           <Card.Meta>{this.props.nation.toUpperCase()}</Card.Meta>
         </Card.Content>
         <Card.Content extra>
-          <Button.Group widths="3" size="tiny">
+          <Button.Group widths="3" size="mini" style={{ "font-size": "8px" }}>
             <Button
               basic
               color="green"
+              textAlign="center"
               onClick={() => this.props.addItemToCompare(this.props.tank_id)}
-              size="tiny"
+              size="mini"
               disabled={this.props.weapons === undefined}
             >
               Mobilize
@@ -50,17 +46,19 @@ class Tank extends Component {
             <Button
               basic
               color="red"
+              textAlign="center"
               onClick={() => this.props.addWeaponToArmory(this.props.tank_id)}
-              size="tiny"
+              size="mini"
               disabled={this.props.weapons === undefined}
             >
-              Add to Armory
+              Armory
             </Button>
             <Button
               basic
               color="red"
+              textAlign="center"
               onClick={() => this.props.addItemToDetails(this.props.tank_id)}
-              size="tiny"
+              size="mini"
               disabled={this.props.weapons === undefined}
             >
               Details

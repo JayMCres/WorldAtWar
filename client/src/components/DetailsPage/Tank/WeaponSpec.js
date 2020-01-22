@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { Grid, Image, Segment, Message, Header, Flag } from "semantic-ui-react";
-import WeaponCard from "../WeaponCard";
-import WeaponHeader from "../WeaponHeader";
-import WeaponMenu from "../WeaponMenu";
-import VideoPlayer from "../VideoPlayer";
+import WeaponCard from "../Shared/WeaponCard";
+import WeaponHeader from "../Shared/WeaponHeader";
+import WeaponMenu from "../Shared/WeaponMenu";
+import VideoPlayer from "../Shared/VideoPlayer";
 import WeaponCarousel from "./WeaponCarousel";
-import ProfileTable from "../ProfileTable";
+import ProfileTable from "../Shared/ProfileTable";
 import { connect } from "react-redux";
 class WeaponSpec extends Component {
   state = {

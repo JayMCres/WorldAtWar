@@ -13,13 +13,8 @@ const WeaponMenu = props => (
     //   "background-color": "black"
     // }}
   >
-    <Menu.Item />
-    <Menu.Item />
-    <Menu.Item />
-    <Menu.Item />
-    <Menu.Item />
     <Menu.Item onClick={() => props.handleShowProfile()}>
-      <Header as="h2" style={{ color: "black" }} floated="right">
+      <Header as="h2" style={{ color: "black" }}>
         <Icon name="bity" />
         Weapon Profile
       </Header>
