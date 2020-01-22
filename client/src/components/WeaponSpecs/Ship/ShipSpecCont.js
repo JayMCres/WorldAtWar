@@ -69,11 +69,29 @@ class ShipSpecCont extends Component {
 
     return (
       <Segment
-        onMouseLeave={this.handleIntervalExit}
         style={{
-          "background-color": "black"
+          "background-color": "#F5F5F5"
         }}
       >
+        <Label
+          size="medium"
+          as="a"
+          corner="left"
+          color="grey"
+          onClick={this.handleIntervalStart}
+        >
+          <Icon name="play" disabled={this.state.changeInterval === true} />
+        </Label>
+
+        <Label
+          size="medium"
+          as="a"
+          corner="right"
+          color="grey"
+          onClick={this.handleIntervalStop}
+        >
+          <Icon name="pause" disabled={this.state.changeInterval === false} />
+        </Label>
         {shipsList.map(item => {
           return (
             <WeaponHeader

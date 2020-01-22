@@ -43,7 +43,8 @@ class WeaponsCont extends Component {
             favorites={this.props.favorites}
             addItemToCompare={this.props.addItemToCompare}
             addItemToDetails={this.props.addItemToDetails}
-            handleshowForm={this.handleshowForm}
+            handleshowForm={this.props.handleshowForm}
+            detailsWeapon={this.props.detailsWeapon}
           />
         ),
         ships: (
@@ -53,7 +54,7 @@ class WeaponsCont extends Component {
             favorites={this.props.favorites}
             addItemToCompare={this.props.addItemToCompare}
             addItemToDetails={this.props.addItemToDetails}
-            handleshowForm={this.handleshowForm}
+            handleshowForm={this.props.handleshowForm}
           />
         )
       };

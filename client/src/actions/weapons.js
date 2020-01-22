@@ -21,13 +21,13 @@ export const findWeapon = weaponId => async dispatch => {
 
       const foundWeapons = [
         ...Object.values(responsePlane[0]).map(item => {
-          return { ...item, id: item.plane_id };
+          return { ...item, id: item.plane_id, typeID: "plane" };
         }),
         ...Object.values(responseTank[0]).map(item => {
-          return { ...item, id: item.tank_id };
+          return { ...item, id: item.tank_id, typeID: "tank" };
         }),
         ...Object.values(responseShip[0]).map(item => {
-          return { ...item, id: item.ship_id };
+          return { ...item, id: item.ship_id, typeID: "ship" };
         })
       ];
 

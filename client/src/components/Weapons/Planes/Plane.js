@@ -1,55 +1,74 @@
-import React from "react";
-import { Card, Image, Item, Button } from "semantic-ui-react";
+import React, { Component } from "react";
+import { Card, Image, Item, Button, Label, Icon } from "semantic-ui-react";
+import { findWeapon } from "../../../actions/weapons";
+import { connect } from "react-redux";
+class Plane extends Component {
+  render() {
+    // console.log("tank props", this.props);
+    return (
+      <Card>
+        <Label as="a" corner="right" color="blue">
+          <Icon
+            name="remove"
+            onClick={() => this.props.handleshowForm(this.props.plane_id)}
+            // disabled={this.props.detailsWeapon.pictureone }
+          />
+        </Label>
+        <Card.Content>
+          <Image floated="right" size="tiny" src={this.props.images.small} />
+          <Card.Header style={{ "font-size": "11px" }}>
+            {this.props.name_i18n}
+          </Card.Header>
+          <Card.Meta>
+            {this.props.type.length > 6 ? (
+              <strong style={{ "font-size": "10px" }}>
+                {this.props.type.toUpperCase().slice(0, -4)}
+              </strong>
+            ) : (
+              <strong style={{ "font-size": "10px" }}>
+                {this.props.type.toUpperCase()}
+              </strong>
+            )}
+          </Card.Meta>
+          <Card.Meta>{this.props.nation.toUpperCase()}</Card.Meta>
+        </Card.Content>
+        <Card.Content extra>
+          <Button.Group widths="3" size="tiny">
+            <Button
+              basic
+              color="green"
+              onClick={() => this.props.addItemToCompare(this.props.plane_id)}
+              size="tiny"
+              disabled={this.props.weapons === undefined}
+            >
+              Mobilize
+            </Button>
+            <Button
+              basic
+              color="red"
+              onClick={() => this.props.addWeaponToArmory(this.props.plane_id)}
+              size="tiny"
+              disabled={this.props.weapons === undefined}
+            >
+              Add to Armory
+            </Button>
+            <Button
+              basic
+              color="red"
+              onClick={() => this.props.addItemToDetails(this.props.plane_id)}
+              size="tiny"
+              disabled={this.props.weapons === undefined}
+            >
+              Details
+            </Button>
+          </Button.Group>
+        </Card.Content>
+      </Card>
+    );
+  }
+}
+const mapStateToProps = state => ({
+  weapons: state.weapons.weapons[0]
+});
 
-const Plane = props => {
-  // console.log("Plane Props", props);
-  // const tank = Object.values(props);
-  // console.log("Tank Obj", tank);
-
-  return (
-    <Card>
-      <Card.Content>
-        <Image floated="right" src={props.images.small} />
-        <Card.Header style={{ "font-size": "12px" }}>
-          {props.name_i18n}
-        </Card.Header>
-        <Card.Meta style={{ "font-size": "10px" }}>
-          {props.type.toUpperCase()}
-        </Card.Meta>
-        <Card.Meta style={{ "font-size": "10px" }}>
-          {props.nation.toUpperCase()}
-        </Card.Meta>
-        {/* <Card.Description>{props.description}</Card.Description> */}
-      </Card.Content>
-      <Card.Content extra>
-        <Button.Group widths="3" size="tiny">
-          <Button
-            basic
-            color="green"
-            onClick={() => props.addItemToCompare(props.plane_id)}
-            size="tiny"
-          >
-            Mobilize
-          </Button>
-          <Button
-            basic
-            color="red"
-            onClick={() => props.addPlaneArmory(props.plane_id)}
-            size="tiny"
-          >
-            Add to Armory
-          </Button>
-          <Button
-            basic
-            color="red"
-            // onClick={() => props.addShipArmory(props.ship_id)}
-            size="tiny"
-          >
-            Details
-          </Button>
-        </Button.Group>
-      </Card.Content>
-    </Card>
-  );
-};
-export default Plane;
+export default connect(mapStateToProps)(Plane);

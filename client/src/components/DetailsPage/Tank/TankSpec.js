@@ -4,7 +4,7 @@ import WeaponCard from "../WeaponCard";
 import WeaponHeader from "../WeaponHeader";
 import WeaponMenu from "../WeaponMenu";
 import VideoPlayer from "../VideoPlayer";
-import WeaponCarousel from "../WeaponCarousel";
+import WeaponCarousel from "./WeaponCarousel";
 import ProfileTable from "../ProfileTable";
 import { connect } from "react-redux";
 
@@ -33,14 +33,14 @@ class TankSpec extends Component {
   }
 
   render() {
-    // console.log(" WeaponSpec State", this.state);
+    console.log(" WeaponSpec State", this.state);
     // console.log(" WeaponSpec Props", this.props);
 
     const weaponaryObj = this.state.weaponryArray.reduce((result, current) => {
       return Object.assign(result, current);
     }, {});
 
-    // console.log("weaponaryObj", weaponaryObj);
+    console.log("weaponaryObj", weaponaryObj);
 
     const profile = Object.entries(this.props.profile[0]).map(
       ([key, value]) => {

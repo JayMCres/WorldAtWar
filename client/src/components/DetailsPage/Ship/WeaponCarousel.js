@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Grid, Segment, Button, List, Header, Icon } from "semantic-ui-react";
-import WeaponPicture from "./WeaponPicture";
-import WeaponItem from "./WeaponItem";
+// import WeaponPicture from "../WeaponPicture";
+import WeaponItem from "../WeaponItem";
 
 export default class WeaponCarousel extends Component {
   state = {
@@ -29,10 +29,10 @@ export default class WeaponCarousel extends Component {
 
   render() {
     console.log("Weapon Coursel Props", this.props);
-    const weapon = this.props.picture.slice(
-      this.state.startIdx,
-      this.state.endIdx
-    );
+    // const weapon = this.props.picture.slice(
+    //   this.state.startIdx,
+    //   this.state.endIdx
+    // );
     // console.log("Weapon ", weapon);
 
     return (
@@ -42,7 +42,7 @@ export default class WeaponCarousel extends Component {
           "background-color": "black"
         }}
       >
-        <Grid columns={2} divided>
+        {/* <Grid columns={2} divided>
           <Grid.Column width={10}>
             <Button
               basic
@@ -68,36 +68,34 @@ export default class WeaponCarousel extends Component {
             />
             <WeaponPicture weaponPic={weapon} />
           </Grid.Column>
-          <Grid.Column width={6}>
-            <Header as="h3" block>
-              <Icon name="chess" />
-              <Header.Content>Weapon Systems</Header.Content>
-            </Header>
-            <List
-              divided
-              relaxed
-              style={{
-                overflow: "auto",
-                maxHeight: 200,
-                minHeight: 200
-              }}
-            >
-              {Object.entries(this.props.weaponary).map(
-                ([key, value], index) => {
-                  let label = key
-                    .split("_")
-                    .map(word => {
-                      return word.charAt(0).toUpperCase() + word.slice(1);
-                    })
-                    .join();
+          <Grid.Column width={6}> */}
+        <Header as="h3" block>
+          <Icon name="chess" />
+          <Header.Content>Weapon Systems</Header.Content>
+        </Header>
+        <List
+          divided
+          relaxed
+          style={{
+            overflow: "auto",
+            maxHeight: 200,
+            minHeight: 200
+          }}
+        >
+          {Object.entries(this.props.weaponary).map(([key, value], index) => {
+            let label = key
+              .split("_")
+              .map(word => {
+                return word.charAt(0).toUpperCase() + word.slice(1);
+              })
+              .join();
 
-                  // console.log("label", label);
-                  return <WeaponItem key={key} value={value} label={label} />;
-                }
-              )}
-            </List>
-          </Grid.Column>
-        </Grid>
+            // console.log("label", label);
+            return <WeaponItem key={key} value={value} label={label} />;
+          })}
+        </List>
+        {/* //   </Grid.Column>
+        // </Grid> */}
       </Segment>
     );
   }

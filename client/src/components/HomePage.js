@@ -212,7 +212,7 @@ class HomePage extends Component {
             {this.props.detailsWeapon.length === 0 ? (
               <LoadingPage />
             ) : (
-              <DetailsContainer />
+              <DetailsContainer type={this.props.detailsWeapon.typeID} />
             )}
           </Segment>
         )}

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Header, Segment } from "semantic-ui-react";
 
 import HomePage from "./HomePage";
+import MainHeader from "./MainHeader";
 import { fetchTanks, fetchPlanes, fetchShips } from "../actions/weapon";
 import { fetchWeapons, fetchAllWeapons } from "../actions/weapons";
 import { fetchFavorites, fetchUserFavorites } from "../actions/favorites";
@@ -22,12 +23,11 @@ class MainCont extends Component {
     return (
       <Segment
         style={{
-          "background-color": "#F5F5F5"
+          "background-color": "#F5F5F5",
+          minHeight: 1000
         }}
       >
-        <Header color={"violet"} inverted as="h1">
-          World At War
-        </Header>
+        <MainHeader />
         <HomePage currentUser={this.props.currentUser} />
       </Segment>
     );

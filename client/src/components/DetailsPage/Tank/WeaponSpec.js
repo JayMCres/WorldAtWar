@@ -4,7 +4,7 @@ import WeaponCard from "../WeaponCard";
 import WeaponHeader from "../WeaponHeader";
 import WeaponMenu from "../WeaponMenu";
 import VideoPlayer from "../VideoPlayer";
-import WeaponCarousel from "../WeaponCarousel";
+import WeaponCarousel from "./WeaponCarousel";
 import ProfileTable from "../ProfileTable";
 import { connect } from "react-redux";
 class WeaponSpec extends Component {

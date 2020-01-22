@@ -75,6 +75,10 @@ export default class PlanesList extends Component {
                 {...item}
                 addPlaneArmory={this.props.addPlaneArmory}
                 addItemToCompare={this.props.addItemToCompare}
+                addItemToDetails={this.props.addItemToDetails}
+                handleshowForm={this.props.handleshowForm}
+                addWeaponToArmory={this.props.addWeaponToArmory}
+                detailsWeapon={this.props.detailsWeapon[0]}
               />
             );
           })}

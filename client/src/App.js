@@ -79,21 +79,14 @@ class App extends Component {
       return <div>{LOGIN_PAGES[link]}</div>;
     };
     return this.state.loggedIn ? (
-      <div>
-        <style>
-          {`
-      html, body {
-        background-color: #252839 !important;
-      }
-      `}
-        </style>
-        <Segment inverted>
-          <MainCont currentUser={this.state.currentUser} />
-        </Segment>
-      </div>
+      <MainCont currentUser={this.state.currentUser} />
     ) : (
-      <Segment>
-        <div>{onMenuClick(activeItem)}</div>
+      <Segment
+        style={{
+          "background-color": "#F5F5F5"
+        }}
+      >
+        {onMenuClick(activeItem)}
         <LoginMenu
           handleMenuClick={this.handleMenuClick}
           activeItem={activeItem}

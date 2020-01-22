@@ -60,67 +60,70 @@ export default class Signup extends Component {
   render() {
     return (
       <div>
-        <Container>
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <Grid
-            textAlign="center"
-            style={{ height: "100%" }}
-            verticalAlign="middle"
-          >
-            <Grid.Column style={{ maxWidth: 450 }}>
-              <Header as="h2" color="violet" textAlign="center">
-                <Message style={{ color: "blue" }}>
-                  <strong>FIN-ALYZE</strong>
-                </Message>
-                Please Fill Out Below
-              </Header>
-              <Message info>
-                {/* <div id="signup"> */}
-                <Form onSubmit={this.addUser}>
-                  <Form.Field>
-                    <input
-                      type="text"
-                      ref="name"
-                      name="name"
-                      placeholder="Name"
-                      value={this.state.name}
-                      onChange={this.handleChange}
-                    />
-                  </Form.Field>
-                  <Form.Field>
-                    <input
-                      type="email"
-                      ref="username"
-                      name="userName"
-                      placeholder="Email"
-                      value={this.state.userName}
-                      onChange={this.handleChange}
-                    />
-                  </Form.Field>
-                  <Form.Field>
-                    <input
-                      type="password"
-                      ref="password"
-                      name="signPassword"
-                      placeholder="Password"
-                      value={this.state.signPassword}
-                      onChange={this.handleChange}
-                    />
-                  </Form.Field>
-                  {/* <input type="password" name="confirmInput" placeholder="Confirm Password" value={this.props.confirmInput} onChange={this.props.handleChange}/> */}
-                  {/* <input type="submit" value="Submit" /> */}
-                  <Button type="submit">Submit</Button>
-                </Form>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <style>{` body > div,
+                    body > div > div,
+                    body > div > div > div.login-form {
+                        height: 100%;
+                    }`}</style>
+        <Grid
+          textAlign="center"
+          style={{ height: "100%" }}
+          verticalAlign="middle"
+        >
+          <Grid.Column style={{ maxWidth: 450 }}>
+            <Header as="h2" color="violet" textAlign="center">
+              <Message style={{ color: "blue" }}>
+                <strong>FIN-ALYZE</strong>
               </Message>
-            </Grid.Column>
-          </Grid>
-        </Container>
+              Please Fill Out Below
+            </Header>
+            <Message info>
+              {/* <div id="signup"> */}
+              <Form onSubmit={this.addUser}>
+                <Form.Field>
+                  <input
+                    type="text"
+                    ref="name"
+                    name="name"
+                    placeholder="Name"
+                    value={this.state.name}
+                    onChange={this.handleChange}
+                  />
+                </Form.Field>
+                <Form.Field>
+                  <input
+                    type="email"
+                    ref="username"
+                    name="userName"
+                    placeholder="Email"
+                    value={this.state.userName}
+                    onChange={this.handleChange}
+                  />
+                </Form.Field>
+                <Form.Field>
+                  <input
+                    type="password"
+                    ref="password"
+                    name="signPassword"
+                    placeholder="Password"
+                    value={this.state.signPassword}
+                    onChange={this.handleChange}
+                  />
+                </Form.Field>
+                {/* <input type="password" name="confirmInput" placeholder="Confirm Password" value={this.props.confirmInput} onChange={this.props.handleChange}/> */}
+                {/* <input type="submit" value="Submit" /> */}
+                <Button type="submit">Submit</Button>
+              </Form>
+            </Message>
+          </Grid.Column>
+        </Grid>
       </div>
       // </div>
     );

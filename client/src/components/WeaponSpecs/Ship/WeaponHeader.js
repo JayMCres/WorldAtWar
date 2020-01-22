@@ -4,7 +4,7 @@ import { Header, Icon, Label } from "semantic-ui-react";
 const WeaponCont = props => {
   return (
     <Header as="h2" attached="top">
-      <Label
+      {/* <Label
         size="medium"
         as="a"
         corner="left"
@@ -22,7 +22,7 @@ const WeaponCont = props => {
         onClick={props.handleIntervalStop}
       >
         <Icon name="pause" disabled={props.changeInterval === false} />
-      </Label>
+      </Label> */}
       <Icon name="settings" />
       <Header.Content>
         {props.name.slice(1, -1)}
