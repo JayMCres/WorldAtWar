@@ -6,7 +6,9 @@ const WeaponItem = props => {
   return (
     <List.Item>
       <List.Content floated="right">
-        {props.value === null ? "N/A" : props.value}
+        {props.value === null || props.value === undefined
+          ? "N/A"
+          : props.value}
       </List.Content>
       <List.Icon name="crosshairs" size="large" verticalAlign="middle" />
       <List.Content>
