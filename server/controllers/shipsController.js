@@ -10,5 +10,9 @@ exports.fetchAllShips = async (req, res) => {
 
   let shipsObject = await jsonData.data;
 
-  res.send(shipsObject);
+  let ships = await Object.values(shipsObject).filter(ship => {
+    return ship.nation === "usa" || ship.nation === "japan";
+  });
+
+  res.send(ships);
 };

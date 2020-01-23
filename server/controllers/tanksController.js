@@ -10,7 +10,16 @@ exports.fetchAllTanks = async (req, res) => {
   let jsonData = await response.json();
 
   let tanksObject = await jsonData.data;
-  // console.log("Tanks Array", tanksObject);
 
-  res.send(tanksObject);
+  let tanks = await Object.values(tanksObject).filter(tank => {
+    return (
+      tank.nation === "usa" ||
+      tank.nation === "ussr" ||
+      tank.nation === "germany"
+    );
+  });
+
+  // console.log("tanks", tanks);
+
+  res.send(tanks);
 };

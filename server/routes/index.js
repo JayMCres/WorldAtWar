@@ -24,7 +24,6 @@ routes.use("/api/warships", shipsController.fetchAllShips);
 routes.use("/api/plane", planeController.fetchSinglePlane);
 
 routes.use("/api/user_favorite", favoriteController.addFavorite);
-routes.use("/api/favorites", favoriteController.getUserFavorites);
 routes.delete("/api/delete_favorite/:id", favoriteController.deleteFavorite);
 routes.get("/api/user_favorite/:id", favoriteController.getFavorite);
 

@@ -24,7 +24,7 @@ exports.listWeapons = (req, res) => {
 };
 
 exports.addWeapon = (req, res) => {
-  console.log("Weapon Body", req.body);
+  // console.log("Weapon Body", req.body);
 
   const name = req.body.name;
   const weaponId = req.body.weaponId;
@@ -45,28 +45,11 @@ exports.addWeapon = (req, res) => {
 };
 
 exports.editWeapon = (req, res) => {
+  // console.log("Edit Body", req.body);
   const name = req.body.nameUpdate;
-  const type = req.body.typeUpdate;
-  const subtype = req.body.subtypeUpdate;
-  const power = req.body.powerUpdate;
-  const ceiling = req.body.ceilingUpdate;
-  const country = req.body.countryUpdate;
-  const dimensions = req.body.dimensionsUpdate;
-  const weight = req.body.weightUpdate;
-  const crew = req.body.crewUpdate;
-  const imageone = req.body.imageoneUpdate;
-  const imagetwo = req.body.imagetwoUpdate;
-  const imagethree = req.body.imagethreeUpdate;
-  const imagefour = req.body.imagefourUpdate;
-  const description = req.body.descriptionUpdate;
-  const propulsion = req.body.propulsionUpdate;
-  const speed = req.body.speedUpdate;
-  const range = req.body.rangeUpdate;
-  const armor = req.body.armorUpdate;
-  const weaponone = req.body.weapononeUpdate;
-  const weapontwo = req.body.weapontwoUpdate;
-  const weaponthree = req.body.weaponthreeUpdate;
-  const weaponfour = req.body.weaponfourUpdate;
+  const weaponId = req.body.weaponIdUpdate;
+  const pictureone = req.body.pictureoneUpdate;
+  const picturetwo = req.body.picturetwoUpdate;
   const video = req.body.videoUpdate;
   Weapon.findOne({
     where: {
@@ -77,27 +60,9 @@ exports.editWeapon = (req, res) => {
       // console.log("FoundNote", updatedNote);
       updatedWeapon.update({
         name: name,
-        type: type,
-        subtype: subtype,
-        power: power,
-        ceiling: ceiling,
-        country: country,
-        dimensions: dimensions,
-        weight: weight,
-        crew: crew,
-        imageone: imageone,
-        imagetwo: imagetwo,
-        imagethree: imagethree,
-        imagefour: imagefour,
-        description: description,
-        propulsion: propulsion,
-        speed: speed,
-        range: range,
-        armor: armor,
-        weaponone: weaponone,
-        weapontwo: weapontwo,
-        weaponthree: weaponthree,
-        weaponfour: weaponfour,
+        weaponId: weaponId,
+        pictureone: pictureone,
+        picturetwo: picturetwo,
         video: video
       });
     })
@@ -114,7 +79,7 @@ exports.getWeapon = (req, res) => {
       weaponId: req.params.id
     }
   }).then(weapon => {
-    console.log("weapon", weapon);
+    // console.log("weapon", weapon);
     res.json(weapon);
   });
 };

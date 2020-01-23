@@ -11,5 +11,13 @@ exports.fetchAllPlanes = async (req, res) => {
   let planesObject = await jsonData.data;
   // console.log("Planes", planesObject);
 
-  res.send(planesObject);
+  let planes = Object.values(planesObject).filter(plane => {
+    return (
+      plane.nation === "usa" ||
+      plane.nation === "germany" ||
+      plane.nation === "uk"
+    );
+  });
+
+  res.send(planes);
 };
