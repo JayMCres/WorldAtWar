@@ -19,20 +19,18 @@ export const SET_SCORE_TWO = "SET_SCORE_TWO";
 
 export const fetchTanks = () => async dispatch => {
   const response = await Tanks.get();
-  // console.log(" tank response", Object.values(response.data));
-  dispatch({ type: FETCH_TANKS, payload: Object.values(response.data) });
+  dispatch({ type: FETCH_TANKS, payload: response.data });
 };
 
 export const fetchShips = () => async dispatch => {
   const response = await Ships.get();
-  // console.log("response", response.data);
-  dispatch({ type: FETCH_SHIPS, payload: Object.values(response.data) });
+  dispatch({ type: FETCH_SHIPS, payload: response.data });
 };
 
 export const fetchPlanes = () => async dispatch => {
   const response = await Planes.get();
-  // console.log("response", response.data);
-  dispatch({ type: FETCH_PLANES, payload: Object.values(response.data) });
+
+  dispatch({ type: FETCH_PLANES, payload: response.data });
 };
 
 export function fetchPlane(id) {

@@ -28,33 +28,19 @@ export default function weaponReducer(state = initialState, action) {
     case FETCH_TANKS: {
       return {
         ...state,
-        tanks: action.payload.filter(tank => {
-          return (
-            tank.nation === "usa" ||
-            tank.nation === "ussr" ||
-            tank.nation === "germany"
-          );
-        })
+        tanks: action.payload
       };
     }
     case FETCH_SHIPS: {
       return {
         ...state,
-        ships: action.payload.filter(tank => {
-          return tank.nation === "usa" || tank.nation === "japan";
-        })
+        ships: action.payload
       };
     }
     case FETCH_PLANES: {
       return {
         ...state,
-        planes: action.payload.filter(tank => {
-          return (
-            tank.nation === "usa" ||
-            tank.nation === "germany" ||
-            tank.nation === "uk"
-          );
-        })
+        planes: action.payload
       };
     }
     case FETCH_PLANE: {
