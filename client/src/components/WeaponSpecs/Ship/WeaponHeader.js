@@ -13,7 +13,7 @@ const WeaponCont = props => {
     >
       <Icon name="ship" />
       <Header.Content>
-        {props.name.slice(1, -1)}
+        {props.name}
         <Header.Subheader>
           <strong style={{ "font-size": "12px" }}>
             {props.type.toUpperCase()}

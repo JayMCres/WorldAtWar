@@ -508,3 +508,45 @@
 //   scoreTwo: state.weapon.scoreTwo
 // });
 // export default connect(mapStateToProps)(BattleCont);
+
+weapons: [state.weapons.foundWeapon.default_profile].map(item => {
+  const weapons = {
+    torpedo_bomber: item.torpedo_bomber,
+    fighters: item.fighters,
+    dive_bomber: item.dive_bomber,
+    anti_aircraft: item.anti_aircraft,
+    secondary_weapon: item.atbas,
+    artillery: item.artillery,
+    torpedoes: item.torpedoes
+  };
+  return Object.entries(weapons)
+    .map(([key, value], index) => {
+      if (value !== null) {
+        return { [key]: value };
+      }
+    })
+    .filter(weapon => weapon !== undefined);
+});
+
+// weapons: [state.weapons.foundWeapon.default_profile]
+//   .map(weapon => {
+//     return {
+//       ...Object.values(weapon.anti_aircraft.slots).map((item, index) => {
+//         return { ["anti_aircraft_gun"]: item.name };
+//       }),
+//       ...Object.values(weapon.atbas.slots).map((item, index) => {
+//         return { ["Secondary Armament"]: item.name };
+//       }),
+//       ...Object.values(weapon.artillery.slots).map((item, index) => {
+//         return { ["artillery_gun"]: item.name };
+//       }),
+//       ...Object.values(weapon.artillery.shells).map((item, index) => {
+//         return { ["artillery_shell"]: item.name };
+//       }),
+//       torpedoes: weapon.torpedoes,
+//       fighters: weapon.fighters
+//     };
+//   })
+//   .reduce((result, current) => {
+//     return Object.assign(result, current);
+//   }, {})

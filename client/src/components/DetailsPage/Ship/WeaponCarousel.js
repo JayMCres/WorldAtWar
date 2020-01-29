@@ -28,7 +28,7 @@ export default class WeaponCarousel extends Component {
   };
 
   render() {
-    // console.log("Weapon Coursel Props", this.props);
+    console.log("Weapon Coursel Props", this.props);
     const weapon = this.props.picture.slice(
       this.state.startIdx,
       this.state.endIdx

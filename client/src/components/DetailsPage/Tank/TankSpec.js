@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Grid, Image, Segment, Message, Header, Flag } from "semantic-ui-react";
-import WeaponCard from "../Shared/WeaponCard";
+import WeaponCard from "./WeaponCard";
 import WeaponHeader from "../Shared/WeaponHeader";
 import WeaponMenu from "../Shared/WeaponMenu";
 import VideoPlayer from "../Shared/VideoPlayer";

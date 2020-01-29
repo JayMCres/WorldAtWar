@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 
-import { Segment, Message } from "semantic-ui-react";
 import { fetchPlaneDetails } from "../../../actions/weapon";
 import { connect } from "react-redux";
 import PlaneSpec from "./PlaneSpec";

@@ -173,7 +173,7 @@ class HomePage extends Component {
   };
 
   render() {
-    console.log("HomePage Props", this.props);
+    // console.log("HomePage Props", this.props);
     return (
       <Segment
         style={{

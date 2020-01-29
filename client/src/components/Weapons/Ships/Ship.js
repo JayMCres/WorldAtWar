@@ -16,7 +16,7 @@ class Ship extends Component {
         <Card.Content>
           <Image floated="right" size="tiny" src={this.props.images.small} />
           <Card.Header style={{ "font-size": "12px" }}>
-            {this.props.name.slice(1, -1)}
+            {this.props.name}
           </Card.Header>
           <Card.Meta>
             <strong style={{ "font-size": "10px" }}>

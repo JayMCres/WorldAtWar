@@ -6,7 +6,7 @@ const WeaponHeader = props => (
     <Header as="h2" centered>
       <Icon name={props.detailsWeapon.icon} />
       <Header.Content>
-        {props.detailsWeapon.name.slice(1, -1)}
+        {props.detailsWeapon.name}
         <Header.Subheader>{props.detailsWeapon.weapon}</Header.Subheader>
       </Header.Content>
     </Header>

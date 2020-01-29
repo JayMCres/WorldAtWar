@@ -1,12 +1,13 @@
 import React, { Component } from "react";
-import { Grid, Image, Segment, Message, Header, Flag } from "semantic-ui-react";
+import { Grid, Segment, Message, Header, Flag } from "semantic-ui-react";
+
 import WeaponCard from "../Shared/WeaponCard";
 import WeaponHeader from "./WeaponHeader";
-
 import VideoPlayer from "../Shared/VideoPlayer";
 import WeaponCarousel from "./WeaponCarousel";
 
 import { connect } from "react-redux";
+import { fetchShipWeapons } from "../../../actions/ships";
 
 class ShipSpec extends Component {
   state = {
@@ -15,6 +16,10 @@ class ShipSpec extends Component {
     weaponryArray: [],
     showProfile: true
   };
+
+  componentWillMount() {
+    this.props.dispatch(fetchShipWeapons(this.props.detailsWeapon));
+  }
 
   componentDidMount() {
     if (this.props.detailsWeapon.nation === "usa") {
@@ -39,17 +44,7 @@ class ShipSpec extends Component {
 
   render() {
     // console.log(" shipSpec State", this.state);
-    // console.log(" ShipSpec Props", this.props);
-
-    const weaponsArray = this.props.weapons.map(weapon => {
-      return { ...weapon };
-    });
-
-    const weaponaryObj = weaponsArray.reduce((result, current) => {
-      return Object.assign(result, current);
-    }, {});
-
-    const weapons = { ...weaponaryObj };
+    console.log(" ShipSpec Props", this.props);
 
     return (
       <Segment>
@@ -82,7 +77,7 @@ class ShipSpec extends Component {
         </Grid>
         {/* {this.props.detailsWeapon.pictureone === undefined ? null : ( */}
         <WeaponCarousel
-          weaponary={weapons}
+          weaponary={this.props.weapons}
           picture={[
             this.props.detailsWeapon.pictureone,
             this.props.detailsWeapon.picturetwo
@@ -96,31 +91,7 @@ class ShipSpec extends Component {
 
 const mapStateToProps = state => ({
   detailsWeapon: state.weapons.foundWeapon,
-  weapons: [
-    ...Object.values(
-      state.weapons.foundWeapon.default_profile.anti_aircraft.slots
-    ),
-    ...Object.values(state.weapons.foundWeapon.default_profile.artillery.slots),
-    ...Object.values(
-      state.weapons.foundWeapon.default_profile.artillery.shells
-    ),
-
-    ...[state.weapons.foundWeapon.default_profile.torpedoes].map(item => {
-      if (item !== null) {
-        return {
-          visibility_dist: item.visibility_dist,
-          distance: item.distance,
-          torpedo_name: item.torpedo_name,
-          reload_time: item.reload_time,
-          torpedo_speed: item.torpedo_speed
-        };
-      }
-    })
-  ]
-
-  // [
-  //   this.props.detailsWeapon.default_profile.anti_aircraft.slots
-  // ].concat([this.props.detailsWeapon.default_profile.atbas.slots])
+  weapons: state.ship.weapons
 });
 
 export default connect(mapStateToProps)(ShipSpec);
