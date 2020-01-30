@@ -43,7 +43,7 @@ class ShipsCont extends Component {
     return (
       <Segment
         style={{
-          "background-color": "#F5F5F5"
+          "background-color": "#8391a5"
         }}
       >
         <ShipsList

@@ -44,7 +44,7 @@ class PlanesCont extends Component {
     return (
       <Segment
         style={{
-          "background-color": "#F5F5F5"
+          "background-color": "rgba(50, 115, 220, 0.3)"
         }}
       >
         <PlanesList

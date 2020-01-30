@@ -25,7 +25,7 @@ export default class BattleWinner extends Component {
 
           <Grid.Column width={10}>
             <Segment attached="top">
-              <Header as="h3">
+              <Header as="h3" color="green">
                 <Icon name="settings" />
                 <Header.Content>
                   WINNER - {this.props.weapon.name}

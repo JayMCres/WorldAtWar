@@ -96,7 +96,7 @@ export const setAirCarrier = ship => async dispatch => {
 };
 
 export const setShipWeapon = data => async dispatch => {
-  console.log("Data", data);
+  // console.log("Data", data);
 
   dispatch({
     type: SET_SHIP_WEAPON,

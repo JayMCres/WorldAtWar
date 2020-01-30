@@ -9,6 +9,7 @@ const WeaponCont = props => {
       style={{
         maxHeight: 80,
         minHeight: 80
+        // "background-color": "#91B6CE"
       }}
     >
       <Icon name="plane" />

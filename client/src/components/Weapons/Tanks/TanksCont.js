@@ -46,7 +46,7 @@ class TanksCont extends Component {
         style={{
           "border-style": "double",
           "border-color": "#6666ff",
-          "background-color": "#F5F5F5"
+          "background-color": "#4E4B2C"
         }}
       >
         <TanksList

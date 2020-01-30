@@ -11,6 +11,7 @@ const WeaponCont = props => {
       style={{
         maxHeight: 80,
         minHeight: 80
+        // "background-color": "#4E4B2C"
       }}
     >
       <Image rounded src={icon} />

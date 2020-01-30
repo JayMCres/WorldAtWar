@@ -1,6 +1,7 @@
 import React from "react";
-import { Header, Menu, Icon } from "semantic-ui-react";
+import { Header, Menu, Icon, Image } from "semantic-ui-react";
 import Search from "./Search";
+// import "./weapon.css";
 
 const WeaponsHeader = props => (
   <Menu
@@ -22,6 +23,13 @@ const WeaponsHeader = props => (
         <Header.Content>Weapons Systems</Header.Content>
       </Header>
     </Menu.Item>
+
+    {/* <Menu.Item>
+      <div class="banner banner6">
+        <h1>Energizer</h1>
+        <div class="slogan">The Smarter Power</div>
+      </div>
+    </Menu.Item> */}
     <Menu.Item position="right">
       <Search handleChange={props.handleChange} inputValue={props.inputValue} />
     </Menu.Item>

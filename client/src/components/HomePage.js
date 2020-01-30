@@ -67,7 +67,7 @@ class HomePage extends Component {
   };
   handleShowBattlePage = () => {
     this.setState({
-      showBattlePage: true,
+      showBattlePage: !this.state.showBattlePage,
       showComparePage: false,
       detailsWeapon: []
     });
@@ -251,7 +251,10 @@ class HomePage extends Component {
           />
         )}
         {this.state.showBattlePage === false ? null : (
-          <BattleCont compareItems={this.state.compareItems} />
+          <BattleCont
+            compareItems={this.state.compareItems}
+            handleShowBattlePage={this.handleShowBattlePage}
+          />
         )}
 
         {this.state.showDetails === false ? null : (

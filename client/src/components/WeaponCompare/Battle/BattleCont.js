@@ -1,13 +1,5 @@
 import React, { Component } from "react";
-import {
-  Card,
-  Image,
-  Segment,
-  Grid,
-  Table,
-  Icon,
-  Header
-} from "semantic-ui-react";
+import { Segment, Grid, Label, Icon } from "semantic-ui-react";
 import { connect } from "react-redux";
 import BattleWinner from "./BattleWinner";
 import BattleLoser from "./BattleLoser";
@@ -36,7 +28,7 @@ class BattleCont extends Component {
   }
 
   render() {
-    console.log("Battle Cont state", this.state);
+    // console.log("Battle Cont state", this.state);
 
     const winnerProfile = this.state.battleWinner.profile[0];
 
@@ -48,6 +40,15 @@ class BattleCont extends Component {
           "background-color": "#F5F5F5"
         }}
       >
+        <Label
+          size="medium"
+          as="a"
+          corner="right"
+          color="red"
+          onClick={() => this.props.handleShowBattlePage()}
+        >
+          <Icon name="remove" />
+        </Label>
         <Grid
           columns={2}
           style={{

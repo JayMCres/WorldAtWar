@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Segment, Label, Icon } from "semantic-ui-react";
 import PlaneSpec from "./PlaneSpec";
-import { connect } from "react-redux";
+
 import WeaponHeader from "./WeaponHeader";
 
 class PlaneSpecCont extends Component {
@@ -111,5 +111,3 @@ class PlaneSpecCont extends Component {
   }
 }
 export default PlaneSpecCont;
-
-// export default connect(null)(PlaneSpecCont);

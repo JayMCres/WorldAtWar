@@ -17,12 +17,9 @@ class ProfileFeedCont extends Component {
         ...details
       };
     });
-    // console.log("planeObj", planeObj);
+    console.log("planeObj", planeObj);
 
     const planeArray = planeObj.map((item, index) => {
-      // console.log(item);
-      const specification = { ...item.specification };
-
       const engine = [item.engine].map(item => {
         const obj = { ...item };
         const newObj = { ...obj[0] };
@@ -51,23 +48,24 @@ class ProfileFeedCont extends Component {
       });
 
       return {
-        "Rate of Climb": specification.rate_of_climbing,
-        Control: specification.controllability,
-        "Dive Speed": specification.dive_speed,
-        "Horse Power": specification.hp,
-        "Stall Speed": specification.stall_speed,
-        Roll: specification.roll_maneuverability,
-        Maneuverability: specification.maneuverability,
-        Speed: specification.max_speed,
-        "Turn Time": specification.average_turn_time,
-        Altitude: specification.optimal_height,
+        "Rate of Climb": item.rate_of_climbing,
+        Control: item.controllability,
+        "Dive Speed": item.dive_speed,
+        "Horse Power": item.hp,
+        "Stall Speed": item.stall_speed,
+        Roll: item.roll_maneuverability,
+        Maneuverability: item.maneuverability,
+        Speed: item.max_speed,
+        "Turn Time": item.average_turn_time,
+        Altitude: item.optimal_height,
         ...engine[0],
         ...bomb[0],
         ...gun[0]
       };
     });
 
-    // console.log("plane array", planeArray);
+    console.log("planeArray", planeArray);
+
     return (
       <List animated verticalAlign="middle" divided>
         <ProfileFeed profileData={planeArray[0]} />

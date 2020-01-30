@@ -4,7 +4,7 @@ import ProfileFeedItem from "./ProfileFeedItem";
 
 export default class ProfileFeed extends Component {
   render() {
-    // console.log("Plane Profile Feed Props", this.props);
+    console.log("Plane Profile Feed Props", this.props);
 
     return (
       <List.Item>

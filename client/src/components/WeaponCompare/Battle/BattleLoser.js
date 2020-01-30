@@ -8,11 +8,7 @@ export default class BattleLoser extends Component {
     // console.log("Battle Winner Props", this.props);
 
     return (
-      <Segment
-      // style={{
-      //   "background-color": "#F5F5F5"
-      // }}
-      >
+      <Segment>
         <Grid
           columns={2}
           // style={{
@@ -25,7 +21,7 @@ export default class BattleLoser extends Component {
 
           <Grid.Column width={10}>
             <Segment attached="top">
-              <Header as="h3">
+              <Header as="h3" color="red">
                 <Icon name="settings" />
                 <Header.Content>LOSER- {this.props.weapon.name}</Header.Content>
               </Header>

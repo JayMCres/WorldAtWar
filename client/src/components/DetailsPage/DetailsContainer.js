@@ -13,12 +13,12 @@ export default class DetailsContainer extends Component {
         plane: <PlaneSpec />,
         ship: <ShipSpec />
       };
-      return <div>{WEAPONS_PAGES[link]}</div>;
+      return WEAPONS_PAGES[link];
     };
     return (
       <Segment
         style={{
-          "background-color": "#F5F5F5"
+          "background-color": "black"
         }}
       >
         <Label as="a" corner="right" color="red">
